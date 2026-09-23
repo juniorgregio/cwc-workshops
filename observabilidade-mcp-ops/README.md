@@ -34,6 +34,27 @@ Opções no endereço (combine com vírgula, por exemplo `index.html#vertical,da
 `#vertical`, `#landscape`, `#dark`, `#loop` (começa já montado, só o loop ao vivo), `#paused` e
 `#capture` (esconde os controles, para gravar). Trocar o endereço com a página aberta também aplica as opções.
 
+## GIF e vídeo
+
+- [`gif/fluxo-16x9-claro-montagem-e-loop.gif`](./gif/fluxo-16x9-claro-montagem-e-loop.gif): 1920×1080,
+  25 fps, 16,6 s (montagem + um ciclo do loop), repetição infinita.
+- [`gif/fluxo-16x9-claro-montagem-e-loop.mp4`](./gif/fluxo-16x9-claro-montagem-e-loop.mp4): a mesma animação em
+  H.264. Fica bem menor e não tem o limite de 256 cores do GIF, então é a melhor opção para PowerPoint ou
+  Google Slides quando o formato não precisa ser GIF.
+
+Os dois são gravados quadro a quadro com `FLOW.seek(t)`, então cada quadro sai exato. Para gerar de novo ou
+fazer outras variações:
+
+```
+node tools/gravar-gif.mjs                              # 16:9, claro, montagem + loop
+node tools/gravar-gif.mjs --mode loop                  # só o loop de 10 s, sem emenda
+node tools/gravar-gif.mjs --layout p --theme dark      # vertical, escuro
+node tools/gravar-gif.mjs --mp4                        # também gera o MP4
+```
+
+Requisitos: Node 18+, Playwright com Chromium (`npm i -D playwright && npx playwright install chromium`),
+[gifski](https://gif.ski) no PATH e, para o MP4, o ffmpeg. As demais opções estão no cabeçalho do script.
+
 ## Editar
 
 O `index.html` é gerado; edite os fontes e rode o build (Node 18+):
@@ -45,6 +66,7 @@ src/app.js          motor da animação: layouts, conectores, roteiro de tempo
 icons/*.svg         ícones e logos em SVG (viewBox 64×64)
 fonts/*.woff2       Plus Jakarta Sans e JetBrains Mono, embutidas no build
 build.mjs           node build.mjs  →  index.html
+tools/gravar-gif.mjs  grava o GIF (e o MP4) quadro a quadro a partir do index.html
 ```
 
 A animação é uma função pura do tempo: `render(t)` calcula cada quadro sem estado acumulado. Isso deixa a
