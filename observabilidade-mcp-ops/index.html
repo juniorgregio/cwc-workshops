@@ -36,8 +36,7 @@
   --cap-bg: linear-gradient(180deg, #ffffff, #f6f9ff);
   --cap-border: #dbe4f2;
   --chip-bg: #eef4ff;
-  --outcome-border: #c3cfe0;
-  --glow-k: 1;
+    --glow-k: 1;
   --badge-bg: #152238;
   --badge-ink: #ffffff;
   --sheen: rgba(29, 94, 232, .07);
@@ -70,8 +69,7 @@
   --cap-bg: linear-gradient(180deg, #111b31, #0e1729);
   --cap-border: #22304f;
   --chip-bg: #13213f;
-  --outcome-border: #22304f;
-  --glow-k: 1.5;
+    --glow-k: 1.5;
   --badge-bg: #eef2fb;
   --badge-ink: #0b1224;
   --sheen: rgba(160, 190, 255, .16);
@@ -94,7 +92,7 @@ body { background: var(--bg); overflow: hidden; }
   font-kerning: normal;
   user-select: none;
 }
-#stage[data-layout="p"] { width: 1080px; height: 1680px; }
+#stage[data-layout="p"] { width: 1080px; height: 1620px; }
 code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
 
 .grid-bg {
@@ -163,37 +161,37 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 .ico > svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
 /* tiles (Observabilidade / Repositórios) */
-.card .ttl { text-align: center; padding-top: 22px; font-size: 29px; }
+.card .ttl { text-align: center; padding-top: 24px; font-size: 31px; }
 #obs .ttl { color: var(--green-title); }
 #repo .ttl { color: var(--cyan); }
-.tiles { position: absolute; left: 20px; right: 20px; top: 68px; bottom: 18px; display: flex; }
+.tiles { position: absolute; left: 20px; right: 20px; top: 74px; bottom: 20px; display: flex; }
 .tile { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
 .tile + .tile::before { content: ""; position: absolute; left: 0; top: 14%; bottom: 14%; width: 1px; background: var(--divider); }
 .tile .hl { position: absolute; inset: 4px 10px; border-radius: 14px; opacity: 0; background: color-mix(in srgb, var(--sig) 11%, transparent); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--sig) 32%, transparent); }
-.tile .ico { width: 66px; height: 66px; }
-.tile span { position: relative; font-size: 17px; line-height: 1.25; font-weight: 650; text-align: center; color: var(--ink); }
+.tile .ico { width: 74px; height: 74px; }
+.tile span { position: relative; font-size: 18px; line-height: 1.25; font-weight: 650; text-align: center; color: var(--ink); }
 
 /* Aplicações / OTEL Collector (single hero icon) */
 #apps .body, #collector .body { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; }
-#apps .ico.hero { width: 78px; height: 78px; }
-#apps h2 { font-size: 27px; color: var(--navy-title); }
-#apps .sub { font-size: 16px; }
-#collector .ico.hero { width: 86px; height: 86px; }
-#collector h2 { font-size: 25px; color: var(--ink); }
+#apps .ico.hero { width: 88px; height: 88px; }
+#apps h2 { font-size: 28px; color: var(--navy-title); }
+#apps .sub { font-size: 17px; }
+#collector .ico.hero { width: 96px; height: 96px; }
+#collector h2 { font-size: 27px; color: var(--ink); }
 
 /* Monitoração */
-#monitor .body { padding: 20px 26px 16px; display: flex; flex-direction: column; }
-.mhead { display: flex; align-items: center; gap: 18px; height: 72px; }
-.mhead .ico { width: 64px; height: 64px; flex: none; }
-#monitor h2 { font-size: 31px; color: var(--pink); }
-#monitor .sub { font-size: 17px; margin-top: 4px; }
+#monitor .body { padding: 22px 28px 18px; display: flex; flex-direction: column; }
+.mhead { display: flex; align-items: center; gap: 18px; height: 80px; }
+.mhead .ico { width: 70px; height: 70px; flex: none; }
+#monitor h2 { font-size: 33px; color: var(--pink); }
+#monitor .sub { font-size: 18px; margin-top: 4px; }
 #monitor .sub b { color: var(--pink); font-weight: 600; margin: 0 6px; }
 .dots { display: block; height: 2px; margin: 8px 0; background-image: radial-gradient(circle, color-mix(in srgb, var(--pink) 55%, transparent) 1px, transparent 1.3px); background-size: 7px 2px; background-repeat: repeat-x; }
 .mrow { flex: 1; display: flex; align-items: stretch; }
 .vdiv { width: 1px; background: var(--divider); margin: 12px 0; }
 .cell { position: relative; flex: 1; display: flex; align-items: center; gap: 16px; padding: 0 18px; }
-.cell .ico.logo { width: 50px; height: 50px; flex: none; }
-.cell > span { font-size: 20px; font-weight: 650; color: var(--ink); }
+.cell .ico.logo { width: 58px; height: 58px; flex: none; }
+.cell > span { font-size: 22px; font-weight: 650; color: var(--ink); }
 .alert {
   margin-left: auto; align-self: center; height: 30px;
   display: inline-flex; align-items: center; gap: 7px; padding: 0 12px 0 9px; border-radius: 9px;
@@ -210,10 +208,10 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 }
 
 /* MCP OPS */
-#mcp .body { padding: 18px 22px 18px; display: flex; flex-direction: column; gap: 12px; }
-.xhead { display: flex; align-items: center; gap: 18px; height: 64px; }
-.xhead .ico.brain { width: 66px; height: 66px; flex: none; }
-#mcp h2 { font-size: 40px; color: var(--blue-2); letter-spacing: -.01em; }
+#mcp .body { padding: 20px 24px 22px; display: flex; flex-direction: column; gap: 14px; }
+.xhead { display: flex; align-items: center; gap: 18px; height: 72px; }
+.xhead .ico.brain { width: 72px; height: 72px; flex: none; }
+#mcp h2 { font-size: 44px; color: var(--blue-2); letter-spacing: -.01em; }
 .srv {
   margin-left: auto; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
   font: 600 12px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; color: var(--muted);
@@ -222,29 +220,16 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 .srv i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent); }
 .caps { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
 .cap {
-  position: relative; display: flex; align-items: center; gap: 14px; padding: 0 16px;
+  position: relative; display: flex; align-items: center; gap: 16px; padding: 0 18px;
   border-radius: 14px; background: var(--cap-bg); box-shadow: inset 0 0 0 1px var(--cap-border);
 }
 .cap .hl { position: absolute; inset: 0; border-radius: inherit; opacity: 0; background: color-mix(in srgb, var(--blue) 8%, transparent); box-shadow: inset 0 0 0 1.75px color-mix(in srgb, var(--blue) 70%, transparent), 0 8px 22px color-mix(in srgb, var(--blue) 18%, transparent); }
-.cap .ico { width: 40px; height: 40px; flex: none; }
-.cap .ct { position: relative; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-.cap b { font-size: 19px; font-weight: 650; color: var(--ink); white-space: nowrap; }
-.cap .st { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: clip; }
+.cap .ico { width: 48px; height: 48px; flex: none; }
+.cap .ct { position: relative; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.cap b { font-size: 21px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+.cap .st { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: clip; }
 .cap .st.live { color: var(--blue-2); }
 .cap .st .caret { display: inline-block; width: 7px; height: 14px; margin-left: 1px; vertical-align: -2px; background: currentColor; }
-
-/* outcomes */
-.outcomes {
-  position: absolute; z-index: 2; display: flex; align-items: stretch;
-  border-radius: 18px; background: var(--card); box-shadow: inset 0 0 0 1.5px var(--outcome-border), var(--card-shadow);
-}
-.oc { position: relative; flex: 1; display: flex; align-items: center; gap: 16px; padding: 0 26px; }
-.oc + .oc::before { content: ""; position: absolute; left: 0; top: 20%; bottom: 20%; width: 1px; background: var(--divider); }
-.oc .hl { position: absolute; inset: 8px 8px; border-radius: 12px; opacity: 0; background: color-mix(in srgb, var(--navy) 8%, transparent); }
-.oc .ico { width: 46px; height: 46px; flex: none; }
-.oc .ot { position: relative; display: flex; flex-direction: column; gap: 4px; }
-.oc b { font-size: 15px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
-.oc span { font-size: 14px; line-height: 1.3; color: var(--muted); font-weight: 500; }
 
 /* feedback acknowledgements */
 .ackchip {
@@ -289,31 +274,27 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 #stage[data-layout="p"] #repo .tile span { font-size: 20px; text-align: left; }
 
 #stage[data-layout="p"] #monitor .body { padding: 22px 22px 14px; }
-#stage[data-layout="p"] .mhead { height: 96px; gap: 16px; }
+#stage[data-layout="p"] .mhead { height: 100px; gap: 16px; }
 #stage[data-layout="p"] .mhead .ico { width: 70px; height: 70px; }
 #stage[data-layout="p"] #monitor h2 { font-size: 32px; }
 #stage[data-layout="p"] #monitor .sub { font-size: 17px; }
 #stage[data-layout="p"] .cell { flex-direction: row; gap: 12px; padding: 0 12px; }
-#stage[data-layout="p"] .cell .ico.logo { width: 52px; height: 52px; }
-#stage[data-layout="p"] .cell > span { font-size: 19px; }
+#stage[data-layout="p"] .cell .ico.logo { width: 58px; height: 58px; }
+#stage[data-layout="p"] .cell > span { font-size: 20px; }
 #stage[data-layout="p"] .alert { height: 26px; padding: 0 9px 0 7px; font-size: 12px; gap: 5px; }
 #stage[data-layout="p"] .alert .al-k { display: none; }
 
 #stage[data-layout="p"] #mcp .body { padding: 20px 20px 18px; gap: 12px; }
 #stage[data-layout="p"] .xhead { height: 74px; gap: 16px; }
 #stage[data-layout="p"] .xhead .ico.brain { width: 64px; height: 64px; }
-#stage[data-layout="p"] #mcp h2 { font-size: 38px; }
+#stage[data-layout="p"] #mcp h2 { font-size: 40px; }
 #stage[data-layout="p"] .srv { display: none; }
 #stage[data-layout="p"] .caps { grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); gap: 10px; }
 #stage[data-layout="p"] .cap { padding: 0 14px; gap: 14px; }
-#stage[data-layout="p"] .cap .ico { width: 38px; height: 38px; }
-#stage[data-layout="p"] .cap b { font-size: 18px; }
-#stage[data-layout="p"] .cap .st { font-size: 12px; }
+#stage[data-layout="p"] .cap .ico { width: 44px; height: 44px; }
+#stage[data-layout="p"] .cap b { font-size: 19px; }
+#stage[data-layout="p"] .cap .st { font-size: 13px; }
 
-#stage[data-layout="p"] .oc { padding: 0 12px; gap: 11px; }
-#stage[data-layout="p"] .oc .ico { width: 40px; height: 40px; }
-#stage[data-layout="p"] .oc b { font-size: 12.5px; letter-spacing: .03em; }
-#stage[data-layout="p"] .oc span { font-size: 12px; }
 
 /* ------------------------------------------------------------------ dark tweaks */
 #stage[data-look="dark"] .card > .glow {
@@ -327,8 +308,6 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 #stage[data-look="dark"] .ic-mcp_brain,
 #stage[data-look="dark"] .ic-robot, #stage[data-look="dark"] .ic-insights,
 #stage[data-look="dark"] .ic-automacao, #stage[data-look="dark"] .ic-recomendacoes { color: var(--blue-2); }
-#stage[data-look="dark"] .ic-target, #stage[data-look="dark"] .ic-eye,
-#stage[data-look="dark"] .ic-lightning, #stage[data-look="dark"] .ic-shield { color: var(--navy); }
 #stage[data-look="dark"] .badge { box-shadow: 0 0 0 1px rgba(255, 255, 255, .1); }
 
 /* ------------------------------------------------------------------ controls */
@@ -368,12 +347,16 @@ body.capture .controls { display: none; }
 .ic-otel_sdk{color:#4d25c0}
 .ic-collector{color:#f37203}
 .ic-monitor_dash{color:#e80e6a}
-.ic-mcp_brain{color:#055ce3}</style>
+.ic-mcp_brain{color:#055ce3}
+.ic-robot{color:#0048dc}
+.ic-insights{color:#0048dc}
+.ic-automacao{color:#0048dc}
+.ic-recomendacoes{color:#0048dc}</style>
 </head>
 <body data-look="light">
 <div id="viewport">
 <div id="stage" data-layout="l" data-look="light" role="img"
-  aria-label="Fluxo animado da arquitetura: as Aplicações geram telemetria com Log4J, Biblioteca Padronizada e OpenTelemetry SDK; o OTEL Collector envia os dados aos Repositórios Loki e Dynatrace SaaS; a Monitoração (Grafana, Dynatrace, WhatsApp e Teams) e o MCP OPS (Agentes de IA, Insights e Diagnósticos, Automação e Recomendações) consomem os dados; o MCP OPS atua de volta em todas as camadas. Resultados: foco no negócio, visibilidade unificada, resposta rápida e decisões melhores.">
+  aria-label="Fluxo animado da arquitetura: as Aplicações geram telemetria com Log4J, Biblioteca Padronizada e OpenTelemetry SDK; o OTEL Collector envia os dados aos Repositórios Loki e Dynatrace SaaS; a Monitoração (Grafana, Dynatrace, WhatsApp e Teams) e o MCP OPS (Agentes de IA, Insights e Diagnósticos, Automação e Recomendações) consomem os dados; o MCP OPS atua de volta em todas as camadas.">
 
   <div class="grid-bg"></div>
   <svg id="wires" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
@@ -513,13 +496,13 @@ body.capture .controls { display: none; }
     <div class="body">
       <h2 class="ttl" data-in="3.35" data-fx="up">Repositórios</h2>
       <div class="tiles">
-        <div class="tile" id="t-loki" style="--sig:var(--sig-logs)" data-in="3.45" data-fx="pop"><i class="hl"></i><div class="ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="ic ic-loki" aria-hidden="true" focusable="false"><defs><linearGradient id="ic-loki-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="105"><stop offset="0" stop-color="#F3741A"/><stop offset=".7" stop-color="#F7870F"/><stop offset="1" stop-color="#F8AD12"/></linearGradient></defs><g fill="url(#ic-loki-grad)" transform="translate(32 29.6) rotate(-9) scale(.53) translate(-33.5 -52.5)"><path class="bar cap" d="M0 0h4.5v16h-4.5z"/><path class="bar cap" d="M5.5 0h4.5v16h-4.5z"/><path class="bar" d="M0 19.5h4.5v59h-4.5z"/><path class="bar" d="M5.5 19.5h4.5v59h-4.5z"/><path class="bar" d="M13 19.5h4.5v59h-4.5z"/><path class="bar" d="M18.5 19.5h4.5v59h-4.5z"/><path class="bar" d="M26 19.5h4.5v59h-4.5z"/><path class="bar" d="M31.5 19.5h4.5v59h-4.5z"/><g class="row"><path class="cell" d="M0 82h10v10h-10z"/><path class="cell" d="M13 82h10v10h-10z"/><path class="cell" d="M26 82h10v10h-10z"/><path class="cell long" d="M39 82h28v10h-28z"/></g><g class="row"><path class="cell" d="M0 95h10v10h-10z"/><path class="cell" d="M13 95h10v10h-10z"/><path class="cell" d="M26 95h10v10h-10z"/><path class="cell long" d="M39 95h28v10h-28z"/></g></g></svg></div><span>Loki</span></div>
+        <div class="tile" id="t-loki" style="--sig:var(--sig-logs)" data-in="3.45" data-fx="pop"><i class="hl"></i><div class="ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="ic ic-loki" aria-hidden="true" focusable="false"><defs><linearGradient id="ic-loki-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="105"><stop offset="0" stop-color="#F6770A"/><stop offset=".74" stop-color="#F78508"/><stop offset=".78" stop-color="#F79E08"/><stop offset="1" stop-color="#F8AB0A"/></linearGradient></defs><g fill="url(#ic-loki-grad)" transform="translate(32 29.6) rotate(-9) scale(.53) translate(-33.5 -52.5)"><path class="bar cap" d="M0 0h4.5v16h-4.5z"/><path class="bar cap" d="M5.5 0h4.5v16h-4.5z"/><path class="bar" d="M0 19.5h4.5v59h-4.5z"/><path class="bar" d="M5.5 19.5h4.5v59h-4.5z"/><path class="bar" d="M13 19.5h4.5v59h-4.5z"/><path class="bar" d="M18.5 19.5h4.5v59h-4.5z"/><path class="bar" d="M26 19.5h4.5v59h-4.5z"/><path class="bar" d="M31.5 19.5h4.5v59h-4.5z"/><g class="row"><path class="cell" d="M0 82h10v10h-10z"/><path class="cell" d="M13 82h10v10h-10z"/><path class="cell" d="M26 82h10v10h-10z"/><path class="cell long" d="M39 82h28v10h-28z"/></g><g class="row"><path class="cell" d="M0 95h10v10h-10z"/><path class="cell" d="M13 95h10v10h-10z"/><path class="cell" d="M26 95h10v10h-10z"/><path class="cell long" d="M39 95h28v10h-28z"/></g></g></svg></div><span>Loki</span></div>
         <div class="tile" id="t-dyn" style="--sig:var(--sig-traces)" data-in="3.60" data-fx="pop"><i class="hl"></i><div class="ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="ic ic-dynatrace" aria-hidden="true" focusable="false">
 <defs>
-<linearGradient id="ic-dynatrace-top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b3da2e"/><stop offset="1" stop-color="#9ccc12"/></linearGradient>
-<linearGradient id="ic-dynatrace-left" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1896f7"/><stop offset="1" stop-color="#0580ea"/></linearGradient>
-<linearGradient id="ic-dynatrace-bottom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9f50dc"/><stop offset="1" stop-color="#8538c2"/></linearGradient>
-<linearGradient id="ic-dynatrace-right" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#70bb22"/><stop offset="1" stop-color="#4c9f24"/></linearGradient>
+<linearGradient id="ic-dynatrace-top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#acdd1a"/><stop offset="1" stop-color="#9ccf0a"/></linearGradient>
+<linearGradient id="ic-dynatrace-left" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c8ff6"/><stop offset="1" stop-color="#0380ea"/></linearGradient>
+<linearGradient id="ic-dynatrace-bottom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a152da"/><stop offset="1" stop-color="#8d40c6"/></linearGradient>
+<linearGradient id="ic-dynatrace-right" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#66b418"/><stop offset=".55" stop-color="#5cad14"/><stop offset="1" stop-color="#3c9e24"/></linearGradient>
 </defs>
 <path class="face face-left" fill="url(#ic-dynatrace-left)" d="M4 25.72A212 212 0 0 0 4.48 38.05A224 224 0 0 0 6.16 54.15L20.51 40.66S19.98 33.9 20.83 23.82C20.83 23.82 4.93 21.93 4 25.72Z"/>
 <path class="face face-bottom" fill="url(#ic-dynatrace-bottom)" d="M37.1 59.91C40.82 58.86 39.74 43.44 39.74 43.44C29.48 43.78 22.7 42.94 22.7 42.94L8.32 56.41S15.93 57.88 24.5 58.86A296 296 0 0 0 36.83 59.91C36.94 59.94 37.04 59.91 37.1 59.91Z"/>
@@ -563,15 +546,15 @@ body.capture .controls { display: none; }
       <i class="dots" data-in="4.50" data-fx="fade"></i>
       <div class="mrow">
         <div class="cell" id="cell-grafana" data-in="4.58" data-fx="pop">
-          <div class="ico logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="ic ic-grafana" aria-hidden="true" focusable="false"><defs><linearGradient id="ic-grafana-grad" gradientUnits="userSpaceOnUse" x1="32" y1="-4" x2="32" y2="68"><stop offset="0" stop-color="#F05A28"/><stop offset="1" stop-color="#FBCA0A"/></linearGradient></defs><g class="swirl"><path fill="url(#ic-grafana-grad)" d="M57.69 28.71c-.1-.94-.25-2.02-.56-3.22-.31-1.19-.77-2.5-1.45-3.86-.68-1.35-1.56-2.76-2.7-4.13-.45-.54-.94-1.07-1.46-1.57.78-3.14-.96-5.85-.96-5.85-3.01-.19-4.92.94-5.63 1.45-.13-.05-.23-.11-.36-.16-.51-.2-1.03-.4-1.59-.57-.54-.17-1.09-.32-1.66-.46-.57-.14-1.14-.25-1.73-.34-.11-.01-.2-.03-.31-.05-1.31-4.19-5.07-5.95-5.07-5.95-4.22 2.67-5 6.4-5 6.4s-.02.08-.05.22c-.23.06-.46.14-.69.2-.33.09-.65.21-.96.34-.32.12-.63.24-.96.38-.63.28-1.26.59-1.88.93-.6.34-1.19.71-1.76 1.09-.07-.03-.15-.06-.15-.06-5.83-2.22-11 .45-11 .45-.48 6.2 2.33 10.11 2.88 10.81-.13.39-.26.78-.38 1.16-.43 1.41-.76 2.84-.96 4.34-.03.21-.06.43-.07.64-5.4 2.67-6.99 8.12-6.99 8.12 4.49 5.17 9.73 5.49 9.73 5.49 0 0 .02-.01.02-.01.66 1.18 1.43 2.31 2.3 3.37.37.45.74.87 1.14 1.28-1.64 4.69.23 8.58.23 8.58 5 .19 8.28-2.19 8.98-2.73.49.17 1 .33 1.51.45 1.54.4 3.12.63 4.69.69.38.02.79.03 1.17.02l.19 0 .12 0 .25 0 .24-.02 0 .02c2.36 3.36 6.5 3.84 6.5 3.84 2.94-3.1 3.11-6.19 3.11-6.85 0 0 0-.02 0-.05 0-.06 0-.09 0-.09 0-.04 0-.09 0-.14.62-.43 1.21-.89 1.76-1.4 1.18-1.07 2.21-2.28 3.07-3.6.08-.12.16-.24.23-.37 3.34.19 5.7-2.06 5.7-2.06-.56-3.47-2.53-5.17-2.95-5.5 0 0-.02-.01-.05-.03-.03-.01-.03-.03-.03-.03 0 0 0 0 0 0-.01-.01-.04-.03-.07-.04.01-.22.03-.42.04-.64.03-.37.03-.75.03-1.12l0-.28 0-.14 0-.08c0-.09 0-.06 0-.09l-.01-.23-.02-.31c0-.11-.01-.2-.03-.29-.01-.09-.01-.2-.03-.29l-.03-.3-.05-.29c-.06-.39-.12-.76-.21-1.14-.36-1.5-.94-2.92-1.7-4.2-.77-1.28-1.73-2.4-2.82-3.36-1.08-.96-2.3-1.73-3.57-2.3-1.28-.57-2.6-.94-3.93-1.11-.66-.09-1.33-.12-1.99-.11l-.25 0-.06 0c-.01 0-.09 0-.08 0l-.1 0-.25.02c-.09 0-.19.01-.26.01-.34.03-.68.08-1.01.14-1.32.25-2.57.73-3.67 1.39-1.09.66-2.05 1.48-2.82 2.41-.77.92-1.37 1.96-1.79 3.02-.42 1.06-.65 2.18-.71 3.24-.02.26-.02.54-.02.8 0 .06 0 .14 0 .2l.02.22c.02.12.02.26.03.38.05.54.16 1.07.29 1.56.3 1 .76 1.92 1.33 2.69.57.77 1.27 1.4 1.99 1.91.73.49 1.51.85 2.28 1.08.78.23 1.55.32 2.27.32.09 0 .19 0 .26 0 .05 0 .1 0 .14 0 .05 0 .1 0 .14-.01.08 0 .16-.02.23-.02.02 0 .05 0 .07-.01l.07-.02c.05 0 .09-.01.14-.01.09-.02.17-.03.26-.05.1-.02.17-.03.25-.06.17-.03.32-.09.48-.14.31-.11.62-.23.88-.37.28-.14.52-.31.77-.46.06-.05.14-.1.2-.16.25-.2.29-.57.09-.82-.17-.21-.48-.27-.72-.13-.06.03-.13.06-.19.09-.21.11-.43.2-.66.28-.23.07-.48.13-.73.18-.12.02-.24.03-.38.05-.06 0-.13.01-.2.01-.06 0-.14 0-.19 0-.06 0-.12 0-.18 0-.08 0-.16 0-.23-.01 0 0-.05 0-.02 0l-.03 0-.05 0c-.03 0-.07 0-.1-.02-.08-.01-.14-.01-.22-.03-.57-.08-1.14-.25-1.68-.49-.56-.25-1.08-.59-1.56-1.02-.48-.43-.9-.94-1.22-1.53-.32-.58-.55-1.23-.66-1.91-.05-.34-.08-.7-.06-1.03 0-.1.01-.19.01-.28 0 .03 0-.02 0-.02l0-.03 0-.08c0-.04.02-.09.02-.13.01-.19.04-.38.07-.56.27-1.48 1.01-2.93 2.15-4.03.29-.27.6-.52.92-.75.33-.23.68-.43 1.05-.6.37-.17.74-.31 1.14-.42.39-.11.79-.17 1.21-.22.2-.01.4-.03.61-.03.07 0 .1 0 .14 0l.17 0 .11 0c.05 0 0 0 .02 0l.04 0 .17.02c.45.03.88.09 1.31.2.87.18 1.72.51 2.5.94 1.58.88 2.92 2.24 3.74 3.87.41.82.71 1.7.84 2.61.04.23.07.46.08.69l.02.17.01.17c0 .06 0 .13 0 .17 0 .06 0 .13 0 .17l0 .16 0 .17c0 .1-.01.29-.01.4-.02.24-.05.51-.08.75-.03.25-.08.5-.12.74-.05.25-.11.5-.17.73-.13.48-.28.95-.47 1.43-.37.93-.86 1.82-1.45 2.64-1.18 1.64-2.8 2.96-4.65 3.81-.93.42-1.9.73-2.9.88-.5.09-1.01.14-1.52.16l-.09 0-.08 0-.17 0-.24 0-.13 0c.07 0-.01 0-.01 0l-.05 0c-.28 0-.54-.02-.82-.05-1.08-.08-2.14-.28-3.19-.57-1.03-.3-2.04-.71-2.99-1.21-1.9-1.01-3.61-2.4-4.94-4.08-.66-.84-1.25-1.75-1.73-2.69-.47-.94-.86-1.94-1.14-2.94-.28-1.02-.45-2.06-.52-3.11l-.02-.2 0-.04 0-.05 0-.09 0-.17 0-.05 0-.06 0-.12 0-.25 0-.04c0 0 0 .01 0-.02l0-.09c0-.13 0-.27 0-.39.02-.51.06-1.05.13-1.57.06-.53.15-1.07.26-1.59.11-.53.23-1.05.38-1.57.3-1.04.67-2.04 1.1-2.98.88-1.88 2.02-3.57 3.39-4.91.34-.34.7-.65 1.07-.95.37-.3.75-.58 1.15-.84.39-.26.81-.49 1.22-.71.2-.11.42-.21.64-.31.1-.04.21-.09.32-.13.11-.05.22-.1.32-.14.44-.19.88-.34 1.35-.48.1-.03.23-.06.33-.11.11-.03.24-.06.34-.09.24-.06.47-.13.7-.17.11-.03.23-.05.35-.08.13-.03.23-.05.36-.08.12-.01.23-.04.35-.06l.17-.03.19-.03c.12-.01.23-.03.35-.05.14-.01.26-.03.4-.04.11-.02.3-.03.4-.05.08-.01.17-.01.25-.03l.17-.01.08-.02.09 0c.14-.02.26-.02.4-.03l.2-.02c0 0 .08 0 .02 0l.04 0 .1 0c.1 0 .23-.01.34-.01.44-.02.91-.02 1.35 0 .9.03 1.78.14 2.63.29 1.71.33 3.31.87 4.78 1.59 1.46.71 2.76 1.59 3.9 2.55.08.06.14.12.22.18.06.06.14.12.2.19.14.12.26.24.4.37.14.12.26.24.39.37.12.12.24.24.37.38.47.51.92 1.02 1.32 1.54.8 1.04 1.45 2.09 1.96 3.07.03.07.06.13.09.19.03.06.07.12.1.19.06.12.12.24.17.37.06.12.1.23.17.35.04.12.1.23.15.36.19.46.37.91.51 1.32.23.68.4 1.28.54 1.81.05.21.25.35.46.32.23-.01.4-.2.4-.43.02-.56 0-1.22-.07-1.98z"/></g></svg></div><span>Grafana</span>
+          <div class="ico logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="ic ic-grafana" aria-hidden="true" focusable="false"><defs><linearGradient id="ic-grafana-grad" gradientUnits="userSpaceOnUse" x1="32" y1="-12" x2="32" y2="89"><stop offset="0" stop-color="#F05A28"/><stop offset="1" stop-color="#FBCA0A"/></linearGradient></defs><g class="swirl"><path fill="url(#ic-grafana-grad)" d="M57.69 28.71c-.1-.94-.25-2.02-.56-3.22-.31-1.19-.77-2.5-1.45-3.86-.68-1.35-1.56-2.76-2.7-4.13-.45-.54-.94-1.07-1.46-1.57.78-3.14-.96-5.85-.96-5.85-3.01-.19-4.92.94-5.63 1.45-.13-.05-.23-.11-.36-.16-.51-.2-1.03-.4-1.59-.57-.54-.17-1.09-.32-1.66-.46-.57-.14-1.14-.25-1.73-.34-.11-.01-.2-.03-.31-.05-1.31-4.19-5.07-5.95-5.07-5.95-4.22 2.67-5 6.4-5 6.4s-.02.08-.05.22c-.23.06-.46.14-.69.2-.33.09-.65.21-.96.34-.32.12-.63.24-.96.38-.63.28-1.26.59-1.88.93-.6.34-1.19.71-1.76 1.09-.07-.03-.15-.06-.15-.06-5.83-2.22-11 .45-11 .45-.48 6.2 2.33 10.11 2.88 10.81-.13.39-.26.78-.38 1.16-.43 1.41-.76 2.84-.96 4.34-.03.21-.06.43-.07.64-5.4 2.67-6.99 8.12-6.99 8.12 4.49 5.17 9.73 5.49 9.73 5.49 0 0 .02-.01.02-.01.66 1.18 1.43 2.31 2.3 3.37.37.45.74.87 1.14 1.28-1.64 4.69.23 8.58.23 8.58 5 .19 8.28-2.19 8.98-2.73.49.17 1 .33 1.51.45 1.54.4 3.12.63 4.69.69.38.02.79.03 1.17.02l.19 0 .12 0 .25 0 .24-.02 0 .02c2.36 3.36 6.5 3.84 6.5 3.84 2.94-3.1 3.11-6.19 3.11-6.85 0 0 0-.02 0-.05 0-.06 0-.09 0-.09 0-.04 0-.09 0-.14.62-.43 1.21-.89 1.76-1.4 1.18-1.07 2.21-2.28 3.07-3.6.08-.12.16-.24.23-.37 3.34.19 5.7-2.06 5.7-2.06-.56-3.47-2.53-5.17-2.95-5.5 0 0-.02-.01-.05-.03-.03-.01-.03-.03-.03-.03 0 0 0 0 0 0-.01-.01-.04-.03-.07-.04.01-.22.03-.42.04-.64.03-.37.03-.75.03-1.12l0-.28 0-.14 0-.08c0-.09 0-.06 0-.09l-.01-.23-.02-.31c0-.11-.01-.2-.03-.29-.01-.09-.01-.2-.03-.29l-.03-.3-.05-.29c-.06-.39-.12-.76-.21-1.14-.36-1.5-.94-2.92-1.7-4.2-.77-1.28-1.73-2.4-2.82-3.36-1.08-.96-2.3-1.73-3.57-2.3-1.28-.57-2.6-.94-3.93-1.11-.66-.09-1.33-.12-1.99-.11l-.25 0-.06 0c-.01 0-.09 0-.08 0l-.1 0-.25.02c-.09 0-.19.01-.26.01-.34.03-.68.08-1.01.14-1.32.25-2.57.73-3.67 1.39-1.09.66-2.05 1.48-2.82 2.41-.77.92-1.37 1.96-1.79 3.02-.42 1.06-.65 2.18-.71 3.24-.02.26-.02.54-.02.8 0 .06 0 .14 0 .2l.02.22c.02.12.02.26.03.38.05.54.16 1.07.29 1.56.3 1 .76 1.92 1.33 2.69.57.77 1.27 1.4 1.99 1.91.73.49 1.51.85 2.28 1.08.78.23 1.55.32 2.27.32.09 0 .19 0 .26 0 .05 0 .1 0 .14 0 .05 0 .1 0 .14-.01.08 0 .16-.02.23-.02.02 0 .05 0 .07-.01l.07-.02c.05 0 .09-.01.14-.01.09-.02.17-.03.26-.05.1-.02.17-.03.25-.06.17-.03.32-.09.48-.14.31-.11.62-.23.88-.37.28-.14.52-.31.77-.46.06-.05.14-.1.2-.16.25-.2.29-.57.09-.82-.17-.21-.48-.27-.72-.13-.06.03-.13.06-.19.09-.21.11-.43.2-.66.28-.23.07-.48.13-.73.18-.12.02-.24.03-.38.05-.06 0-.13.01-.2.01-.06 0-.14 0-.19 0-.06 0-.12 0-.18 0-.08 0-.16 0-.23-.01 0 0-.05 0-.02 0l-.03 0-.05 0c-.03 0-.07 0-.1-.02-.08-.01-.14-.01-.22-.03-.57-.08-1.14-.25-1.68-.49-.56-.25-1.08-.59-1.56-1.02-.48-.43-.9-.94-1.22-1.53-.32-.58-.55-1.23-.66-1.91-.05-.34-.08-.7-.06-1.03 0-.1.01-.19.01-.28 0 .03 0-.02 0-.02l0-.03 0-.08c0-.04.02-.09.02-.13.01-.19.04-.38.07-.56.27-1.48 1.01-2.93 2.15-4.03.29-.27.6-.52.92-.75.33-.23.68-.43 1.05-.6.37-.17.74-.31 1.14-.42.39-.11.79-.17 1.21-.22.2-.01.4-.03.61-.03.07 0 .1 0 .14 0l.17 0 .11 0c.05 0 0 0 .02 0l.04 0 .17.02c.45.03.88.09 1.31.2.87.18 1.72.51 2.5.94 1.58.88 2.92 2.24 3.74 3.87.41.82.71 1.7.84 2.61.04.23.07.46.08.69l.02.17.01.17c0 .06 0 .13 0 .17 0 .06 0 .13 0 .17l0 .16 0 .17c0 .1-.01.29-.01.4-.02.24-.05.51-.08.75-.03.25-.08.5-.12.74-.05.25-.11.5-.17.73-.13.48-.28.95-.47 1.43-.37.93-.86 1.82-1.45 2.64-1.18 1.64-2.8 2.96-4.65 3.81-.93.42-1.9.73-2.9.88-.5.09-1.01.14-1.52.16l-.09 0-.08 0-.17 0-.24 0-.13 0c.07 0-.01 0-.01 0l-.05 0c-.28 0-.54-.02-.82-.05-1.08-.08-2.14-.28-3.19-.57-1.03-.3-2.04-.71-2.99-1.21-1.9-1.01-3.61-2.4-4.94-4.08-.66-.84-1.25-1.75-1.73-2.69-.47-.94-.86-1.94-1.14-2.94-.28-1.02-.45-2.06-.52-3.11l-.02-.2 0-.04 0-.05 0-.09 0-.17 0-.05 0-.06 0-.12 0-.25 0-.04c0 0 0 .01 0-.02l0-.09c0-.13 0-.27 0-.39.02-.51.06-1.05.13-1.57.06-.53.15-1.07.26-1.59.11-.53.23-1.05.38-1.57.3-1.04.67-2.04 1.1-2.98.88-1.88 2.02-3.57 3.39-4.91.34-.34.7-.65 1.07-.95.37-.3.75-.58 1.15-.84.39-.26.81-.49 1.22-.71.2-.11.42-.21.64-.31.1-.04.21-.09.32-.13.11-.05.22-.1.32-.14.44-.19.88-.34 1.35-.48.1-.03.23-.06.33-.11.11-.03.24-.06.34-.09.24-.06.47-.13.7-.17.11-.03.23-.05.35-.08.13-.03.23-.05.36-.08.12-.01.23-.04.35-.06l.17-.03.19-.03c.12-.01.23-.03.35-.05.14-.01.26-.03.4-.04.11-.02.3-.03.4-.05.08-.01.17-.01.25-.03l.17-.01.08-.02.09 0c.14-.02.26-.02.4-.03l.2-.02c0 0 .08 0 .02 0l.04 0 .1 0c.1 0 .23-.01.34-.01.44-.02.91-.02 1.35 0 .9.03 1.78.14 2.63.29 1.71.33 3.31.87 4.78 1.59 1.46.71 2.76 1.59 3.9 2.55.08.06.14.12.22.18.06.06.14.12.2.19.14.12.26.24.4.37.14.12.26.24.39.37.12.12.24.24.37.38.47.51.92 1.02 1.32 1.54.8 1.04 1.45 2.09 1.96 3.07.03.07.06.13.09.19.03.06.07.12.1.19.06.12.12.24.17.37.06.12.1.23.17.35.04.12.1.23.15.36.19.46.37.91.51 1.32.23.68.4 1.28.54 1.81.05.21.25.35.46.32.23-.01.4-.2.4-.43.02-.56 0-1.22-.07-1.98z"/></g></svg></div><span>Grafana</span>
         </div>
         <i class="vdiv"></i>
         <div class="cell" id="cell-dyn" data-in="4.68" data-fx="pop"><div class="ico logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="ic ic-dynatrace" aria-hidden="true" focusable="false">
 <defs>
-<linearGradient id="ic-dynatrace-m-top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b3da2e"/><stop offset="1" stop-color="#9ccc12"/></linearGradient>
-<linearGradient id="ic-dynatrace-m-left" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1896f7"/><stop offset="1" stop-color="#0580ea"/></linearGradient>
-<linearGradient id="ic-dynatrace-m-bottom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9f50dc"/><stop offset="1" stop-color="#8538c2"/></linearGradient>
-<linearGradient id="ic-dynatrace-m-right" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#70bb22"/><stop offset="1" stop-color="#4c9f24"/></linearGradient>
+<linearGradient id="ic-dynatrace-m-top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#acdd1a"/><stop offset="1" stop-color="#9ccf0a"/></linearGradient>
+<linearGradient id="ic-dynatrace-m-left" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c8ff6"/><stop offset="1" stop-color="#0380ea"/></linearGradient>
+<linearGradient id="ic-dynatrace-m-bottom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a152da"/><stop offset="1" stop-color="#8d40c6"/></linearGradient>
+<linearGradient id="ic-dynatrace-m-right" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#66b418"/><stop offset=".55" stop-color="#5cad14"/><stop offset="1" stop-color="#3c9e24"/></linearGradient>
 </defs>
 <path class="face face-left" fill="url(#ic-dynatrace-m-left)" d="M4 25.72A212 212 0 0 0 4.48 38.05A224 224 0 0 0 6.16 54.15L20.51 40.66S19.98 33.9 20.83 23.82C20.83 23.82 4.93 21.93 4 25.72Z"/>
 <path class="face face-bottom" fill="url(#ic-dynatrace-m-bottom)" d="M37.1 59.91C40.82 58.86 39.74 43.44 39.74 43.44C29.48 43.78 22.7 42.94 22.7 42.94L8.32 56.41S15.93 57.88 24.5 58.86A296 296 0 0 0 36.83 59.91C36.94 59.94 37.04 59.91 37.1 59.91Z"/>
@@ -586,20 +569,18 @@ body.capture .controls { display: none; }
 <linearGradient id="ic-whatsapp-bubble" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3bb254"/><stop offset="1" stop-color="#28a444"/></linearGradient>
 </defs>
 <path class="bubble" fill="url(#ic-whatsapp-bubble)" d="M51.75 12.14A27.57 27.57 0 0 0 32.12 4C16.82 4 4.37 16.45 4.37 31.75C4.37 36.64 5.64 41.41 8.07 45.62L4.13 60L18.84 56.14A27.72 27.72 0 0 0 32.11 59.52H32.12C47.41 59.52 59.86 47.07 59.87 31.77A27.58 27.58 0 0 0 51.75 12.14Z"/>
-<path class="handset" fill="#fff" d="M44.77 37.56C44.08 37.21 40.67 35.54 40.03 35.3C39.39 35.07 38.93 34.96 38.47 35.65C38.01 36.34 36.68 37.91 36.27 38.37C35.87 38.83 35.47 38.89 34.77 38.54C34.08 38.19 31.84 37.46 29.2 35.1C27.14 33.26 25.74 30.99 25.34 30.3C24.93 29.6 25.3 29.23 25.64 28.88C25.95 28.57 26.34 28.07 26.68 27.67C27.03 27.26 27.14 26.97 27.38 26.51C27.61 26.05 27.49 25.64 27.32 25.3C27.14 24.95 25.76 21.54 25.18 20.15C24.62 18.8 24.05 18.98 23.62 18.96C23.22 18.94 22.76 18.93 22.29 18.93C21.83 18.93 21.08 19.11 20.44 19.8C19.81 20.49 18.02 22.17 18.02 25.59C18.02 29 20.5 32.29 20.85 32.76C21.19 33.22 25.74 40.23 32.69 43.23C34.35 43.94 35.64 44.37 36.65 44.69C38.31 45.22 39.82 45.14 41.01 44.96C42.34 44.76 45.11 43.28 45.69 41.66C46.27 40.05 46.27 38.66 46.1 38.37C45.92 38.08 45.46 37.91 44.77 37.56Z"/>
+<path class="handset" fill="#fff" d="M46.42 37.91C45.64 37.51 41.78 35.63 41.06 35.35C40.34 35.1 39.82 34.97 39.3 35.75C38.78 36.53 37.28 38.3 36.81 38.82C36.36 39.34 35.91 39.41 35.12 39.02C34.34 38.62 31.81 37.8 28.82 35.13C26.5 33.05 24.91 30.48 24.46 29.71C24 28.91 24.42 28.5 24.8 28.1C25.15 27.75 25.59 27.19 25.98 26.73C26.37 26.27 26.5 25.94 26.77 25.42C27.03 24.9 26.89 24.44 26.7 24.06C26.5 23.66 24.94 19.81 24.28 18.24C23.65 16.71 23 16.91 22.52 16.89C22.07 16.87 21.55 16.86 21.01 16.86C20.49 16.86 19.65 17.06 18.92 17.84C18.21 18.62 16.19 20.52 16.19 24.38C16.19 28.24 18.99 31.95 19.39 32.48C19.77 33 24.91 40.93 32.77 44.32C34.64 45.12 36.1 45.6 37.24 45.97C39.12 46.56 40.82 46.47 42.17 46.27C43.67 46.04 46.8 44.37 47.46 42.54C48.11 40.72 48.11 39.15 47.92 38.82C47.72 38.5 47.2 38.3 46.42 37.91Z"/>
 </svg><b class="nbadge" id="nb-wa">1</b></div><span>WhatsApp</span></div>
         <i class="vdiv"></i>
         <div class="cell" id="cell-teams" data-in="4.88" data-fx="pop"><div class="ico logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="ic ic-teams" aria-hidden="true" focusable="false">
 <defs>
-<linearGradient id="ic-teams-tile" x1=".17" y1="-.07" x2=".83" y2="1.07"><stop offset="0" stop-color="#474ed5"/><stop offset=".5" stop-color="#383fcc"/><stop offset="1" stop-color="#2c32bb"/></linearGradient>
-<clipPath id="ic-teams-clip"><circle cx="34.6" cy="14.33" r="8.47"/><path d="M45.89 25.39H22.02C20.66 25.43 19.6 26.55 19.63 27.9V42.93C19.44 51.03 25.85 57.75 33.95 57.95C42.06 57.75 48.47 51.03 48.28 42.93V27.9C48.31 26.55 47.24 25.43 45.89 25.39Z"/></clipPath>
+<linearGradient id="ic-teams-tile" x1=".17" y1="-.07" x2=".83" y2="1.07"><stop offset="0" stop-color="#4549d4"/><stop offset=".5" stop-color="#383ccd"/><stop offset="1" stop-color="#2e33c0"/></linearGradient>
 </defs>
-<g class="person person-small" fill="#5e65df"><circle cx="52.84" cy="16.93" r="5.86"/><path d="M43.06 25.39H57.53A2.47 2.47 0 0 1 60 27.86V41.05A9.12 9.12 0 0 1 41.77 41.05V26.69A1.3 1.3 0 0 1 43.06 25.39Z"/></g>
-<g class="person person-big" fill="#6b75eb"><circle cx="34.6" cy="14.33" r="8.47"/><path d="M45.89 25.39H22.02C20.66 25.43 19.6 26.55 19.63 27.9V42.93C19.44 51.03 25.85 57.75 33.95 57.95C42.06 57.75 48.47 51.03 48.28 42.93V27.9C48.31 26.55 47.24 25.43 45.89 25.39Z"/></g>
+<g class="person person-small" fill="#6268e2"><circle cx="52.84" cy="16.93" r="5.86"/><path d="M43.06 25.39H57.53A2.47 2.47 0 0 1 60 27.86V41.05A9.12 9.12 0 0 1 41.77 41.05V26.69A1.3 1.3 0 0 1 43.06 25.39Z"/></g>
+<g class="person person-big" fill="#6d77ea"><circle cx="34.6" cy="14.33" r="8.47"/><path d="M45.89 25.39H22.02C20.66 25.43 19.6 26.55 19.63 27.9V42.93C19.44 51.03 25.85 57.75 33.95 57.95C42.06 57.75 48.47 51.03 48.28 42.93V27.9C48.31 26.55 47.24 25.43 45.89 25.39Z"/></g>
 <g class="t-tile">
-<g clip-path="url(#ic-teams-clip)"><rect opacity=".1" x="4" y="16.28" width="31.26" height="32.56" rx="2.6"/><rect opacity=".2" x="4" y="17.58" width="29.95" height="32.56" rx="2.38"/><rect opacity=".2" x="4" y="17.58" width="29.95" height="29.95" rx="2.38"/></g>
-<rect fill="url(#ic-teams-tile)" x="4" y="17.58" width="28.65" height="28.65" rx="2.39"/>
-<path fill="#fff" d="M24.61 26.67H19.83V39.67H16.79V26.67H12.04V24.15H24.61Z"/>
+<rect fill="url(#ic-teams-tile)" stroke="#1c22b8" stroke-width=".9" x="4.45" y="18.03" width="27.75" height="27.75" rx="1.95"/>
+<path fill="#fff" d="M11.5 24.15H25.15V27.45H20V40.75H16.65V27.45H11.5Z"/>
 </g>
 </svg><b class="nbadge" id="nb-teams">1</b></div><span>Teams</span></div>
       </div>
@@ -631,21 +612,13 @@ body.capture .controls { display: none; }
         <div class="srv" data-in="4.62" data-fx="fade"><i></i>MCP server · online</div>
       </div>
       <div class="caps">
-        <div class="cap" id="cap1" data-in="4.60" data-fx="slide"><i class="hl"></i><div class="ico"><svg class="ic ic-robot ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ct"><b>Agentes de IA</b><code class="st" data-rest="análise contínua" data-live="correlacionando 1.284 eventos…">análise contínua</code></div></div>
-        <div class="cap" id="cap2" data-in="4.75" data-fx="slide"><i class="hl"></i><div class="ico"><svg class="ic ic-insights ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ct"><b>Insights e Diagnósticos</b><code class="st" data-rest="causa raiz e contexto" data-live="causa provável: pool db-orders">causa raiz e contexto</code></div></div>
-        <div class="cap" id="cap3" data-in="4.90" data-fx="slide"><i class="hl"></i><div class="ico"><svg class="ic ic-automacao ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ct"><b>Automação</b><code class="st" data-rest="runbooks e ações" data-live="escalando checkout-api 3 -> 6">runbooks e ações</code></div></div>
-        <div class="cap" id="cap4" data-in="5.05" data-fx="slide"><i class="hl"></i><div class="ico"><svg class="ic ic-recomendacoes ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ct"><b>Recomendações</b><code class="st" data-rest="próximos passos" data-live="ajustar timeout do pool 30s -> 10s">próximos passos</code></div></div>
+        <div class="cap" id="cap1" data-in="4.60" data-fx="slide"><i class="hl"></i><div class="ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#0048dc" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="ic ic-robot" aria-hidden="true" focusable="false"><path class="antenna" d="M32 6.5V17"/><path d="M15.5 24.5C15.5 18.5 22.5 15.25 32 15.25S48.5 18.5 48.5 24.5"/><path d="M12 29.5A5 5 0 0 1 17 24.5H47A5 5 0 0 1 52 29.5V47.5A10 10 0 0 1 42 57.5H22A10 10 0 0 1 12 47.5Z"/><path d="M12 32.5H9.5A3 3 0 0 0 6.5 35.5V43A3 3 0 0 0 9.5 46H12M52 32.5H54.5A3 3 0 0 1 57.5 35.5V43A3 3 0 0 1 54.5 46H52"/><circle class="eye" cx="23.5" cy="37.5" r="2.4" stroke-width="2.6"/><circle class="eye" cx="40.5" cy="37.5" r="2.4" stroke-width="2.6"/><path d="M27 49H37"/></svg></div><div class="ct"><b>Agentes de IA</b><code class="st" data-rest="análise contínua" data-live="correlacionando 1.284 eventos…">análise contínua</code></div></div>
+        <div class="cap" id="cap2" data-in="4.75" data-fx="slide"><i class="hl"></i><div class="ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#0048dc" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="ic ic-insights" aria-hidden="true" focusable="false"><g class="lens"><circle cx="28.5" cy="28" r="21.5"/><path d="M49.8 25.25H66.25A2.75 2.75 0 0 1 66.25 30.75H49.8" transform="rotate(45 28.5 28)"/><path d="M7.5 47.5L13 44.5"/></g><g class="trend"><path d="M15 37L23.5 26L30.5 34.5L42 19.5"/><path d="M37.5 20L42 19.5L41.5 24.5Z" fill="currentColor"/></g></svg></div><div class="ct"><b>Insights e Diagnósticos</b><code class="st" data-rest="causa raiz e contexto" data-live="causa provável: pool db-orders">causa raiz e contexto</code></div></div>
+        <div class="cap" id="cap3" data-in="4.90" data-fx="slide"><i class="hl"></i><div class="ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#0048dc" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="ic ic-automacao" aria-hidden="true" focusable="false"><path class="gear" d="M27.5 12.51L27.5 8.5A1.5 1.5 0 0 1 29 7L35 7A1.5 1.5 0 0 1 36.5 8.5L36.5 12.51A20 20 0 0 1 42.6 15.04L45.44 12.2A1.5 1.5 0 0 1 47.56 12.2L51.8 16.44A1.5 1.5 0 0 1 51.8 18.56L48.96 21.4A20 20 0 0 1 51.49 27.5L55.5 27.5A1.5 1.5 0 0 1 57 29L57 35A1.5 1.5 0 0 1 55.5 36.5L51.49 36.5A20 20 0 0 1 48.96 42.6L51.8 45.44A1.5 1.5 0 0 1 51.8 47.56L47.56 51.8A1.5 1.5 0 0 1 45.44 51.8L42.6 48.96A20 20 0 0 1 36.5 51.49L36.5 55.5A1.5 1.5 0 0 1 35 57L29 57A1.5 1.5 0 0 1 27.5 55.5L27.5 51.49A20 20 0 0 1 21.4 48.96L18.56 51.8A1.5 1.5 0 0 1 16.44 51.8L12.2 47.56A1.5 1.5 0 0 1 12.2 45.44L15.04 42.6A20 20 0 0 1 12.51 36.5L8.5 36.5A1.5 1.5 0 0 1 7 35L7 29A1.5 1.5 0 0 1 8.5 27.5L12.51 27.5A20 20 0 0 1 15.04 21.4L12.2 18.56A1.5 1.5 0 0 1 12.2 16.44L16.44 12.2A1.5 1.5 0 0 1 18.56 12.2L21.4 15.04A20 20 0 0 1 27.5 12.51 Z"/><path class="play" d="M26.5 24.5V39.5Q26.5 41.5 28.2 40.4L39.3 33.1Q41 32 39.3 30.9L28.2 23.6Q26.5 22.5 26.5 24.5Z"/></svg></div><div class="ct"><b>Automação</b><code class="st" data-rest="runbooks e ações" data-live="escalando checkout-api 3 -> 6">runbooks e ações</code></div></div>
+        <div class="cap" id="cap4" data-in="5.05" data-fx="slide"><i class="hl"></i><div class="ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#0048dc" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="ic ic-recomendacoes" aria-hidden="true" focusable="false"><g class="bulb"><path d="M25 48V44C25 42.2 23.6 40.5 22 39A14.5 14.5 0 1 1 42 39C40.4 40.5 39 42.2 39 44V48Z"/><path d="M26 53H38M28 53V56A2 2 0 0 0 30 58H34A2 2 0 0 0 36 56V53"/><path d="M29.5 30H34.5A1.25 1.25 0 0 1 35.75 31.25V32.25A1.25 1.25 0 0 1 34.5 33.5H29.5A1.25 1.25 0 0 1 28.25 32.25V31.25A1.25 1.25 0 0 1 29.5 30Z" stroke-width="2.5"/><path d="M32 34V47" stroke-width="2.5"/></g><g stroke-width="2.75"><path class="ray" d="M32 6.5V9.5"/><path class="ray" d="M15.5 12L18 14.5"/><path class="ray" d="M48.5 12L46 14.5"/><path class="ray" d="M8.5 29H12"/><path class="ray" d="M52 29H55.5"/></g></svg></div><div class="ct"><b>Recomendações</b><code class="st" data-rest="próximos passos" data-live="ajustar timeout do pool 30s -> 10s">próximos passos</code></div></div>
       </div>
     </div>
   </section>
-
-  <!-- ============ outcomes ============ -->
-  <div class="outcomes" id="outcomes" data-in="5.70" data-fx="rise">
-    <div class="oc" id="oc1" data-in="5.90" data-fx="up"><i class="hl"></i><div class="ico"><svg class="ic ic-target ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ot"><b>Foco no negócio</b><span>Visão orientada a valor</span></div></div>
-    <div class="oc" id="oc2" data-in="6.05" data-fx="up"><i class="hl"></i><div class="ico"><svg class="ic ic-eye ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ot"><b>Visibilidade unificada</b><span>Dados correlacionados e contextualizados</span></div></div>
-    <div class="oc" id="oc3" data-in="6.20" data-fx="up"><i class="hl"></i><div class="ico"><svg class="ic ic-lightning ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ot"><b>Resposta rápida</b><span>Diagnóstico ágil e automação</span></div></div>
-    <div class="oc" id="oc4" data-in="6.35" data-fx="up"><i class="hl"></i><div class="ico"><svg class="ic ic-shield ic-missing" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/></svg></div><div class="ot"><b>Decisões melhores</b><span>Insights inteligentes e assertivos</span></div></div>
-  </div>
 
   <!-- ============ fx layer (above cards) ============ -->
   <svg id="fx" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
@@ -669,7 +642,7 @@ body.capture .controls { display: none; }
   'use strict';
 
   // ================================================================ constants
-  const T_INTRO = 7.2;   // intro build length (s)
+  const T_INTRO = 6.6;   // intro build length (s)
   const P = 10;          // live loop period (s); every continuous motion divides it
   const SVGNS = 'http://www.w3.org/2000/svg';
 
@@ -718,49 +691,47 @@ body.capture .controls { display: none; }
     l: {
       W: 1920, H: 1080, r: 16,
       cards: {
-        apps: [80, 236, 240, 250], obs: [410, 236, 490, 250], collector: [990, 236, 260, 250], repo: [1340, 236, 420, 250],
-        monitor: [80, 596, 720, 300], mcp: [900, 596, 860, 300],
+        apps: [80, 254, 240, 270], obs: [410, 254, 490, 270], collector: [990, 254, 260, 270], repo: [1340, 254, 420, 270],
+        monitor: [80, 640, 720, 350], mcp: [900, 640, 860, 350],
       },
-      outcomes: [80, 930, 1760, 106],
       wires: {
-        a2o: { k: 'data', c: 'blue', pts: [[320, 361], [410, 361]], end: 1 },
-        o2c: { k: 'data', c: 'green', pts: [[900, 361], [990, 361]], end: 1 },
-        c2r: { k: 'data', c: 'orange', pts: [[1250, 361], [1340, 361]], end: 1 },
-        stem: { k: 'data', c: 'cyan', pts: [[1550, 486], [1550, 541]] },
-        r2mcp: { k: 'data', c: 'blue', pts: [[1550, 541], [1550, 596]], end: 1 },
-        r2mon: { k: 'data', c: 'pink', pts: [[1550, 541], [440, 541], [440, 596]], end: 1 },
-        rail: { k: 'fb', pts: [[1760, 746], [1812, 746], [1812, 200], [200, 200], [200, 236]], start: 1, end: 1 },
-        fb_obs: { k: 'fb', pts: [[655, 200], [655, 236]], end: 1 },
-        fb_col: { k: 'fb', pts: [[1120, 200], [1120, 236]], end: 1 },
-        fb_repo: { k: 'fb', pts: [[1550, 200], [1550, 236]], end: 1 },
-        link: { k: 'fb', pts: [[800, 746], [900, 746]], start: 1, end: 1 },
+        a2o: { k: 'data', c: 'blue', pts: [[320, 389], [410, 389]], end: 1 },
+        o2c: { k: 'data', c: 'green', pts: [[900, 389], [990, 389]], end: 1 },
+        c2r: { k: 'data', c: 'orange', pts: [[1250, 389], [1340, 389]], end: 1 },
+        stem: { k: 'data', c: 'cyan', pts: [[1550, 524], [1550, 582]] },
+        r2mcp: { k: 'data', c: 'blue', pts: [[1550, 582], [1550, 640]], end: 1 },
+        r2mon: { k: 'data', c: 'pink', pts: [[1550, 582], [440, 582], [440, 640]], end: 1 },
+        rail: { k: 'fb', pts: [[1760, 815], [1812, 815], [1812, 214], [200, 214], [200, 254]], start: 1, end: 1 },
+        fb_obs: { k: 'fb', pts: [[655, 214], [655, 254]], end: 1 },
+        fb_col: { k: 'fb', pts: [[1120, 214], [1120, 254]], end: 1 },
+        fb_repo: { k: 'fb', pts: [[1550, 214], [1550, 254]], end: 1 },
+        link: { k: 'fb', pts: [[800, 815], [900, 815]], start: 1, end: 1 },
       },
-      chevrons: [[1812, 610, -90], [1812, 400, -90], [1300, 200, 180], [880, 200, 180]],
-      junction: [1550, 541],
+      chevrons: [[1812, 690, -90], [1812, 450, -90], [1300, 214, 180], [880, 214, 180]],
+      junction: [1550, 582],
       routes: {
-        a2o: [[306, 361], [424, 361]],
-        o2c: [[886, 361], [1004, 361]],
-        c2r: [[1236, 361], [1354, 361]],
-        stem: [[1550, 472], [1550, 541]],
-        mon: [[1550, 541], [440, 541], [440, 610]],
-        mcp: [[1550, 541], [1550, 610]],
-        fb_repo: [[1746, 746], [1812, 746], [1812, 200], [1550, 200], [1550, 250]],
-        fb_collector: [[1746, 746], [1812, 746], [1812, 200], [1120, 200], [1120, 250]],
-        fb_obs: [[1746, 746], [1812, 746], [1812, 200], [655, 200], [655, 250]],
-        fb_apps: [[1746, 746], [1812, 746], [1812, 200], [200, 200], [200, 250]],
-        link_f: [[786, 746], [914, 746]],
-        link_b: [[914, 746], [786, 746]],
+        a2o: [[306, 389], [424, 389]],
+        o2c: [[886, 389], [1004, 389]],
+        c2r: [[1236, 389], [1354, 389]],
+        stem: [[1550, 510], [1550, 582]],
+        mon: [[1550, 582], [440, 582], [440, 654]],
+        mcp: [[1550, 582], [1550, 654]],
+        fb_repo: [[1746, 815], [1812, 815], [1812, 214], [1550, 214], [1550, 268]],
+        fb_collector: [[1746, 815], [1812, 815], [1812, 214], [1120, 214], [1120, 268]],
+        fb_obs: [[1746, 815], [1812, 815], [1812, 214], [655, 214], [655, 268]],
+        fb_apps: [[1746, 815], [1812, 815], [1812, 214], [200, 214], [200, 268]],
+        link_f: [[786, 815], [914, 815]],
+        link_b: [[914, 815], [786, 815]],
       },
-      tips: { a2o: [410, 361], o2c: [990, 361], c2r: [1340, 361], mon: [440, 596], mcp: [1550, 596] },
-      ack: { apps: [212, 206], obs: [667, 206], collector: [1132, 206], repo: [1562, 206] },
+      tips: { a2o: [410, 389], o2c: [990, 389], c2r: [1340, 389], mon: [440, 640], mcp: [1550, 640] },
+      ack: { apps: [212, 221], obs: [667, 221], collector: [1132, 221], repo: [1562, 221] },
     },
     p: {
-      W: 1080, H: 1680, r: 14,
+      W: 1080, H: 1620, r: 14,
       cards: {
         apps: [48, 170, 642, 130], obs: [48, 344, 642, 240], collector: [48, 628, 642, 112], repo: [48, 784, 642, 160],
-        monitor: [48, 1036, 460, 464], mcp: [572, 1036, 460, 464],
+        monitor: [48, 1036, 460, 520], mcp: [572, 1036, 460, 520],
       },
-      outcomes: [36, 1540, 1008, 110],
       wires: {
         a2o: { k: 'data', c: 'blue', pts: [[369, 300], [369, 344]], end: 1 },
         o2c: { k: 'data', c: 'green', pts: [[369, 584], [369, 628]], end: 1 },
@@ -772,7 +743,7 @@ body.capture .controls { display: none; }
         fb_obs: { k: 'fb', pts: [[958, 464], [690, 464]], end: 1 },
         fb_col: { k: 'fb', pts: [[958, 684], [690, 684]], end: 1 },
         fb_repo: { k: 'fb', pts: [[880, 1036], [880, 864], [690, 864]], start: 1, end: 1 },
-        link: { k: 'fb', pts: [[508, 1268], [572, 1268]], start: 1, end: 1 },
+        link: { k: 'fb', pts: [[508, 1296], [572, 1296]], start: 1, end: 1 },
       },
       chevrons: [[958, 350, -90], [958, 575, -90], [958, 880, -90]],
       junction: [369, 990],
@@ -787,8 +758,8 @@ body.capture .controls { display: none; }
         fb_obs: [[958, 1050], [958, 464], [676, 464]],
         fb_collector: [[958, 1050], [958, 684], [676, 684]],
         fb_repo: [[880, 1050], [880, 864], [676, 864]],
-        link_f: [[494, 1268], [586, 1268]],
-        link_b: [[586, 1268], [494, 1268]],
+        link_f: [[494, 1296], [586, 1296]],
+        link_b: [[586, 1296], [494, 1296]],
       },
       tips: { a2o: [369, 344], o2c: [369, 628], c2r: [369, 784], mon: [278, 1036], mcp: [802, 1036] },
       ack: { apps: [702, 199], obs: [702, 428], collector: [702, 648], repo: [700, 874] },
@@ -806,7 +777,7 @@ body.capture .controls { display: none; }
     apps: [0.50, 1.00], obs: [1.30, 1.80], collector: [2.35, 2.80], repo: [3.20, 3.65],
     monitor: [4.25, 4.75], mcp: [4.25, 4.75],
   };
-  const IGNITE = [6.6, 7.2];
+  const IGNITE = [6.0, 6.6];
 
   // ================================================================ live-loop script (u in [0, P))
   const SIGNALS = [
@@ -846,7 +817,6 @@ body.capture .controls { display: none; }
     cards[id] = { el: c, bg: $('.bg', c), glow: $('.glow', c), ack: $('.ack', c), frame: $('.frame', c), framePath: $('.frame path', c) };
   });
   const introEls = $$('[data-in]').map(el => ({ el, t0: parseFloat(el.dataset.in), fx: el.dataset.fx || 'up' }));
-  const outcomes = $('#outcomes');
   const tiles = { log4j: $('#t-log4j'), bib: $('#t-bib'), otel: $('#t-otel'), loki: $('#t-loki'), dyn: $('#t-dyn') };
   const tileHl = k => $('.hl', tiles[k]);
   const tileIco = k => $('.ico > svg', tiles[k]);
@@ -892,7 +862,6 @@ body.capture .controls { display: none; }
     const el = $('#' + c.id), st = $('.st', el);
     return { ...c, el, hl: $('.hl', el), ico: $('.ico > svg', el), st, rest: st.dataset.rest, live: st.dataset.live, lastHtml: null };
   });
-  const ocs = [1, 2, 3, 4].map(i => ({ el: $('#oc' + i), hl: $('#oc' + i + ' .hl'), ico: $('#oc' + i + ' .ico > svg') }));
   const alertChip = $('#alert-chip');
   const nbWa = $('#nb-wa'), nbTeams = $('#nb-teams');
   const ackChips = { apps: $('#ack-apps'), obs: $('#ack-obs'), collector: $('#ack-collector'), repo: $('#ack-repo') };
@@ -963,8 +932,6 @@ body.capture .controls { display: none; }
       c.frame.setAttribute('viewBox', `0 0 ${w} ${h}`);
       c.framePath.setAttribute('d', roundRectPath(w, h, L.r - 1));
     }
-    const [ox, oy, ow, oh] = L.outcomes;
-    Object.assign(outcomes.style, { left: ox + 'px', top: oy + 'px', width: ow + 'px', height: oh + 'px' });
     for (const k in ackChips) {
       const [x, y] = L.ack[k];
       Object.assign(ackChips[k].style, { left: x + 'px', top: y + 'px' });
@@ -1307,13 +1274,6 @@ body.capture .controls { display: none; }
     parts.rays.forEach((r, i) => {
       const w = on && U > 6.6 && U < 7.5 ? .5 + .5 * Math.cos((U - 6.6) * 18 + i * 1.3) : 1;
       r.style.opacity = w >= 1 ? '' : r2(.25 + .75 * w);
-    });
-
-    // ---- outcomes
-    ocs.forEach((o, i) => {
-      const t0 = 7.6 + i * .4;
-      o.hl.style.opacity = r2(on ? pulse(U, t0, .2, .35, .5) : 0);
-      if (o.ico) o.ico.style.transform = on && bump(U, t0, .5) > 0 ? `translateY(${r2(-5 * bump(U, t0, .5))}px)` : '';
     });
   }
 

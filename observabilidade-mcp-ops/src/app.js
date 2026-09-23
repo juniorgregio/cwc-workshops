@@ -2,7 +2,7 @@
   'use strict';
 
   // ================================================================ constants
-  const T_INTRO = 7.2;   // intro build length (s)
+  const T_INTRO = 6.6;   // intro build length (s)
   const P = 10;          // live loop period (s); every continuous motion divides it
   const SVGNS = 'http://www.w3.org/2000/svg';
 
@@ -51,49 +51,47 @@
     l: {
       W: 1920, H: 1080, r: 16,
       cards: {
-        apps: [80, 236, 240, 250], obs: [410, 236, 490, 250], collector: [990, 236, 260, 250], repo: [1340, 236, 420, 250],
-        monitor: [80, 596, 720, 300], mcp: [900, 596, 860, 300],
+        apps: [80, 254, 240, 270], obs: [410, 254, 490, 270], collector: [990, 254, 260, 270], repo: [1340, 254, 420, 270],
+        monitor: [80, 640, 720, 350], mcp: [900, 640, 860, 350],
       },
-      outcomes: [80, 930, 1760, 106],
       wires: {
-        a2o: { k: 'data', c: 'blue', pts: [[320, 361], [410, 361]], end: 1 },
-        o2c: { k: 'data', c: 'green', pts: [[900, 361], [990, 361]], end: 1 },
-        c2r: { k: 'data', c: 'orange', pts: [[1250, 361], [1340, 361]], end: 1 },
-        stem: { k: 'data', c: 'cyan', pts: [[1550, 486], [1550, 541]] },
-        r2mcp: { k: 'data', c: 'blue', pts: [[1550, 541], [1550, 596]], end: 1 },
-        r2mon: { k: 'data', c: 'pink', pts: [[1550, 541], [440, 541], [440, 596]], end: 1 },
-        rail: { k: 'fb', pts: [[1760, 746], [1812, 746], [1812, 200], [200, 200], [200, 236]], start: 1, end: 1 },
-        fb_obs: { k: 'fb', pts: [[655, 200], [655, 236]], end: 1 },
-        fb_col: { k: 'fb', pts: [[1120, 200], [1120, 236]], end: 1 },
-        fb_repo: { k: 'fb', pts: [[1550, 200], [1550, 236]], end: 1 },
-        link: { k: 'fb', pts: [[800, 746], [900, 746]], start: 1, end: 1 },
+        a2o: { k: 'data', c: 'blue', pts: [[320, 389], [410, 389]], end: 1 },
+        o2c: { k: 'data', c: 'green', pts: [[900, 389], [990, 389]], end: 1 },
+        c2r: { k: 'data', c: 'orange', pts: [[1250, 389], [1340, 389]], end: 1 },
+        stem: { k: 'data', c: 'cyan', pts: [[1550, 524], [1550, 582]] },
+        r2mcp: { k: 'data', c: 'blue', pts: [[1550, 582], [1550, 640]], end: 1 },
+        r2mon: { k: 'data', c: 'pink', pts: [[1550, 582], [440, 582], [440, 640]], end: 1 },
+        rail: { k: 'fb', pts: [[1760, 815], [1812, 815], [1812, 214], [200, 214], [200, 254]], start: 1, end: 1 },
+        fb_obs: { k: 'fb', pts: [[655, 214], [655, 254]], end: 1 },
+        fb_col: { k: 'fb', pts: [[1120, 214], [1120, 254]], end: 1 },
+        fb_repo: { k: 'fb', pts: [[1550, 214], [1550, 254]], end: 1 },
+        link: { k: 'fb', pts: [[800, 815], [900, 815]], start: 1, end: 1 },
       },
-      chevrons: [[1812, 610, -90], [1812, 400, -90], [1300, 200, 180], [880, 200, 180]],
-      junction: [1550, 541],
+      chevrons: [[1812, 690, -90], [1812, 450, -90], [1300, 214, 180], [880, 214, 180]],
+      junction: [1550, 582],
       routes: {
-        a2o: [[306, 361], [424, 361]],
-        o2c: [[886, 361], [1004, 361]],
-        c2r: [[1236, 361], [1354, 361]],
-        stem: [[1550, 472], [1550, 541]],
-        mon: [[1550, 541], [440, 541], [440, 610]],
-        mcp: [[1550, 541], [1550, 610]],
-        fb_repo: [[1746, 746], [1812, 746], [1812, 200], [1550, 200], [1550, 250]],
-        fb_collector: [[1746, 746], [1812, 746], [1812, 200], [1120, 200], [1120, 250]],
-        fb_obs: [[1746, 746], [1812, 746], [1812, 200], [655, 200], [655, 250]],
-        fb_apps: [[1746, 746], [1812, 746], [1812, 200], [200, 200], [200, 250]],
-        link_f: [[786, 746], [914, 746]],
-        link_b: [[914, 746], [786, 746]],
+        a2o: [[306, 389], [424, 389]],
+        o2c: [[886, 389], [1004, 389]],
+        c2r: [[1236, 389], [1354, 389]],
+        stem: [[1550, 510], [1550, 582]],
+        mon: [[1550, 582], [440, 582], [440, 654]],
+        mcp: [[1550, 582], [1550, 654]],
+        fb_repo: [[1746, 815], [1812, 815], [1812, 214], [1550, 214], [1550, 268]],
+        fb_collector: [[1746, 815], [1812, 815], [1812, 214], [1120, 214], [1120, 268]],
+        fb_obs: [[1746, 815], [1812, 815], [1812, 214], [655, 214], [655, 268]],
+        fb_apps: [[1746, 815], [1812, 815], [1812, 214], [200, 214], [200, 268]],
+        link_f: [[786, 815], [914, 815]],
+        link_b: [[914, 815], [786, 815]],
       },
-      tips: { a2o: [410, 361], o2c: [990, 361], c2r: [1340, 361], mon: [440, 596], mcp: [1550, 596] },
-      ack: { apps: [212, 206], obs: [667, 206], collector: [1132, 206], repo: [1562, 206] },
+      tips: { a2o: [410, 389], o2c: [990, 389], c2r: [1340, 389], mon: [440, 640], mcp: [1550, 640] },
+      ack: { apps: [212, 221], obs: [667, 221], collector: [1132, 221], repo: [1562, 221] },
     },
     p: {
-      W: 1080, H: 1680, r: 14,
+      W: 1080, H: 1620, r: 14,
       cards: {
         apps: [48, 170, 642, 130], obs: [48, 344, 642, 240], collector: [48, 628, 642, 112], repo: [48, 784, 642, 160],
-        monitor: [48, 1036, 460, 464], mcp: [572, 1036, 460, 464],
+        monitor: [48, 1036, 460, 520], mcp: [572, 1036, 460, 520],
       },
-      outcomes: [36, 1540, 1008, 110],
       wires: {
         a2o: { k: 'data', c: 'blue', pts: [[369, 300], [369, 344]], end: 1 },
         o2c: { k: 'data', c: 'green', pts: [[369, 584], [369, 628]], end: 1 },
@@ -105,7 +103,7 @@
         fb_obs: { k: 'fb', pts: [[958, 464], [690, 464]], end: 1 },
         fb_col: { k: 'fb', pts: [[958, 684], [690, 684]], end: 1 },
         fb_repo: { k: 'fb', pts: [[880, 1036], [880, 864], [690, 864]], start: 1, end: 1 },
-        link: { k: 'fb', pts: [[508, 1268], [572, 1268]], start: 1, end: 1 },
+        link: { k: 'fb', pts: [[508, 1296], [572, 1296]], start: 1, end: 1 },
       },
       chevrons: [[958, 350, -90], [958, 575, -90], [958, 880, -90]],
       junction: [369, 990],
@@ -120,8 +118,8 @@
         fb_obs: [[958, 1050], [958, 464], [676, 464]],
         fb_collector: [[958, 1050], [958, 684], [676, 684]],
         fb_repo: [[880, 1050], [880, 864], [676, 864]],
-        link_f: [[494, 1268], [586, 1268]],
-        link_b: [[586, 1268], [494, 1268]],
+        link_f: [[494, 1296], [586, 1296]],
+        link_b: [[586, 1296], [494, 1296]],
       },
       tips: { a2o: [369, 344], o2c: [369, 628], c2r: [369, 784], mon: [278, 1036], mcp: [802, 1036] },
       ack: { apps: [702, 199], obs: [702, 428], collector: [702, 648], repo: [700, 874] },
@@ -139,7 +137,7 @@
     apps: [0.50, 1.00], obs: [1.30, 1.80], collector: [2.35, 2.80], repo: [3.20, 3.65],
     monitor: [4.25, 4.75], mcp: [4.25, 4.75],
   };
-  const IGNITE = [6.6, 7.2];
+  const IGNITE = [6.0, 6.6];
 
   // ================================================================ live-loop script (u in [0, P))
   const SIGNALS = [
@@ -179,7 +177,6 @@
     cards[id] = { el: c, bg: $('.bg', c), glow: $('.glow', c), ack: $('.ack', c), frame: $('.frame', c), framePath: $('.frame path', c) };
   });
   const introEls = $$('[data-in]').map(el => ({ el, t0: parseFloat(el.dataset.in), fx: el.dataset.fx || 'up' }));
-  const outcomes = $('#outcomes');
   const tiles = { log4j: $('#t-log4j'), bib: $('#t-bib'), otel: $('#t-otel'), loki: $('#t-loki'), dyn: $('#t-dyn') };
   const tileHl = k => $('.hl', tiles[k]);
   const tileIco = k => $('.ico > svg', tiles[k]);
@@ -225,7 +222,6 @@
     const el = $('#' + c.id), st = $('.st', el);
     return { ...c, el, hl: $('.hl', el), ico: $('.ico > svg', el), st, rest: st.dataset.rest, live: st.dataset.live, lastHtml: null };
   });
-  const ocs = [1, 2, 3, 4].map(i => ({ el: $('#oc' + i), hl: $('#oc' + i + ' .hl'), ico: $('#oc' + i + ' .ico > svg') }));
   const alertChip = $('#alert-chip');
   const nbWa = $('#nb-wa'), nbTeams = $('#nb-teams');
   const ackChips = { apps: $('#ack-apps'), obs: $('#ack-obs'), collector: $('#ack-collector'), repo: $('#ack-repo') };
@@ -296,8 +292,6 @@
       c.frame.setAttribute('viewBox', `0 0 ${w} ${h}`);
       c.framePath.setAttribute('d', roundRectPath(w, h, L.r - 1));
     }
-    const [ox, oy, ow, oh] = L.outcomes;
-    Object.assign(outcomes.style, { left: ox + 'px', top: oy + 'px', width: ow + 'px', height: oh + 'px' });
     for (const k in ackChips) {
       const [x, y] = L.ack[k];
       Object.assign(ackChips[k].style, { left: x + 'px', top: y + 'px' });
@@ -640,13 +634,6 @@
     parts.rays.forEach((r, i) => {
       const w = on && U > 6.6 && U < 7.5 ? .5 + .5 * Math.cos((U - 6.6) * 18 + i * 1.3) : 1;
       r.style.opacity = w >= 1 ? '' : r2(.25 + .75 * w);
-    });
-
-    // ---- outcomes
-    ocs.forEach((o, i) => {
-      const t0 = 7.6 + i * .4;
-      o.hl.style.opacity = r2(on ? pulse(U, t0, .2, .35, .5) : 0);
-      if (o.ico) o.ico.style.transform = on && bump(U, t0, .5) > 0 ? `translateY(${r2(-5 * bump(U, t0, .5))}px)` : '';
     });
   }
 

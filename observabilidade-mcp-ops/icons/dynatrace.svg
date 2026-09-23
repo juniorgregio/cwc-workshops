@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <defs>
-<linearGradient id="ic-dynatrace-top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b3da2e"/><stop offset="1" stop-color="#9ccc12"/></linearGradient>
-<linearGradient id="ic-dynatrace-left" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1896f7"/><stop offset="1" stop-color="#0580ea"/></linearGradient>
-<linearGradient id="ic-dynatrace-bottom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9f50dc"/><stop offset="1" stop-color="#8538c2"/></linearGradient>
-<linearGradient id="ic-dynatrace-right" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#70bb22"/><stop offset="1" stop-color="#4c9f24"/></linearGradient>
+<linearGradient id="ic-dynatrace-top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#acdd1a"/><stop offset="1" stop-color="#9ccf0a"/></linearGradient>
+<linearGradient id="ic-dynatrace-left" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c8ff6"/><stop offset="1" stop-color="#0380ea"/></linearGradient>
+<linearGradient id="ic-dynatrace-bottom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a152da"/><stop offset="1" stop-color="#8d40c6"/></linearGradient>
+<linearGradient id="ic-dynatrace-right" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#66b418"/><stop offset=".55" stop-color="#5cad14"/><stop offset="1" stop-color="#3c9e24"/></linearGradient>
 </defs>
 <path class="face face-left" fill="url(#ic-dynatrace-left)" d="M4 25.72A212 212 0 0 0 4.48 38.05A224 224 0 0 0 6.16 54.15L20.51 40.66S19.98 33.9 20.83 23.82C20.83 23.82 4.93 21.93 4 25.72Z"/>
 <path class="face face-bottom" fill="url(#ic-dynatrace-bottom)" d="M37.1 59.91C40.82 58.86 39.74 43.44 39.74 43.44C29.48 43.78 22.7 42.94 22.7 42.94L8.32 56.41S15.93 57.88 24.5 58.86A296 296 0 0 0 36.83 59.91C36.94 59.94 37.04 59.91 37.1 59.91Z"/>

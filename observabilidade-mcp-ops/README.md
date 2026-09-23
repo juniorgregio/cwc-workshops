@@ -2,20 +2,20 @@
 
 Versão animada (estilo *archify*) do diagrama de arquitetura em [`docs/referencia.jpg`](./docs/referencia.jpg):
 Aplicações → Observabilidade → OTEL Collector → Repositórios → Monitoração + MCP OPS, com o MCP OPS
-atuando de volta em todas as camadas e a faixa de resultados no rodapé.
+atuando de volta em todas as camadas. A faixa de resultados do rodapé da imagem original foi retirada.
 
 Abra **`index.html`** direto no navegador. O arquivo é autocontido: fontes, ícones e logos estão embutidos,
 então funciona offline, inclusive no projetor.
 
 ## O que acontece na tela
 
-1. **Montagem (0–7,2 s)**: cada bloco é desenhado na ordem do fluxo, os conectores se ligam, o feedback do
-   MCP OPS aparece e a faixa de resultados sobe.
+1. **Montagem (0–6,6 s)**: cada bloco é desenhado na ordem do fluxo, os conectores se ligam e o feedback do
+   MCP OPS aparece.
 2. **Ao vivo (loop contínuo de 10 s)**: pacotes de *logs*, *métricas* e *traces* saem das Aplicações,
    acendem Log4J / Biblioteca Padronizada / OpenTelemetry SDK, passam pelo OTEL Collector, chegam ao Loki e
    ao Dynatrace SaaS e se dividem entre a Monitoração (alerta no Grafana, notificação no WhatsApp e no Teams)
    e o MCP OPS (Agentes de IA → Insights e Diagnósticos → Automação → Recomendações). Em seguida o MCP OPS
-   devolve ações a cada camada e os quatro resultados se destacam em sequência.
+   devolve ações a cada camada.
 
 ## Controles
 
@@ -49,6 +49,6 @@ build.mjs           node build.mjs  →  index.html
 
 A animação é uma função pura do tempo: `render(t)` calcula cada quadro sem estado acumulado. Isso deixa a
 gravação quadro a quadro exata. A página expõe `window.FLOW` com `seek(t)`, `play()`, `pause()`,
-`setLayout('l' | 'p')` e `setTheme('light' | 'dark')`, além das constantes `T_INTRO` (7,2 s) e `P` (10 s).
+`setLayout('l' | 'p')` e `setTheme('light' | 'dark')`, além das constantes `T_INTRO` (6,6 s) e `P` (10 s).
 Todo movimento contínuo tem período que divide 10 s, então o trecho de `T_INTRO` a `T_INTRO + P` fecha o
 loop sem emenda visível.
