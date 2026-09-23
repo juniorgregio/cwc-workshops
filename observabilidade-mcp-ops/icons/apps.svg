@@ -2,14 +2,14 @@
 <rect class="frame" x="6.5" y="6.5" width="51" height="51" rx="5"/>
 <path class="titlebar" d="M5 17V11.5A6.5 6.5 0 0 1 11.5 5H52.5A6.5 6.5 0 0 1 59 11.5V17Z" fill="currentColor" stroke="none"/>
 <g style="fill:var(--icon-paper,#fff)" stroke="none">
-<circle class="dot" cx="13" cy="11.5" r="1.9"/>
-<circle class="dot" cx="19.5" cy="11.5" r="1.9"/>
-<circle class="dot" cx="26" cy="11.5" r="1.9"/>
+<circle class="dot" cx="13" cy="11.5" r="1.75"/>
+<circle class="dot" cx="19.5" cy="11.5" r="1.75"/>
+<circle class="dot" cx="26" cy="11.5" r="1.75"/>
 </g>
 <g fill="currentColor" stroke="none">
-<rect class="tile" x="17.5" y="24" width="11.5" height="10.5" rx="1.5"/>
-<rect class="tile" x="35.5" y="24" width="11.5" height="10.5" rx="1.5"/>
-<rect class="tile" x="17.5" y="40" width="11.5" height="10.5" rx="1.5"/>
-<rect class="tile" x="35.5" y="40" width="11.5" height="10.5" rx="1.5"/>
+<rect class="tile" x="17.5" y="24" width="11.5" height="11" rx="1.5"/>
+<rect class="tile" x="35.5" y="24" width="11.5" height="11" rx="1.5"/>
+<rect class="tile" x="17.5" y="39.5" width="11.5" height="11" rx="1.5"/>
+<rect class="tile" x="35.5" y="39.5" width="11.5" height="11" rx="1.5"/>
 </g>
 </svg>

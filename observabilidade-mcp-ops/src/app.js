@@ -200,7 +200,7 @@
     dynFacesM: part(icons.dynM, 'face'),
     brainNodes: part(icons.brain, 'node'),
     robotEyes: part($('#cap1 .ico > svg'), 'eye'),
-    trend: part($('#cap2 .ico > svg'), 'trend'),
+    trend: $$('.trend path, path.trend, polyline.trend', $('#cap2 .ico > svg')),
     gear: part($('#cap3 .ico > svg'), 'gear'),
     rays: part($('#cap4 .ico > svg'), 'ray'),
     needle: part(icons.monitorDash, 'needle'),
@@ -210,7 +210,11 @@
   pivot(parts.spin); pivot(parts.gear); pivot(parts.swirl, ...swirlCenter());
   parts.robotEyes.forEach(e => { e.style.transformBox = 'fill-box'; e.style.transformOrigin = '50% 50%'; });
   parts.lokiBars.forEach(e => { e.style.transformBox = 'fill-box'; e.style.transformOrigin = '50% 100%'; });
+  // insights trend: stroked segments draw in, filled arrowheads fade in at the end
+  parts.trendHeads = parts.trend.filter(e => (e.getAttribute('fill') || '').includes('currentColor') && !e.getAttribute('stroke'));
+  parts.trend = parts.trend.filter(e => !parts.trendHeads.includes(e));
   parts.trend.forEach(e => e.setAttribute('pathLength', '1'));
+  parts.needle.forEach(e => { e.style.transformBox = 'view-box'; e.style.transformOrigin = '23.25px 37.5px'; });
 
   function swirlCenter() {
     const s = icons.grafana && $('.swirl', icons.grafana);
@@ -591,6 +595,8 @@
     faceShimmer(parts.dynFacesM, 4.40);
     if (icons.dynM) icons.dynM.style.transform = scaleT(on ? .1 * bump(U, 4.40, .4) : 0);
     if (icons.monitorDash) icons.monitorDash.style.transform = scaleT(on ? .08 * bump(U, 4.2, .4) : 0);
+    const sweep = on ? 42 * Math.sin(Math.PI * prog(U, 4.2, 5.0)) * (1 - .3 * prog(U, 4.2, 5.0)) : 0;
+    parts.needle.forEach(e => { e.style.transform = Math.abs(sweep) < .01 ? '' : `rotate(${r2(sweep)}deg)`; });
     const av = on ? E.outCubic(prog(U, 4.35, 4.6)) * (1 - E.inOutSine(prog(U, 5.9, 6.3))) : 0;
     alertChip.style.opacity = r2(av);
     alertChip.style.transform = av <= 0 ? '' : `translateY(${r2((1 - E.outCubic(prog(U, 4.35, 4.65))) * 8)}px)`;
@@ -627,6 +633,8 @@
       if (!on || tp >= 1 || U < 5.05) { e.style.strokeDasharray = ''; e.style.strokeDashoffset = ''; }
       else { e.style.strokeDasharray = '1 1'; e.style.strokeDashoffset = String(r2((1 - tp) * 1000) / 1000); }
     });
+    const hp = !on || U < 5.05 ? 1 : prog(U, 5.45, 5.65);
+    parts.trendHeads.forEach(e => { e.style.opacity = hp >= 1 ? '' : r2(hp); });
     // automation gear turns 360°
     const gear = on ? 360 * E.inOutCubic(prog(U, 5.85, 6.9)) : 0;
     parts.gear.forEach(e => { e.style.transform = gear % 360 === 0 ? '' : `rotate(${r2(gear)}deg)`; });

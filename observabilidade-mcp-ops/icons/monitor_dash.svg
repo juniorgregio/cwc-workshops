@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#e80e6a" style="color:#e80e6a" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 <rect class="frame" x="6.5" y="9.5" width="51" height="45" rx="4.5"/>
 <path class="header" d="M6.5 18.5H57.5"/>
-<path class="dots" d="M30 14H30.2M33.5 14H35M38.5 14H43.5M46.5 14H48M51.3 14H51.5" stroke-width="2.5"/>
+<path class="dots" d="M30 14H30.2M33.5 14H35M38.5 14H43.5M46 14H47.5M50.9 14H51.1" stroke-width="2.5"/>
 <g class="gauge">
-<path d="M15.5 44.5C11 39.5 14 27 23.5 27C33 27 36 39.5 31.5 44.5"/>
-<path d="M18.5 42.5L15.5 44.5M28.5 42.5L31.5 44.5"/>
+<path d="M15.25 44.75L14.45 38.75A9.35 9.35 0 1 1 32.55 38.75L31.75 44.75"/>
+<path d="M18 42.5L15.25 44.75M29 42.5L31.75 44.75"/>
 </g>
 <g class="needle" stroke-width="2.5">
-<circle cx="23" cy="38" r="2"/>
-<path d="M24.5 36.3L26.8 33.5"/>
+<circle cx="23.25" cy="37.5" r="2"/>
+<path d="M24.5 35.9L26.5 33.4"/>
 </g>
-<path class="baseline" d="M37.5 46H52"/>
-<path class="bar" d="M42.8 40V46"/>
-<path class="bar" d="M47 40V46"/>
-<path class="bar" d="M51.5 30.5V46"/>
-<path class="trend" d="M38 40.5L42.8 35L45.5 37.2L51.5 30.5"/>
+<path class="baseline" d="M38.25 45.5H51"/>
+<path class="bar" d="M42.5 40V45.5"/>
+<path class="bar" d="M46.75 40V45.5"/>
+<path class="bar" d="M51 30.25V45.5"/>
+<path class="trend" d="M38.25 40L42.5 35.25L45 37.25L51 30.25"/>
 </svg>

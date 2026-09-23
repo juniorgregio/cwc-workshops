@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#339a05" style="color:#339a05" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 <g class="book">
-<g transform="rotate(11 15.5 32.5)">
-<rect x="10.5" y="15" width="10" height="35" rx="1.5"/>
-<path d="M10.5 21.5H20.5M10.5 43.5H20.5"/>
+<g transform="rotate(11 15 32.5)">
+<rect x="9.75" y="15.25" width="10.5" height="34.5" rx="1.5"/>
+<path d="M9.75 21.75H20.25M9.75 43.25H20.25"/>
 </g>
 </g>
 <g class="book">
-<rect x="26.5" y="14" width="11" height="37" rx="1.5"/>
-<path d="M26.5 44H37.5"/>
-<circle cx="32" cy="23" r="1.5" fill="currentColor" stroke="none"/>
+<rect x="26.75" y="15" width="10.5" height="35.5" rx="1.5"/>
+<path d="M26.75 44.25H37.25"/>
+<circle cx="32" cy="23.75" r="1.5" fill="currentColor" stroke="none"/>
 </g>
 <g class="book">
-<g transform="rotate(-11 48.5 32.5)">
-<rect x="43.5" y="15" width="10" height="35" rx="1.5"/>
-<path d="M43.5 21.5H53.5M43.5 43.5H53.5"/>
+<g transform="rotate(-11 49 32.5)">
+<rect x="43.75" y="15.25" width="10.5" height="34.5" rx="1.5"/>
+<path d="M43.75 21.75H54.25M43.75 43.25H54.25"/>
 </g>
 </g>
 </svg>

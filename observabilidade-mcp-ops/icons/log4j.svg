@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#4fa80a" style="color:#4fa80a" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 <path class="doc" d="M14.5 6H41L54 19V54A4 4 0 0 1 50 58H14.5A4 4 0 0 1 10.5 54V10A4 4 0 0 1 14.5 6Z"/>
 <path class="fold" d="M41 6V15.5A3.5 3.5 0 0 0 44.5 19H54"/>
-<g class="ink" style="stroke:var(--icon-ink,#141a2e)" stroke-width="2.3" stroke-linecap="butt" stroke-linejoin="miter">
-<path d="M19.6 29.5V38.3H26.4"/>
-<ellipse cx="31.9" cy="34.5" rx="3.6" ry="4"/>
-<path d="M44.2 31.6A3.2 4 0 1 0 44.7 35.1V34.3H41.6"/>
+<g class="ink" style="stroke:var(--icon-ink,#141a2e)" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter">
+<path d="M20.2 29.6V38.7H25.75"/>
+<ellipse cx="31" cy="34.6" rx="3.6" ry="4.2"/>
+<path d="M44.35 32.3A3.5 4.1 0 1 0 45 34.3H41.25"/>
 </g>
-<path class="line" d="M27 43.5H41.5" stroke-width="2"/>
-<path class="line rule" d="M19 47.5H45" stroke-width="2.2" style="stroke:var(--icon-ink,#141a2e)"/>
+<path class="line" d="M27.75 44H41.5" stroke-width="1.8"/>
+<path class="line rule" d="M20 48H44.75" stroke-width="2" style="stroke:var(--icon-ink,#141a2e)"/>
 </svg>
