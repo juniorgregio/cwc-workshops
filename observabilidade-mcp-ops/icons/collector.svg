@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#f37203" style="color:#f37203" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<path class="spoke" d="M32 23V19.5"/>
+<path class="spoke" d="M23 32H17"/>
+<path class="spoke" d="M41 32H47"/>
+<path class="spoke" d="M27.5 40L24 46.5"/>
+<path class="spoke" d="M36.5 40L40 46.5"/>
+<circle class="hub" cx="32" cy="32" r="7.5"/>
+<circle class="node" cx="32" cy="13.5" r="4.5"/>
+<circle class="node" cx="11" cy="32" r="4.5"/>
+<circle class="node" cx="53" cy="32" r="4.5"/>
+<circle class="node" cx="21" cy="52" r="4.5"/>
+<circle class="node" cx="43" cy="52" r="4.5"/>
+</svg>
