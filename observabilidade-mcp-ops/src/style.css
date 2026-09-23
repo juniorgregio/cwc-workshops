@@ -106,7 +106,7 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 
 /* ------------------------------------------------------------------ header */
 .hdr { position: absolute; left: 80px; top: 46px; z-index: 3; }
-.kicker { font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.kicker { font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
 .hdr h1 {
   margin: 10px 0 0; display: flex; align-items: center; gap: 14px;
   font-size: 46px; line-height: 1.05; font-weight: 800; letter-spacing: -.02em; color: var(--ink);
@@ -119,17 +119,17 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 .hdr-right { position: absolute; right: 80px; top: 44px; z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
 .badge {
   display: inline-flex; align-items: center; gap: 9px;
-  padding: 8px 15px 8px 12px; border-radius: 999px;
+  padding: 9px 16px 9px 13px; border-radius: 999px;
   background: var(--badge-bg); color: var(--badge-ink);
-  font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
   box-shadow: 0 6px 18px rgba(21, 34, 56, .18);
 }
 .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff3b5c; box-shadow: 0 0 0 3px rgba(255, 59, 92, .22); }
-.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 7px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; font-size: 15px; font-weight: 600; color: var(--muted); }
 .legend li { display: flex; align-items: center; gap: 9px; }
 .legend svg { width: 44px; height: 12px; }
 .legend .sig { display: inline-flex; align-items: center; gap: 5px; font-weight: 500; }
-.legend .sig i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-left: 5px; }
+.legend .sig i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-left: 5px; }
 
 /* ------------------------------------------------------------------ cards */
 .card { position: absolute; z-index: 2; border-radius: var(--r, 16px); }
@@ -184,17 +184,17 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 .cell .ico.logo { width: 58px; height: 58px; flex: none; }
 .cell > span { font-size: 22px; font-weight: 650; color: var(--ink); }
 .alert {
-  margin-left: auto; align-self: center; height: 30px;
-  display: inline-flex; align-items: center; gap: 7px; padding: 0 12px 0 9px; border-radius: 9px;
-  font: 700 13px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; letter-spacing: .02em; font-style: normal;
+  margin-left: auto; align-self: center; height: 36px;
+  display: inline-flex; align-items: center; gap: 8px; padding: 0 14px 0 11px; border-radius: 10px;
+  font: 700 16px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; letter-spacing: .02em; font-style: normal;
   color: var(--pink); background: color-mix(in srgb, var(--pink) 10%, var(--card)); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--pink) 45%, transparent), 0 6px 16px color-mix(in srgb, var(--pink) 18%, transparent);
   opacity: 0; white-space: nowrap;
 }
-.alert svg { width: 15px; height: 15px; }
+.alert svg { width: 18px; height: 18px; }
 .nbadge {
-  position: absolute; right: -7px; top: -7px; width: 20px; height: 20px; border-radius: 50%;
+  position: absolute; right: -8px; top: -8px; width: 24px; height: 24px; border-radius: 50%;
   display: grid; place-items: center; background: #ef233c; color: #fff;
-  font-size: 11.5px; font-weight: 800; line-height: 1; box-shadow: 0 0 0 2.5px var(--card);
+  font-size: 13px; font-weight: 800; line-height: 1; box-shadow: 0 0 0 2.5px var(--card);
   opacity: 0; transform: scale(0);
 }
 
@@ -204,8 +204,8 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 .xhead .ico.brain { width: 72px; height: 72px; flex: none; }
 #mcp h2 { font-size: 44px; color: var(--blue-2); letter-spacing: -.01em; }
 .srv {
-  margin-left: auto; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
-  font: 600 12px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; color: var(--muted);
+  margin-left: auto; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  font: 600 14px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; color: var(--muted);
   background: var(--chip-bg);
 }
 .srv i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent); }
@@ -218,18 +218,19 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 .cap .ico { width: 48px; height: 48px; flex: none; }
 .cap .ct { position: relative; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
 .cap b { font-size: 21px; font-weight: 650; color: var(--ink); white-space: nowrap; }
-.cap .st { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: clip; }
+.cap .st { font-size: 16px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: clip; }
 .cap .st.live { color: var(--blue-2); }
-.cap .st .caret { display: inline-block; width: 7px; height: 14px; margin-left: 1px; vertical-align: -2px; background: currentColor; }
+.cap .st .caret { display: inline-block; width: 8px; height: 17px; margin-left: 1px; vertical-align: -2px; background: currentColor; }
 
 /* feedback acknowledgements */
 .ackchip {
-  position: absolute; z-index: 5; height: 24px; display: inline-flex; align-items: center; gap: 5px; padding: 0 9px 0 6px;
-  border-radius: 7px; white-space: nowrap; opacity: 0;
-  font: 600 12px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; color: var(--blue-2);
+  position: absolute; z-index: 5; height: 30px; display: inline-flex; align-items: center; gap: 6px; padding: 0 12px 0 8px;
+  border-radius: 8px; white-space: nowrap; opacity: 0;
+  font: 700 16px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; color: var(--blue-2);
   background: var(--chip-bg); box-shadow: inset 0 0 0 1.25px color-mix(in srgb, var(--blue) 45%, transparent);
 }
-.ackchip svg { width: 14px; height: 14px; color: var(--ok); }
+.ackchip svg { width: 18px; height: 18px; color: var(--ok); }
+#stage[data-layout="p"] .ackchip { font-size: 15px; }
 
 .sheen {
   position: absolute; z-index: 1; top: -20%; bottom: -20%; width: 34%; left: 0; pointer-events: none; opacity: 0;
@@ -243,7 +244,7 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 #stage[data-layout="p"] .h1-arrow { width: 34px; height: 20px; }
 #stage[data-layout="p"] .lede { font-size: 16px; margin-top: 10px; max-width: 640px; }
 #stage[data-layout="p"] .hdr-right { right: 48px; top: 36px; gap: 11px; }
-#stage[data-layout="p"] .legend { font-size: 12px; gap: 6px; }
+#stage[data-layout="p"] .legend { font-size: 14px; gap: 7px; }
 #stage[data-layout="p"] .legend .sig { display: none; }
 
 #stage[data-layout="p"] #apps .body,
@@ -265,14 +266,15 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 #stage[data-layout="p"] #repo .tile span { font-size: 20px; text-align: left; }
 
 #stage[data-layout="p"] #monitor .body { padding: 22px 22px 14px; }
-#stage[data-layout="p"] .mhead { height: 100px; gap: 16px; }
+#stage[data-layout="p"] .mhead { height: 100px; gap: 14px; }
 #stage[data-layout="p"] .mhead .ico { width: 70px; height: 70px; }
 #stage[data-layout="p"] #monitor h2 { font-size: 32px; }
 #stage[data-layout="p"] #monitor .sub { font-size: 17px; }
 #stage[data-layout="p"] .cell { flex-direction: row; gap: 12px; padding: 0 12px; }
 #stage[data-layout="p"] .cell .ico.logo { width: 58px; height: 58px; }
 #stage[data-layout="p"] .cell > span { font-size: 20px; }
-#stage[data-layout="p"] .alert { height: 26px; padding: 0 9px 0 7px; font-size: 12px; gap: 5px; }
+#stage[data-layout="p"] .alert { height: 32px; padding: 0 9px 0 7px; font-size: 14px; gap: 5px; }
+#stage[data-layout="p"] .alert svg { width: 15px; height: 15px; }
 #stage[data-layout="p"] .alert .al-k { display: none; }
 
 #stage[data-layout="p"] #mcp .body { padding: 20px 20px 18px; gap: 12px; }
@@ -284,7 +286,7 @@ code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Men
 #stage[data-layout="p"] .cap { padding: 0 14px; gap: 14px; }
 #stage[data-layout="p"] .cap .ico { width: 44px; height: 44px; }
 #stage[data-layout="p"] .cap b { font-size: 19px; }
-#stage[data-layout="p"] .cap .st { font-size: 13px; }
+#stage[data-layout="p"] .cap .st { font-size: 16px; }
 
 
 /* ------------------------------------------------------------------ dark tweaks */
