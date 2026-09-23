@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" data-color="#4d25c0" style="color:#4d25c0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<g class="tube">
+<g transform="translate(33.75 36.5) rotate(-30)">
+<path d="M-8.5 0.5H-13.5A1.5 1.5 0 0 1 -15 -1V-10A1.5 1.5 0 0 1 -13.5 -11.5H7.5A1.5 1.5 0 0 1 9 -10V-1A1.5 1.5 0 0 1 7.5 0.5H3.75"/>
+<rect x="13.5" y="-15" width="13" height="19" rx="2.5"/>
+<path d="M-27.5 -9.25H-26.25A1.5 1.5 0 0 1 -24.75 -7.75V-3.25A1.5 1.5 0 0 1 -26.25 -1.75H-27.5A1.5 1.5 0 0 1 -29 -3.25V-7.75A1.5 1.5 0 0 1 -27.5 -9.25ZM-27.25 -7.25V-3.75H-26V-7.25Z" fill="currentColor" fill-rule="evenodd" stroke="none"/>
+<path d="M-24.75 -8H-19M-24.75 -3H-19" stroke-width="2.5"/>
+</g>
+</g>
+<g class="tripod">
+<circle cx="33.75" cy="36.5" r="3.75"/>
+<path d="M32 40L26.5 52.5M35.5 40L41 52.5M29.25 46.25H38.25M25.5 52.5H27.5M40 52.5H42"/>
+</g>
+</svg>
