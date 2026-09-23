@@ -15,7 +15,7 @@ então funciona offline, inclusive no projetor.
    acendem Log4J / Biblioteca Padronizada / OpenTelemetry SDK, passam pelo OTEL Collector, chegam ao Loki e
    ao Dynatrace SaaS e se dividem entre a Monitoração (alerta no Grafana, notificação no WhatsApp e no Teams)
    e o MCP OPS (Agentes de IA → Insights e Diagnósticos → Automação → Recomendações). Em seguida o MCP OPS
-   devolve ações a cada camada.
+   devolve ações a cada camada (réplicas, sampling, pipeline, retenção) e o alerta se resolve.
 
 ## Controles
 
@@ -32,7 +32,7 @@ A barra de controles some sozinha depois de 2,5 s sem mexer o mouse.
 
 Opções no endereço (combine com vírgula, por exemplo `index.html#vertical,dark`):
 `#vertical`, `#landscape`, `#dark`, `#loop` (começa já montado, só o loop ao vivo), `#paused` e
-`#capture` (esconde os controles, para gravar).
+`#capture` (esconde os controles, para gravar). Trocar o endereço com a página aberta também aplica as opções.
 
 ## Editar
 

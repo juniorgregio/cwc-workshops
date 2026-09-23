@@ -1,158 +1,153 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-look="light">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Observabilidade MCP OPS</title>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Fluxo animado da arquitetura de observabilidade: das aplicações ao MCP OPS.">
+<meta name="description" content="Fluxo animado: da telemetria da aplicação à decisão com MCP OPS.">
 <style>/*FONTS*/</style>
-<style>/*CSS*/
-/*ICONCSS*/</style>
+<style>/*CSS*/</style>
 </head>
-<body data-look="light">
+<body>
 <div id="viewport">
-<div id="stage" data-layout="l" data-look="light" role="img"
-  aria-label="Fluxo animado da arquitetura: as Aplicações geram telemetria com Log4J, Biblioteca Padronizada e OpenTelemetry SDK; o OTEL Collector envia os dados aos Repositórios Loki e Dynatrace SaaS; a Monitoração (Grafana, Dynatrace, WhatsApp e Teams) e o MCP OPS (Agentes de IA, Insights e Diagnósticos, Automação e Recomendações) consomem os dados; o MCP OPS atua de volta em todas as camadas.">
+  <div id="stage" data-layout="l" role="img"
+       aria-label="Fluxo animado de arquitetura. As Aplicações (multi aplicações) emitem telemetria — logs, métricas e traces — para a camada de Observabilidade (Log4J, Biblioteca Padronizada e OpenTelemetry SDK). A telemetria segue para o OTEL Collector e é armazenada nos Repositórios (Loki e Dynatrace SaaS). Dali ela alimenta a Monitoração (dashboards e alarmes em Grafana e Dynatrace, com avisos por WhatsApp e Teams) e o MCP OPS (Agentes de IA, Insights e Diagnósticos, Automação e Recomendações). O MCP OPS analisa, diagnostica e age de volta em todas as camadas: aplicações, observabilidade, coletor e repositórios.">
 
-  <div class="grid-bg"></div>
-  <svg id="wires" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+    <div class="bg" aria-hidden="true"></div>
+    <!-- ignition / "resolved" light sweep: BELOW the cards (each card replays it under its own content) -->
+    <div class="sweep" aria-hidden="true"><i></i></div>
 
-  <header class="hdr">
-    <div class="kicker" data-in="0" data-fx="up">Arquitetura · Observabilidade · AIOps</div>
-    <h1>
-      <span class="w" data-in="0.10" data-fx="up">Observabilidade</span>
-      <svg class="h1-arrow" data-in="0.22" data-fx="up" viewBox="0 0 40 24" aria-hidden="true"><path d="M3 12h31M25 4l9 8-9 8" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="w mcpw" data-in="0.30" data-fx="up">MCP OPS</span>
-    </h1>
-    <p class="lede" data-in="0.38" data-fx="up">Do código à decisão: telemetria correlacionada, diagnóstico por IA e automação.</p>
-  </header>
+    <!-- connectors, packets and trails live BELOW the cards so packets visibly enter them -->
+    <svg id="wires" aria-hidden="true"></svg>
 
-  <div class="hdr-right">
-    <div class="badge" data-in="0.55" data-fx="pop"><i class="dot" id="live-dot"></i>Fluxo ao vivo</div>
-    <ul class="legend" data-in="0.70" data-fx="up">
-      <li>
-        <svg viewBox="0 0 44 12" aria-hidden="true"><path d="M2 6h40" style="stroke:var(--blue)" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="6" r="4" style="fill:var(--blue)"/></svg>
-        Telemetria
-        <span class="sig"><i style="background:var(--sig-logs)"></i>logs <i style="background:var(--sig-metrics)"></i>métricas <i style="background:var(--sig-traces)"></i>traces</span>
-      </li>
-      <li>
-        <svg viewBox="0 0 44 12" aria-hidden="true"><path d="M2 6h40" style="stroke:var(--rail)" stroke-width="2.5" stroke-dasharray="6 6" stroke-linecap="round"/></svg>
-        Ação do MCP OPS
-      </li>
-    </ul>
-  </div>
+    <header class="hdr" aria-hidden="true">
+      <div class="kicker">ARQUITETURA · OBSERVABILIDADE · AIOPS</div>
+      <h1 class="h1"><span class="w w1">Observabilidade</span><span class="w w2 h1-arrow"><svg viewBox="0 0 40 24"><path d="M3 12H33" /><path d="M25 4.5L34.5 12L25 19.5" /></svg></span><span class="w w3 mcp">MCP OPS</span></h1>
+      <p class="sub">Do código à decisão: telemetria correlacionada, diagnóstico por IA e automação.</p>
+    </header>
 
-  <!-- ============ row 1: pipeline ============ -->
-  <section class="card" id="apps" style="--c:var(--blue)">
-    <div class="glow"></div><div class="ack"></div><div class="bg"></div>
-    <svg class="frame" aria-hidden="true"><path pathLength="1"/></svg>
-    <div class="body">
-      <div class="ico hero" data-in="0.80" data-fx="pop"><!--ICON:apps--></div>
-      <div class="txt">
-        <h2 data-in="0.90" data-fx="up">Aplicações</h2>
-        <p class="sub" data-in="0.98" data-fx="up">(Multi Aplicações)</p>
-      </div>
+    <div class="live" aria-hidden="true">
+      <div class="badge"><i class="bdot"></i>FLUXO AO VIVO</div>
+      <ul class="legend">
+        <li class="lg1"><svg viewBox="0 0 40 12"><defs><linearGradient id="lg-tel" gradientUnits="userSpaceOnUse" x1="2" y1="0" x2="30" y2="0"><stop offset="0" style="stop-color:var(--sig-logs)"/><stop offset=".5" style="stop-color:var(--sig-metrics)"/><stop offset="1" style="stop-color:var(--sig-traces)"/></linearGradient></defs><path d="M2 6H30" stroke="url(#lg-tel)" stroke-width="3" stroke-linecap="round"/><circle cx="33.5" cy="6" r="3.8" style="fill:var(--sig-traces)"/></svg>Telemetria (logs · métricas · traces)</li>
+        <li class="lg2"><svg viewBox="0 0 40 12"><path d="M2 6H38" style="stroke:var(--rail)" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="butt"/></svg>Ação do MCP OPS</li>
+      </ul>
     </div>
-  </section>
 
-  <section class="card" id="obs" style="--c:var(--green)">
-    <div class="glow"></div><div class="ack"></div><div class="bg"></div>
-    <svg class="frame" aria-hidden="true"><defs><linearGradient id="g-obs-frame" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--green)"/><stop offset=".55" style="stop-color:var(--green)"/><stop offset="1" style="stop-color:var(--purple)"/></linearGradient></defs><path pathLength="1" style="stroke:url(#g-obs-frame)"/></svg>
-    <div class="body">
-      <h2 class="ttl" data-in="1.50" data-fx="up">Observabilidade</h2>
-      <div class="tiles">
-        <div class="tile" id="t-log4j" style="--sig:var(--sig-logs)" data-in="1.60" data-fx="pop"><i class="hl"></i><div class="ico"><!--ICON:log4j--></div><span>Log4J</span></div>
-        <div class="tile" id="t-bib" style="--sig:var(--sig-metrics)" data-in="1.75" data-fx="pop"><i class="hl"></i><div class="ico"><!--ICON:biblioteca--></div><span>Biblioteca<br>Padronizada</span></div>
-        <div class="tile" id="t-otel" style="--sig:var(--sig-traces)" data-in="1.90" data-fx="pop"><i class="hl"></i><div class="ico"><!--ICON:otel_sdk--></div><span>OpenTelemetry<br>SDK</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card" id="collector" style="--c:var(--orange)">
-    <div class="glow"></div><div class="ack"></div><div class="bg"></div>
-    <svg class="frame" aria-hidden="true"><path pathLength="1"/></svg>
-    <div class="body">
-      <div class="ico hero" data-in="2.60" data-fx="pop"><!--ICON:collector--></div>
-      <div class="txt"><h2 data-in="2.72" data-fx="up">OTEL Collector</h2></div>
-    </div>
-  </section>
-
-  <section class="card" id="repo" style="--c:var(--cyan)">
-    <div class="glow"></div><div class="ack"></div><div class="bg"></div>
-    <svg class="frame" aria-hidden="true"><path pathLength="1"/></svg>
-    <div class="body">
-      <h2 class="ttl" data-in="3.35" data-fx="up">Repositórios</h2>
-      <div class="tiles">
-        <div class="tile" id="t-loki" style="--sig:var(--sig-logs)" data-in="3.45" data-fx="pop"><i class="hl"></i><div class="ico"><!--ICON:loki--></div><span>Loki</span></div>
-        <div class="tile" id="t-dyn" style="--sig:var(--sig-traces)" data-in="3.60" data-fx="pop"><i class="hl"></i><div class="ico"><!--ICON:dynatrace--></div><span>Dynatrace<br>SaaS</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ row 2: consumers ============ -->
-  <section class="card" id="monitor" style="--c:var(--pink)">
-    <div class="glow"></div><div class="ack"></div><div class="bg"></div>
-    <svg class="frame" aria-hidden="true"><path pathLength="1"/></svg>
-    <div class="body">
-      <div class="mhead">
-        <div class="ico" data-in="4.45" data-fx="pop"><!--ICON:monitor_dash--></div>
+    <!-- ============================ CARDS ============================ -->
+    <div class="card" id="c-apps" style="--c:var(--blue)">
+      <i class="glow"></i><i class="ack"></i><i class="fill"></i><svg class="border"></svg><div class="sheen"><i class="own"></i><i class="gsw"></i></div>
+      <div class="body apps-body">
+        <div class="iw iw-apps"><!--ICON:apps--></div>
         <div class="txt">
-          <h2 data-in="4.50" data-fx="up">Monitoração</h2>
-          <p class="sub" data-in="4.56" data-fx="up">Dashboards <b>|</b> Alarmes</p>
+          <div class="ttl t-apps">Aplicações</div>
+          <div class="st">(Multi Aplicações)</div>
         </div>
-        <em class="alert" id="alert-chip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2 14.6 13.6H1.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.4v3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8" cy="11.7" r=".95" fill="currentColor"/></svg><span class="al-k">ALERTA ·</span> p95 412 ms</em>
-      </div>
-      <i class="dots" data-in="4.50" data-fx="fade"></i>
-      <div class="mrow">
-        <div class="cell" id="cell-grafana" data-in="4.58" data-fx="pop">
-          <div class="ico logo"><!--ICON:grafana--></div><span>Grafana</span>
-        </div>
-        <i class="vdiv"></i>
-        <div class="cell" id="cell-dyn" data-in="4.68" data-fx="pop"><div class="ico logo"><!--ICON:dynatrace:m--></div><span>Dynatrace</span></div>
-      </div>
-      <i class="dots" data-in="4.60" data-fx="fade"></i>
-      <div class="mrow">
-        <div class="cell" id="cell-wa" data-in="4.78" data-fx="pop"><div class="ico logo"><!--ICON:whatsapp--><b class="nbadge" id="nb-wa">1</b></div><span>WhatsApp</span></div>
-        <i class="vdiv"></i>
-        <div class="cell" id="cell-teams" data-in="4.88" data-fx="pop"><div class="ico logo"><!--ICON:teams--><b class="nbadge" id="nb-teams">1</b></div><span>Teams</span></div>
       </div>
     </div>
-  </section>
 
-  <section class="card" id="mcp" style="--c:var(--blue)">
-    <div class="glow"></div><div class="ack"></div><div class="bg"></div>
-    <svg class="frame" aria-hidden="true"><path pathLength="1"/></svg>
-    <div class="body">
-      <div class="xhead">
-        <div class="ico brain" data-in="4.45" data-fx="pop"><!--ICON:mcp_brain--></div>
-        <h2 data-in="4.50" data-fx="up">MCP OPS</h2>
-        <div class="srv" data-in="4.62" data-fx="fade"><i></i>MCP server · online</div>
-      </div>
-      <div class="caps">
-        <div class="cap" id="cap1" data-in="4.60" data-fx="slide"><i class="hl"></i><div class="ico"><!--ICON:robot--></div><div class="ct"><b>Agentes de IA</b><code class="st" data-rest="análise contínua" data-live="correlacionando 1.284 eventos…">análise contínua</code></div></div>
-        <div class="cap" id="cap2" data-in="4.75" data-fx="slide"><i class="hl"></i><div class="ico"><!--ICON:insights--></div><div class="ct"><b>Insights e Diagnósticos</b><code class="st" data-rest="causa raiz e contexto" data-live="causa provável: pool db-orders">causa raiz e contexto</code></div></div>
-        <div class="cap" id="cap3" data-in="4.90" data-fx="slide"><i class="hl"></i><div class="ico"><!--ICON:automacao--></div><div class="ct"><b>Automação</b><code class="st" data-rest="runbooks e ações" data-live="escalando checkout-api 3 -> 6">runbooks e ações</code></div></div>
-        <div class="cap" id="cap4" data-in="5.05" data-fx="slide"><i class="hl"></i><div class="ico"><!--ICON:recomendacoes--></div><div class="ct"><b>Recomendações</b><code class="st" data-rest="próximos passos" data-live="ajustar timeout 30s -> 10s">próximos passos</code></div></div>
+    <div class="card" id="c-obs" style="--c:var(--green)">
+      <i class="glow"></i><i class="ack"></i><i class="fill"></i><svg class="border"></svg><div class="sheen"><i class="own"></i><i class="gsw"></i></div>
+      <div class="body obs-body">
+        <div class="ttl t-obs">Observabilidade</div>
+        <div class="tiles">
+          <div class="tile" style="--s:var(--sig-logs)"><i class="tint"></i><div class="iw"><!--ICON:log4j--></div><div class="lbl">Log4J</div></div>
+          <i class="vdiv"></i>
+          <div class="tile" style="--s:var(--sig-metrics)"><i class="tint"></i><div class="iw"><!--ICON:biblioteca--></div><div class="lbl">Biblioteca<br>Padronizada</div></div>
+          <i class="vdiv"></i>
+          <div class="tile" style="--s:var(--sig-traces)"><i class="tint"></i><div class="iw"><!--ICON:otel_sdk--></div><div class="lbl">OpenTelemetry<br>SDK</div></div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- ============ fx layer (above cards) ============ -->
-  <svg id="fx" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
-  <div class="ackchip" id="ack-apps"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 3 3 6-6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>réplicas 3 -> 6</div>
-  <div class="ackchip" id="ack-obs"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 3 3 6-6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>sampling ajustado</div>
-  <div class="ackchip" id="ack-collector"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 3 3 6-6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>pipeline ok</div>
-  <div class="ackchip" id="ack-repo"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 3 3 6-6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>retenção otimizada</div>
-  <div class="sheen" id="sheen"></div>
-</div>
+    <div class="card" id="c-collector" style="--c:var(--orange)">
+      <i class="glow"></i><i class="ack"></i><i class="fill"></i><svg class="border"></svg><div class="sheen"><i class="own"></i><i class="gsw"></i></div>
+      <div class="body col-body">
+        <div class="iw iw-col"><!--ICON:collector--></div>
+        <div class="txt"><div class="ttl t-col">OTEL Collector</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="c-repo" style="--c:var(--cyan)">
+      <i class="glow"></i><i class="ack"></i><i class="fill"></i><svg class="border"></svg><div class="sheen"><i class="own"></i><i class="gsw"></i></div>
+      <div class="body repo-body">
+        <div class="ttl t-repo">Repositórios</div>
+        <div class="tiles">
+          <div class="tile" style="--s:var(--sig-logs)"><i class="tint"></i><div class="iw"><!--ICON:loki--></div><div class="lbl">Loki</div></div>
+          <i class="vdiv"></i>
+          <div class="tile" style="--s:var(--sig-traces)"><i class="tint"></i><div class="iw"><!--ICON:dynatrace--></div><div class="lbl">Dynatrace<br>SaaS</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="c-monitor" style="--c:var(--pink)">
+      <i class="glow"></i><i class="ack"></i><i class="fill"></i><svg class="border"></svg><div class="sheen"><i class="own"></i><i class="gsw"></i></div>
+      <div class="body mon-body">
+        <div class="mhead">
+          <div class="iw iw-mon"><!--ICON:monitor_dash--></div>
+          <div class="mh-txt">
+            <div class="ttl t-mon">Monitoração</div>
+            <div class="st">Dashboards <b>|</b> Alarmes</div>
+          </div>
+          <span class="alert-chip"><svg viewBox="0 0 16 16"><path d="M8 2.2L14.6 13.6H1.4Z"/><path d="M8 6.4V9.8"/><circle cx="8" cy="11.8" r=".5"/></svg>ALERTA · p95 412 ms</span>
+        </div>
+        <i class="dotdiv"></i>
+        <div class="mrow">
+          <div class="mi mi-grafana"><div class="iw"><!--ICON:grafana--></div><div class="lbl">Grafana</div></div>
+          <i class="vdiv"></i>
+          <div class="mi mi-dt"><div class="iw"><!--ICON:dynatrace#2--></div><div class="lbl">Dynatrace</div></div>
+        </div>
+        <i class="dotdiv"></i>
+        <div class="mrow">
+          <div class="mi mi-wa"><div class="iw"><!--ICON:whatsapp--><span class="nbadge">1</span></div><div class="lbl">WhatsApp</div></div>
+          <i class="vdiv"></i>
+          <div class="mi mi-teams"><div class="iw"><!--ICON:teams--><span class="nbadge">1</span></div><div class="lbl">Teams</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="c-mcp" style="--c:var(--blue)">
+      <i class="glow"></i><i class="ack"></i><i class="fill"></i><svg class="border"></svg><div class="sheen"><i class="own"></i><i class="gsw"></i></div>
+      <div class="body mcp-body">
+        <div class="mhead">
+          <div class="iw iw-brain"><!--ICON:mcp_brain--></div>
+          <div class="mh-txt">
+            <div class="ttl t-mcp">MCP OPS</div>
+            <div class="srv"><i></i>MCP server · online</div>
+          </div>
+        </div>
+        <div class="caps">
+          <div class="cap"><i class="cap-tint"></i><i class="cap-bar"></i><div class="iw"><!--ICON:robot--></div><div class="ctext"><div class="lbl">Agentes de IA</div><div class="stl"><span class="rest">análise contínua</span><span class="act"></span></div></div></div>
+          <div class="cap"><i class="cap-tint"></i><i class="cap-bar"></i><div class="iw"><!--ICON:insights--></div><div class="ctext"><div class="lbl">Insights e Diagnósticos</div><div class="stl"><span class="rest">causa raiz e contexto</span><span class="act"></span></div></div></div>
+          <div class="cap"><i class="cap-tint"></i><i class="cap-bar"></i><div class="iw"><!--ICON:automacao--></div><div class="ctext"><div class="lbl">Automação</div><div class="stl"><span class="rest">runbooks e ações</span><span class="act"></span></div></div></div>
+          <div class="cap"><i class="cap-tint"></i><i class="cap-bar"></i><div class="iw"><!--ICON:recomendacoes--></div><div class="ctext"><div class="lbl">Recomendações</div><div class="stl"><span class="rest">próximos passos</span><span class="act"></span></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- arrival ripples, junction flash, border sparks: ABOVE the cards -->
+    <svg id="fx" aria-hidden="true"></svg>
+
+    <!-- telemetry chips + ack chips (HTML so the mono font renders crisply) -->
+    <div id="chips" aria-hidden="true">
+      <span class="chip tchip" data-k="c-logs" style="--s:var(--sig-logs)">logs</span>
+      <span class="chip tchip" data-k="c-met" style="--s:var(--sig-metrics)">métricas</span>
+      <span class="chip tchip" data-k="c-tr" style="--s:var(--sig-traces)">traces</span>
+      <span class="chip achip" data-k="a-apps"><svg viewBox="0 0 12 12"><path d="M2.2 6.4L4.8 8.8L9.8 3.4"/></svg>réplicas 3<svg class="ar" viewBox="0 0 14 10"><path d="M1.5 5H11.5M8 1.8L11.8 5L8 8.2"/></svg>6</span>
+      <span class="chip achip" data-k="a-obs"><svg viewBox="0 0 12 12"><path d="M2.2 6.4L4.8 8.8L9.8 3.4"/></svg>sampling ajustado</span>
+      <span class="chip achip" data-k="a-collector"><svg viewBox="0 0 12 12"><path d="M2.2 6.4L4.8 8.8L9.8 3.4"/></svg>pipeline ok</span>
+      <span class="chip achip" data-k="a-repo"><svg viewBox="0 0 12 12"><path d="M2.2 6.4L4.8 8.8L9.8 3.4"/></svg>retenção otimizada</span>
+    </div>
+
+  </div>
 </div>
 
-<nav class="controls" id="controls" aria-label="Controles da animação">
-  <button type="button" id="btn-replay" title="Reiniciar (R)"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10a5.5 5.5 0 1 0 1.7-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5.6 2.8v3.6h3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Reiniciar</span></button>
-  <button type="button" id="btn-play" title="Pausar / continuar (Espaço)"><svg viewBox="0 0 20 20" aria-hidden="true"><g class="i-pause"><rect x="5" y="4" width="3.2" height="12" rx="1" fill="currentColor"/><rect x="11.8" y="4" width="3.2" height="12" rx="1" fill="currentColor"/></g><path class="i-play" d="M6 4.2v11.6L15.5 10Z" fill="currentColor"/></svg><span id="lbl-play">Pausar</span></button>
-  <button type="button" id="btn-layout" title="Alternar 16:9 / vertical (L)"><svg viewBox="0 0 20 20" aria-hidden="true"><rect class="i-land" x="2" y="5" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><rect class="i-port" x="5" y="2" width="10" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span id="lbl-layout">Vertical</span></button>
-  <button type="button" id="btn-theme" title="Tema claro / escuro (T)"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 3.5a6.5 6.5 0 0 1 0 13Z" fill="currentColor"/></svg><span id="lbl-theme">Escuro</span></button>
-  <button type="button" id="btn-full" title="Tela cheia (F)"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5V3h4.5M12.5 3H17v4.5M17 12.5V17h-4.5M7.5 17H3v-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tela cheia</span></button>
+<nav id="controls" aria-label="Controles da animação">
+  <button type="button" data-act="replay" title="Reiniciar (R)"><svg viewBox="0 0 16 16"><path d="M13 8A5 5 0 1 1 11.3 4.2"/><path d="M11.8 1.6V4.6H8.8"/></svg><span>Reiniciar</span></button>
+  <button type="button" data-act="toggle" title="Pausar / Continuar (Espaço)"><svg class="g-pause" viewBox="0 0 16 16"><path d="M5.5 3.5V12.5M10.5 3.5V12.5"/></svg><svg class="g-play" viewBox="0 0 16 16"><path d="M5 3.2L12.5 8L5 12.8Z" class="fillme"/></svg><span class="lbl-toggle">Pausar</span></button>
+  <button type="button" data-act="layout" title="Alternar 16:9 / Vertical (L)"><svg viewBox="0 0 16 16"><rect x="1.8" y="4" width="12.4" height="8" rx="1.6"/></svg><span class="seg"><b data-v="l">16:9</b><i>/</i><b data-v="p">Vertical</b></span></button>
+  <button type="button" data-act="theme" title="Alternar Claro / Escuro (T)"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.2"/><path d="M8 2.8A5.2 5.2 0 0 1 8 13.2Z" class="fillme"/></svg><span class="seg"><b data-v="light">Claro</b><i>/</i><b data-v="dark">Escuro</b></span></button>
+  <button type="button" data-act="fullscreen" title="Tela cheia (F)"><svg viewBox="0 0 16 16"><path d="M2.5 6V2.5H6M10 2.5H13.5V6M13.5 10V13.5H10M6 13.5H2.5V10"/></svg><span>Tela cheia</span></button>
 </nav>
 
 <script>/*JS*/</script>
