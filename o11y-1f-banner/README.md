@@ -4,7 +4,7 @@ Banner co-branded para divulgação dentro do Dynatrace, redesenhado a partir do
 foco em profissionalismo, **logo oficial da Accenture** e **preservação do logo One Financial
 Observability (O11y 1F)**.
 
-![Banner final](output/o11y-1f-accenture-dynatrace-banner-1920.png)
+![Banner animado](output/animado/o11y-1f-banner-animado-loop.gif)
 
 ## Arquivos
 
@@ -12,12 +12,46 @@ Observability (O11y 1F)**.
 | --- | --- |
 | `output/o11y-1f-accenture-dynatrace-banner.png` | **Banner final, 3840 × 461 px**: mesmas dimensões do original, substituição direta |
 | `output/o11y-1f-accenture-dynatrace-banner-1920.png` | Versão leve, 1920 × 231 px |
+| `output/animado/` | **Versões animadas**: GIF em loop, GIF com intro, WebP e MP4 (ver abaixo) |
 | `banner.html` | Fonte editável (HTML/CSS, sem dependências de rede) |
+| `banner-animado.html` | Fonte da animação (mesmo layout, animado só com CSS) |
 | `logos-png/` | **Logos em PNG com fundo transparente** para download (ver abaixo) |
 | `assets/` | Emblema O11y 1F, logos oficiais (SVG) e fontes locais (Open Sans Bold, Inter; licença OFL 1.1) |
-| `render.js`, `export-logos.js`, `package.json` | Scripts para gerar os PNGs do banner e dos logos |
+| `render.js`, `export-logos.js`, `animate.js`, `package.json` | Scripts para gerar os PNGs do banner, dos logos e as versões animadas |
 | `docs/antes-depois.jpg` | Comparativo antes × depois |
 | `docs/antes-original.jpg` | Banner original, para referência |
+
+## Banner animado (`output/animado/`)
+
+| Arquivo | Formato | Uso |
+| --- | --- | --- |
+| `o11y-1f-banner-animado-loop.gif` | GIF 1920 × 231, 8 s, loop infinito | **Para o Dynatrace** (funciona em qualquer tile ou markdown de imagem) |
+| `o11y-1f-banner-animado-intro.gif` | GIF 1920 × 231, 3,5 s, toca uma vez | Entrada animada que para no banner final |
+| `o11y-1f-banner-animado-loop.webp` | WebP animado 1920 × 231, loop infinito | Mesma animação do GIF com qualidade máxima (sem perdas) |
+| `o11y-1f-banner-animado.mp4` | MP4 H.264 3840 × 460, 19,5 s | Apresentações e redes sociais: intro + 2 loops |
+
+**A animação ("pulso de telemetria"):**
+
+- **Entrada (3,5 s):**
+  1. Uma luz lilás acende atrás do escudo e se abre no halo.
+  2. O escudo e o nome aparecem.
+  3. Uma linha de telemetria se desenha para a direita, como um batimento lilás→roxo Accenture.
+  4. Accenture e Dynatrace aparecem quando a linha passa por eles.
+  5. Um batimento azul Dynatrace surge depois dos logos, e o copyright aparece por último.
+  6. Tudo termina exatamente no banner estático aprovado.
+- **Loop (8 s, sem emenda):**
+  - O halo atrás do escudo “respira” duas vezes.
+  - Na respiração mais forte, um pulso de luz sai do logo O11y, percorre o batimento no espaço antes
+    da Accenture, passa por trás dos parceiros e repete o batimento azul antes do copyright.
+  - Depois vêm ~4,5 s de calma.
+
+**Regras respeitadas:**
+
+- Os logos da Accenture e da Dynatrace só aparecem com um fade na entrada. No loop ficam 100%
+  parados, e nenhuma luz passa sobre eles (medido: 0 pixels alterados nos logos, no nome O11y e no
+  copyright).
+- O escudo O11y nunca muda de cor nem de forma; só o brilho atrás dele se mexe.
+- Com “reduzir movimento” ativo no navegador, `banner-animado.html` mostra o banner estático.
 
 ## Logos em PNG (`logos-png/`)
 
@@ -97,6 +131,7 @@ npm install
 npx playwright install chromium
 npm run render         # gera os dois PNGs do banner em output/
 npm run export-logos   # gera os PNGs dos logos em logos-png/
+npm run animate        # gera GIF, WebP e MP4 animados em output/animado/ (usa ffmpeg; ~2 min)
 ```
 
 Os textos, cores e posições ficam em `banner.html`, e o grid está documentado no comentário do topo.

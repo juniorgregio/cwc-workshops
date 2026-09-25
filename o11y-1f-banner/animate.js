@@ -9,10 +9,12 @@
 //   data-intro-ms = length of the one-time entrance (0 .. intro)
 //   data-loop-ms  = length of the seamless ambient loop (starts at intro; every infinite
 //                   animation's duration divides it, and loop phase 0 == the static banner)
+//   data-gif-accent (optional) = "x,y,w,h;..." canvas regions whose moving colours get reserved
+//                   GIF palette entries (see gif() below)
 //
 // Outputs (in outDir, default output/animado):
 //   <prefix>-loop.gif    1920x231, 20 fps, loops forever        -> Dynatrace dashboards
-//   <prefix>-loop.webp   1920x231, 30 fps, loops forever        -> lighter/better than GIF
+//   <prefix>-loop.webp   1920x231, 30 fps, lossless, loops forever -> best quality in browsers
 //   <prefix>-intro.gif   1920x231, 20 fps, plays once and stops on the final banner
 //   <prefix>.mp4         3840x460, 30 fps, H.264: entrance + 2 loops (presentations, social)
 //
@@ -56,6 +58,7 @@ function arg(name, def) {
   });
   const introMs = await page.evaluate(() => Number(document.documentElement.dataset.introMs || 0));
   const loopMs = await page.evaluate(() => Number(document.documentElement.dataset.loopMs || 0));
+  const gifAccent = await page.evaluate(() => document.documentElement.dataset.gifAccent || '');
   if (!loopMs) throw new Error('<html data-loop-ms> is missing');
   const nIntro = Math.round((introMs / 1000) * fps);
   const nLoop = Math.round((loopMs / 1000) * fps);
@@ -73,29 +76,60 @@ function arg(name, def) {
   await browser.close();
   console.log(`captured ${total} frames (intro ${introMs} ms, loop ${loopMs} ms, ${fps} fps)`);
 
-  // Build ordered frame lists for each output (ffmpeg concat demuxer).
+  // Each output gets its own numbered sequence of hard links to the captured frames, so ffmpeg reads
+  // exactly the intended frames (an image sequence has no duplicated trailing entry, unlike concat).
   const frame = (i) => path.join(framesDir, String(i).padStart(5, '0') + '.png');
-  const list = (name, idx) => {
-    const p = path.join(framesDir, name + '.txt');
-    fs.writeFileSync(p, idx.map((i) => `file '${frame(i)}'\nduration ${1 / fps}\n`).join('') + `file '${frame(idx[idx.length - 1])}'\n`);
-    return p;
+  const seq = (name, idx) => {
+    const d = path.join(framesDir, name);
+    fs.mkdirSync(d);
+    idx.forEach((i, k) => fs.linkSync(frame(i), path.join(d, String(k).padStart(5, '0') + '.png')));
+    return path.join(d, '%05d.png');
   };
   const range = (a, b) => Array.from({ length: b - a }, (_, k) => a + k);
   const loopIdx = range(nIntro, nIntro + nLoop);
   const introIdx = range(0, nIntro + 1); // ends on the rest frame (= static banner)
   const fullIdx = [...range(0, nIntro), ...loopIdx, ...loopIdx];
+  const count = (idx, rate) => Math.round((idx.length * rate) / fps);
 
-  const small = `scale=1920:231:flags=lanczos`;
-  // Ordered (bayer) dithering + rectangle diff: temporally stable, no shimmering static areas.
-  const gifVf = (rate) => `fps=${rate},${small},split[a][b];[a]palettegen=max_colors=256:stats_mode=full[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle`;
+  const small = 'scale=1920:231:flags=lanczos';
+  // GIF palette: one global palette (static areas never flicker) built from
+  //   * the whole frame (stats_mode=full), plus
+  //   * 40 colours per "accent" region declared on <html data-gif-accent="x,y,w,h;..."> (canvas px),
+  //     taken only from the pixels that change there (stats_mode=diff).
+  // Without the accent colours, small coloured light (e.g. the blue Dynatrace pulse) is mapped to the
+  // nearest colours of a palette dominated by the navy background and lavender halo, and turns mauve.
+  const accents = gifAccent.split(';').map((r) => r.split(',').map(Number)).filter((r) => r.length === 4 && r.every(Number.isFinite));
+  const gif = (seqPattern, n, loopFlag, out) => {
+    const input = ['-framerate', String(fps), '-i', seqPattern];
+    const pals = [path.join(framesDir, 'pal-full.png')];
+    ff([...input, '-vf', `fps=20,${small},palettegen=max_colors=${Math.max(128, 240 - 40 * accents.length)}:stats_mode=full`, '-frames:v', '1', '-update', '1', pals[0]]);
+    accents.forEach(([x, y, w, h], k) => {
+      const c = [w, h, x, y].map((v) => Math.round(v / 2)).join(':'); // canvas px -> 1920 px
+      pals.push(path.join(framesDir, `pal-accent-${k}.png`));
+      ff([...input, '-vf', `fps=20,${small},crop=${c},palettegen=max_colors=40:stats_mode=diff`, '-frames:v', '1', '-update', '1', pals[k + 1]]);
+    });
+    const pal = path.join(framesDir, 'pal.png');
+    const stack = pals.length > 1 ? `${pals.map((_, k) => `[${k}]`).join('')}hstack=inputs=${pals.length},` : '';
+    ff([...pals.flatMap((p) => ['-i', p]), '-filter_complex', `${stack}palettegen=max_colors=256`, '-frames:v', '1', '-update', '1', pal]);
+    // Ordered (bayer) dithering + rectangle diff: temporally stable, no shimmering static areas.
+    ff([...input, '-i', pal, '-filter_complex', `[0:v]fps=20,${small}[v];[v][1:v]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle`,
+      '-frames:v', String(n), '-loop', loopFlag, out]);
+  };
 
-  const loopList = list('loop', loopIdx);
-  ff(['-f', 'concat', '-safe', '0', '-i', loopList, '-vf', gifVf(20), '-loop', '0', path.join(outDir, `${prefix}-loop.gif`)]);
-  ff(['-f', 'concat', '-safe', '0', '-i', loopList, '-vf', `fps=${fps},${small}`, '-c:v', 'libwebp_anim', '-quality', '88', '-compression_level', '6', '-loop', '0', path.join(outDir, `${prefix}-loop.webp`)]);
+  const loopSeq = seq('loop', loopIdx);
+  gif(loopSeq, count(loopIdx, 20), '0', path.join(outDir, `${prefix}-loop.gif`));
+  // WebP is encoded LOSSLESS: lossy libwebp_anim merges low-contrast frame changes (the halo breath)
+  // into blocky patches and leaves ghosts of the moving light.
+  ff(['-framerate', String(fps), '-i', loopSeq, '-vf', small, '-c:v', 'libwebp_anim', '-lossless', '1', '-compression_level', '6',
+    '-loop', '0', '-frames:v', String(nLoop), path.join(outDir, `${prefix}-loop.webp`)]);
   if (nIntro > 0) {
-    ff(['-f', 'concat', '-safe', '0', '-i', list('intro', introIdx), '-vf', gifVf(20), '-loop', '-1', path.join(outDir, `${prefix}-intro.gif`)]);
+    // Plays once (-loop -1) and stops on its last frame, the static banner.
+    gif(seq('intro', introIdx), count(introIdx.slice(0, -1), 20) + 1, '-1', path.join(outDir, `${prefix}-intro.gif`));
   }
-  ff(['-f', 'concat', '-safe', '0', '-i', list('full', fullIdx), '-vf', `fps=${fps},crop=3840:460:0:0`, '-c:v', 'libx264', '-preset', 'slow', '-crf', '14', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(outDir, `${prefix}.mp4`)]);
+  // One keyframe for the whole clip (-g): avoids the periodic quality "tick" on static areas at keyframes.
+  ff(['-framerate', String(fps), '-i', seq('full', fullIdx), '-vf', 'crop=3840:460:0:0', '-frames:v', String(fullIdx.length),
+    '-c:v', 'libx264', '-preset', 'slow', '-crf', '14', '-g', String(fullIdx.length), '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
+    path.join(outDir, `${prefix}.mp4`)]);
 
   if (!process.argv.includes('--keep-frames')) fs.rmSync(framesDir, { recursive: true, force: true });
   for (const f of fs.readdirSync(outDir).filter((f) => f.startsWith(prefix))) {
