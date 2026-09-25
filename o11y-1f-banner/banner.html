@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>One Financial Observability Banner</title>
+<!--
+  One Financial Observability x Accenture x Dynatrace — co-branded banner
+  Canvas: 3840 x 461 CSS px (rendered at deviceScaleFactor 1; shown in Dynatrace at ~1920 x 230).
+  Render: npm run render   (see README.md; writes output/*.png)
+
+  GRID (all values in CSS px)
+    Horizontal axis ............ y = 230.5 (emblem centre = name-block centre = partner x-height centre)
+    Lockup band ................ y 168 (cap top of ONE FINANCIAL) -> y 293 (baseline of OBSERVABILITY)
+                                 The right-hand meta column re-uses this band: pill top = 168,
+                                 copyright baseline = 293.
+    Outer margins .............. 144 px: visible emblem edge on the left, text edge on the right.
+    Zones ...................... [O11y 1F lockup] --gutter-- [Accenture | Dynatrace] --gutter-- [status / copyright]
+                                 Both gutters are 330 px of ink-to-ink space: name ends at x 1112, Accenture
+                                 starts at 1442; Dynatrace ends at 2424, the copyright starts at 2756.
+                                 If any copy or size changes, re-centre .partners so the two gutters stay equal.
+
+  BRAND RULES
+    * O11y 1F lockup = primary, protected brand. Emblem PNG untouched at native 369 px (no filter,
+      opacity or transform on it or any ancestor); its halo is a separate element painted behind it.
+      Name in Open Sans Bold 700, white + #886AAD-family purple, second line indented.
+    * Accenture / Dynatrace = secondary partner logos, official kit SVGs via <img>, sized by height only,
+      no effects. Accenture:Dynatrace height ratio 1.26 (equal optical weight), shared wordmark baseline,
+      clear space >= 110 px on each side of the hairline divider.
+-->
+<style>
+  /* ---------- fonts (local only, no network) ---------- */
+  @font-face { font-family: "Open Sans"; font-weight: 700; font-style: normal;
+    src: url("assets/fonts/OpenSans-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 200 800; font-style: normal;
+    src: url("assets/fonts/Inter-Variable.woff2") format("woff2"); }
+
+  :root {
+    /* background: restrained indigo-navy (close to Dynatrace dark chrome, warmer than slate) */
+    --bg-0: #0A0A16;
+    --bg-1: #0D0E1C;
+    --bg-2: #121328;
+
+    /* O11y 1F brand */
+    --o11y-white: #FFFFFF;
+    --o11y-purple: #9E7CC8;        /* original #886AAD (HSL hue 266.9) lifted for contrast on near-black:
+                                      hue kept at 266.8 (in the 265-285 brand band), L 55% -> 64% */
+    --o11y-glow: 157, 118, 205;    /* rgb of the emblem halo, same hue as the emblem purple (~267) */
+
+    /* status */
+    --dt-green: #73BE28;           /* status dot */
+
+    /* UI text */
+    --text: #F2F3F7;
+    --muted: #A3A9BA;
+  }
+
+  html, body { margin: 0; width: 3840px; height: 461px; overflow: hidden; }
+  body {
+    position: relative;
+    background: linear-gradient(90deg, var(--bg-0) 0%, var(--bg-1) 42%, var(--bg-2) 100%);
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* ============ BACKGROUND LAYERS (painted first, never on top of a logo) ============ */
+
+  /* Canvas-sized wrapper for all decoration. overflow:clip (not hidden) clips the oversized halo
+     to the 3840 x 461 frame without making anything a scroll container, so body has no hidden
+     scrollable overflow. No z-index / opacity / transform: it is not a stacking context. */
+  .bg { position: absolute; left: 0; top: 0; width: 3840px; height: 461px; overflow: clip; pointer-events: none; }
+
+  /* Two-layer emblem halo, centred on the emblem (x = 283, y = 230.5).
+     Broad layer = ambient lift of the left third; core = presence cue that survives 1920 px.
+     Both layers are 460 px tall so they fade to 0 before the top/bottom edges of the frame
+     (no lighter band where a Dynatrace tile edge meets the banner). */
+  .halo { position: absolute; left: 283px; top: 230.5px; width: 0; height: 0; pointer-events: none; }
+  .halo::before, .halo::after { content: ""; position: absolute; border-radius: 50%; }
+  .halo::before {            /* broad ambient ellipse */
+    left: -600px; top: -230px; width: 1200px; height: 460px;
+    background: radial-gradient(closest-side,
+      rgba(var(--o11y-glow), 0.12) 0%, rgba(var(--o11y-glow), 0.07) 40%,
+      rgba(var(--o11y-glow), 0.025) 72%, rgba(var(--o11y-glow), 0) 100%);
+  }
+  .halo::after {             /* tight core, 460 px */
+    left: -230px; top: -230px; width: 460px; height: 460px;
+    background: radial-gradient(closest-side,
+      rgba(var(--o11y-glow), 0.30) 0%, rgba(var(--o11y-glow), 0.20) 30%,
+      rgba(var(--o11y-glow), 0.09) 60%, rgba(var(--o11y-glow), 0.025) 85%, rgba(var(--o11y-glow), 0) 100%);
+  }
+
+  /* No edge rules or bars: the 40 px top/bottom and 96 px side bands stay plain background
+     (gradient + halo only), so a Dynatrace tile crop of any few px leaves no sliver.
+     Chrome dithers the gradients, so no grain layer is needed to prevent banding. */
+
+  /* ============ 1. O11y 1F LOCKUP — primary, protected ============
+     One component: emblem + name move together, internal geometry fixed.
+       emblem  : native 306 x 369 (no resampling), visible left edge at 130 + 14 = 144
+       gap     : 43 px from the emblem's last visible column to the "O" of ONE
+       name    : cap band 168 -> 293 is centred on the emblem (230.5)
+       indent  : OBSERVABILITY starts 64 px right of ONE (as in the original) */
+  .brand { position: absolute; left: 130px; top: 46px; height: 369px;
+    display: flex; align-items: flex-start; }
+  .emblem { display: block; height: 369px; width: auto; flex: none; }
+  .name {
+    margin-left: 30px;                 /* -> 43 px clear space between emblem ink and "O" ink */
+    margin-top: 108px;                 /* -> cap top of ONE FINANCIAL at y = 168 */
+    font-family: "Open Sans", sans-serif; font-weight: 700;
+    line-height: 1; white-space: nowrap;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);   /* very subtle, allowed by the brief */
+  }
+  .name .l1 { display: block; font-size: 84px; letter-spacing: -0.01em; color: var(--o11y-white); }
+  .name .l2 { display: block; font-size: 60px; letter-spacing: -0.01em; color: var(--o11y-purple);
+    margin-top: 2px;                   /* -> 22 px from line-1 baseline to line-2 cap top */
+    padding-left: 66px; }              /* indent */
+
+  /* ============ 2. PARTNER LOGOS — secondary ============
+     Heights: Accenture 92 px, Dynatrace 73 px (ratio 1.26 -> equal optical weight).
+     Both wordmarks share one baseline; their lowercase x-height bands are centred on y = 230.5.
+     A single hairline divider (fades at both ends) with 110 px clear space on each side. */
+  .partners { position: absolute; left: 1442px; top: 0; height: 461px;
+    display: flex; align-items: flex-start; }
+  .acn { display: block; height: 92px; width: auto; flex: none; margin-top: 161px; }
+  .dt  { display: block; height: 73px; width: auto; flex: none; margin-top: 193px; }
+  .pdiv { flex: none; width: 2px; height: 150px; margin: 155.5px 110px 0;
+    background: linear-gradient(to bottom,
+      rgba(255,255,255,0) 0%, rgba(255,255,255,0.20) 30%, rgba(255,255,255,0.20) 70%, rgba(255,255,255,0) 100%); }
+
+  /* ============ 3. STATUS + COPYRIGHT — tertiary, right-aligned ============
+     Pill spans the cap band of ONE FINANCIAL (168 -> 228); copyright baseline = OBSERVABILITY baseline (293). */
+  .meta { position: absolute; right: 144px; top: 168px;
+    display: flex; flex-direction: column; align-items: flex-end; }
+  .status {
+    display: inline-flex; align-items: center; gap: 16px; box-sizing: border-box;
+    height: 60px; padding: 0 28px 0 32px; border-radius: 30px;   /* extra left pad offsets the dot's 6 px ring */
+    background: rgba(255,255,255,0.035);
+    border: 2px solid rgba(255,255,255,0.17);
+    font-size: 32px; font-weight: 500; line-height: 1; color: var(--text); white-space: nowrap;
+  }
+  .status .k { color: var(--muted); }
+  .status .v { color: #FFFFFF; font-weight: 600; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--dt-green); flex: none;
+    box-shadow: 0 0 0 6px rgba(115,190,40,0.18), 0 0 16px rgba(115,190,40,0.5); }
+  .legal { margin-top: 32px; font-size: 35px; font-weight: 450; line-height: 42px;
+    color: var(--muted); white-space: nowrap;
+    margin-right: -2px; }              /* optical: cancels the period's side bearing so the ink edge meets the pill edge */
+</style>
+</head>
+<body>
+  <!-- background -->
+  <div class="bg" aria-hidden="true">
+    <div class="halo"></div>
+  </div>
+
+  <!-- 1. O11y 1F lockup (primary) -->
+  <div class="brand">
+    <img class="emblem" src="assets/o11y-1f-emblem.png" alt="O11y 1F">
+    <div class="name">
+      <span class="l1">ONE FINANCIAL</span>
+      <span class="l2">OBSERVABILITY</span>
+    </div>
+  </div>
+
+  <!-- 2. Partner logos (secondary) -->
+  <div class="partners">
+    <img class="acn" src="assets/logos/accenture-reversed-white.svg" alt="Accenture">
+    <div class="pdiv" aria-hidden="true"></div>
+    <img class="dt" src="assets/logos/dynatrace-white.svg" alt="Dynatrace">
+  </div>
+
+  <!-- 3. Status + copyright (tertiary) -->
+  <div class="meta">
+    <div class="status"><span class="dot"></span><span><span class="k">System Status:</span> <span class="v">Operational</span></span></div>
+    <div class="legal">© 2026 One Financial Observability. All Rights Reserved.</div>
+  </div>
+</body>
+</html>
