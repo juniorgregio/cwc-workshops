@@ -11,10 +11,9 @@
   GRID (all values in CSS px)
     Horizontal axis ............ y = 230.5 (emblem centre = name-block centre = partner x-height centre)
     Lockup band ................ y 168 (cap top of ONE FINANCIAL) -> y 293 (baseline of OBSERVABILITY)
-                                 The right-hand meta column re-uses this band: pill top = 168,
-                                 copyright baseline = 293.
+    Shared baseline ............ y 252: Accenture and Dynatrace wordmarks and the copyright line.
     Outer margins .............. 144 px: visible emblem edge on the left, text edge on the right.
-    Zones ...................... [O11y 1F lockup] --gutter-- [Accenture | Dynatrace] --gutter-- [status / copyright]
+    Zones ...................... [O11y 1F lockup] --gutter-- [Accenture | Dynatrace] --gutter-- [copyright]
                                  Both gutters are 330 px of ink-to-ink space: name ends at x 1112, Accenture
                                  starts at 1442; Dynatrace ends at 2424, the copyright starts at 2756.
                                  If any copy or size changes, re-centre .partners so the two gutters stay equal.
@@ -46,11 +45,7 @@
                                       hue kept at 266.8 (in the 265-285 brand band), L 55% -> 64% */
     --o11y-glow: 157, 118, 205;    /* rgb of the emblem halo, same hue as the emblem purple (~267) */
 
-    /* status */
-    --dt-green: #73BE28;           /* status dot */
-
     /* UI text */
-    --text: #F2F3F7;
     --muted: #A3A9BA;
   }
 
@@ -126,24 +121,13 @@
     background: linear-gradient(to bottom,
       rgba(255,255,255,0) 0%, rgba(255,255,255,0.20) 30%, rgba(255,255,255,0.20) 70%, rgba(255,255,255,0) 100%); }
 
-  /* ============ 3. STATUS + COPYRIGHT — tertiary, right-aligned ============
-     Pill spans the cap band of ONE FINANCIAL (168 -> 228); copyright baseline = OBSERVABILITY baseline (293). */
-  .meta { position: absolute; right: 144px; top: 168px;
-    display: flex; flex-direction: column; align-items: flex-end; }
-  .status {
-    display: inline-flex; align-items: center; gap: 16px; box-sizing: border-box;
-    height: 60px; padding: 0 28px 0 32px; border-radius: 30px;   /* extra left pad offsets the dot's 6 px ring */
-    background: rgba(255,255,255,0.035);
-    border: 2px solid rgba(255,255,255,0.17);
-    font-size: 32px; font-weight: 500; line-height: 1; color: var(--text); white-space: nowrap;
-  }
-  .status .k { color: var(--muted); }
-  .status .v { color: #FFFFFF; font-weight: 600; }
-  .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--dt-green); flex: none;
-    box-shadow: 0 0 0 6px rgba(115,190,40,0.18), 0 0 16px rgba(115,190,40,0.5); }
-  .legal { margin-top: 32px; font-size: 35px; font-weight: 450; line-height: 42px;
+  /* ============ 3. COPYRIGHT — tertiary, right-aligned ============
+     Single line whose baseline sits on the partner wordmarks' shared baseline (y = 252),
+     so the partner logos and the legal line read as one typographic row. */
+  .meta { position: absolute; right: 144px; top: 219px; }   /* -> baseline at y = 252 */
+  .legal { font-size: 35px; font-weight: 450; line-height: 42px;
     color: var(--muted); white-space: nowrap;
-    margin-right: -2px; }              /* optical: cancels the period's side bearing so the ink edge meets the pill edge */
+    margin-right: -2px; }              /* optical: cancels the period's side bearing so the ink edge meets the 144 px margin */
 </style>
 </head>
 <body>
@@ -168,9 +152,8 @@
     <img class="dt" src="assets/logos/dynatrace-white.svg" alt="Dynatrace">
   </div>
 
-  <!-- 3. Status + copyright (tertiary) -->
+  <!-- 3. Copyright (tertiary) -->
   <div class="meta">
-    <div class="status"><span class="dot"></span><span><span class="k">System Status:</span> <span class="v">Operational</span></span></div>
     <div class="legal">© 2026 One Financial Observability. All Rights Reserved.</div>
   </div>
 </body>

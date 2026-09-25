@@ -3,7 +3,8 @@
   "private": true,
   "description": "One Financial Observability x Accenture x Dynatrace co-branded banner (HTML source + PNG render)",
   "scripts": {
-    "render": "node render.js"
+    "render": "node render.js",
+    "export-logos": "node export-logos.js"
   },
   "devDependencies": {
     "playwright": "^1.56.0"

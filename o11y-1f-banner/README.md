@@ -13,10 +13,28 @@ Observability (O11y 1F)**.
 | `output/o11y-1f-accenture-dynatrace-banner.png` | **Banner final, 3840 × 461 px**: mesmas dimensões do original, substituição direta |
 | `output/o11y-1f-accenture-dynatrace-banner-1920.png` | Versão leve, 1920 × 231 px |
 | `banner.html` | Fonte editável (HTML/CSS, sem dependências de rede) |
+| `logos-png/` | **Logos em PNG com fundo transparente** para download (ver abaixo) |
 | `assets/` | Emblema O11y 1F, logos oficiais (SVG) e fontes locais (Open Sans Bold, Inter; licença OFL 1.1) |
-| `render.js`, `package.json` | Script para gerar os PNGs a partir do HTML |
-| `docs/comparativo-opcoes.jpg` | Antes × depois e as 4 direções de design avaliadas |
+| `render.js`, `export-logos.js`, `package.json` | Scripts para gerar os PNGs do banner e dos logos |
+| `docs/antes-depois.jpg` | Comparativo antes × depois |
 | `docs/antes-original.jpg` | Banner original, para referência |
+
+## Logos em PNG (`logos-png/`)
+
+Todos têm fundo transparente. Para baixar tudo de uma vez, use `logos-png.zip`.
+
+| Arquivo | Tamanho | Uso |
+| --- | --- | --- |
+| `accenture-logo-fundo-escuro.png` | 2000 × 527 | Accenture oficial, wordmark branco + `>` roxo (para fundos escuros) |
+| `accenture-logo-fundo-claro.png` | 2000 × 527 | Accenture oficial, wordmark preto + `>` roxo (para fundos claros) |
+| `dynatrace-logo-fundo-escuro.png` | 2000 × 355 | Dynatrace oficial, wordmark branco (para fundos escuros) |
+| `dynatrace-logo-fundo-claro.png` | 2000 × 355 | Dynatrace oficial, wordmark preto (para fundos claros) |
+| `o11y-1f-logo-completo.png` | 985 × 369 | Logo One Financial Observability completo (escudo + nome), como no banner (para fundos escuros) |
+| `o11y-1f-emblema.png` | 306 × 369 | Só o escudo O11y 1F, na resolução original (para fundos escuros) |
+
+O escudo O11y 1F foi desenhado para fundo escuro. Sobre branco aparece uma borda escura, que vem
+da arte original. As versões SVG da Accenture e da Dynatrace estão em `assets/logos/` e podem ser
+ampliadas sem perda.
 
 ## O que mudou em relação ao original
 
@@ -25,10 +43,10 @@ Observability (O11y 1F)**.
 - **Hierarquia em três zonas num único eixo horizontal**:
   1. **Logo O11y 1F**: marca principal, à esquerda.
   2. **Accenture | Dynatrace**: logos parceiros, ao centro, com o mesmo peso visual.
-  3. **Selo de status + copyright**: à direita, legíveis mesmo em meia escala.
+  3. **Copyright**: à direita, na mesma linha de base dos logos parceiros e legível mesmo em
+     meia escala. O “System Status: Operational” do original foi removido.
 - **Accenture adicionada** com o logo oficial.
-- Grid, margens e espaçamentos consistentes. O copyright ganhou tamanho e contraste, e o
-  “System Status: Operational” virou um selo com indicador verde.
+- Grid, margens e espaçamentos consistentes. O copyright ganhou tamanho e contraste.
 
 ## Logos e regras de marca
 
@@ -69,7 +87,7 @@ por verificações automáticas de:
 - contraste do texto;
 - fidelidade do logo O11y 1F em relação ao original.
 
-Veja `docs/comparativo-opcoes.jpg`.
+Veja `docs/antes-depois.jpg`.
 
 ## Editar e gerar novamente
 
@@ -77,7 +95,8 @@ Veja `docs/comparativo-opcoes.jpg`.
 cd o11y-1f-banner
 npm install
 npx playwright install chromium
-npm run render      # gera os dois PNGs em output/
+npm run render         # gera os dois PNGs do banner em output/
+npm run export-logos   # gera os PNGs dos logos em logos-png/
 ```
 
 Os textos, cores e posições ficam em `banner.html`, e o grid está documentado no comentário do topo.
