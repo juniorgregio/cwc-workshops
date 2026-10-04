@@ -6,6 +6,21 @@ Observability (O11y 1F)**.
 
 ![Banner animado](output/animado/o11y-1f-banner-animado-loop.gif)
 
+## Download direto
+
+O GitHub abre GIF, WebP e PNG no navegador em vez de baixar, por isso cada formato de imagem também
+está num `.zip` em `downloads/`, que o navegador baixa direto. O MP4 já baixa direto.
+
+| Formato | Download |
+| --- | --- |
+| GIF animado em loop (para o Dynatrace) | [`downloads/banner-animado-loop-gif.zip`](downloads/banner-animado-loop-gif.zip) |
+| GIF animado com entrada (toca uma vez) | [`downloads/banner-animado-intro-gif.zip`](downloads/banner-animado-intro-gif.zip) |
+| WebP animado | [`downloads/banner-animado-loop-webp.zip`](downloads/banner-animado-loop-webp.zip) |
+| MP4 (3840 × 460) | [`output/animado/o11y-1f-banner-animado.mp4`](output/animado/o11y-1f-banner-animado.mp4) |
+| PNG estático (3840 e 1920 px) | [`downloads/banner-estatico-png.zip`](downloads/banner-estatico-png.zip) |
+| Logos em PNG | [`downloads/logos-png.zip`](downloads/logos-png.zip) |
+| Tudo junto | [`downloads/banner-todos-os-formatos.zip`](downloads/banner-todos-os-formatos.zip) |
+
 ## Arquivos
 
 | Arquivo | Uso |
@@ -16,6 +31,7 @@ Observability (O11y 1F)**.
 | `banner.html` | Fonte editável (HTML/CSS, sem dependências de rede) |
 | `banner-animado.html` | Fonte da animação (mesmo layout, animado só com CSS) |
 | `logos-png/` | **Logos em PNG com fundo transparente** para download (ver abaixo) |
+| `downloads/` | Zips para download direto de cada formato (ver acima) |
 | `assets/` | Emblema O11y 1F, logos oficiais (SVG) e fontes locais (Open Sans Bold, Inter; licença OFL 1.1) |
 | `render.js`, `export-logos.js`, `animate.js`, `package.json` | Scripts para gerar os PNGs do banner, dos logos e as versões animadas |
 | `docs/antes-depois.jpg` | Comparativo antes × depois |
