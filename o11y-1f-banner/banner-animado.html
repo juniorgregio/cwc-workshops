@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-intro-ms="3500" data-loop-ms="8000" data-gif-accent="2460,140,210,180">
+<head>
+<meta charset="utf-8">
+<title>One Financial Observability Banner (animated)</title>
+<!--
+  One Financial Observability x Accenture x Dynatrace — co-branded banner
+  Canvas: 3840 x 461 CSS px (rendered at deviceScaleFactor 1; shown in Dynatrace at ~1920 x 230).
+  Render: npm run animate  (see README.md; writes output/animado/*.gif|webp|mp4)
+  The static version of this exact layout is banner.html.
+
+  GRID (all values in CSS px)
+    Horizontal axis ............ y = 230.5 (emblem centre = name-block centre = partner x-height centre)
+    Lockup band ................ y 168 (cap top of ONE FINANCIAL) -> y 293 (baseline of OBSERVABILITY)
+    Shared baseline ............ y 252: Accenture and Dynatrace wordmarks and the copyright line.
+    Outer margins .............. 144 px: visible emblem edge on the left, text edge on the right.
+    Zones ...................... [O11y 1F lockup] --gutter-- [Accenture | Dynatrace] --gutter-- [copyright]
+                                 Both gutters are 330 px of ink-to-ink space: name ends at x 1112, Accenture
+                                 starts at 1442; Dynatrace ends at 2424, the copyright starts at 2756.
+                                 If any copy or size changes, re-centre .partners so the two gutters stay equal.
+
+  BRAND RULES
+    * O11y 1F lockup = primary, protected brand. Emblem PNG untouched at native 369 px (no filter or
+      colour change ever; only the one-time intro fades it in with a uniform 0.94 -> 1 scale); its halo
+      is a separate element painted behind it.
+      Name in Open Sans Bold 700, white + #886AAD-family purple, second line indented.
+    * Accenture / Dynatrace = secondary partner logos, official kit SVGs via <img>, sized by height only,
+      no effects. Accenture:Dynatrace height ratio 1.26 (equal optical weight), shared wordmark baseline,
+      clear space >= 110 px on each side of the hairline divider.
+-->
+<!--
+  ANIMATED VERSION — "TELEMETRY PULSE" (final)
+  The static layout above and in the first part of <style> is the approved banner, unchanged.
+  Everything animated is added in the ANIMATION block at the end of <style> and as light layers
+  inside .bg, i.e. painted behind every logo and all text. Pure CSS @keyframes, no JS.
+
+  TIMELINE CONTRACT (read by animate.js)
+    data-intro-ms = 3500   one-time entrance 0 -> 3.5 s. Every intro animation uses fill-mode
+                           "backwards" only, so when it ends the element is back on its static style.
+    data-loop-ms  = 8000   seamless ambient loop from 3.5 s. Every infinite animation has delay 3500 ms
+                           and duration 8000 ms. Loop phase 0 (t = 3.5 s) == the approved static banner.
+
+  ENCODING  animate.js: loop WebP LOSSLESS (lossy libwebp_anim drops the faint halo breath in blocks),
+            exact frame counts (loop GIF 160 frames / WebP 240 frames = 8000 ms), and a GIF palette that
+            reserves colours for the moving light in data-gif-accent (the gutter-2 trace, x 2460-2670,
+            y 140-320), so the blue Dynatrace pulse stays blue instead of turning mauve.
+
+  STORY
+    Intro  A small point of lavender light ignites behind the emblem and widens into the halo; the
+           emblem resolves out of it and the name slides out as one unit. A hairline telemetry trace
+           then draws itself out of the lockup: a rounded heartbeat in gutter 1 (lavender -> #A100FF),
+           Accenture, the divider and Dynatrace fade in as the (hidden) head passes them, a smaller
+           blue heartbeat is drawn in gutter 2 (-> Dynatrace #1496FF) and the copyright appears last.
+           Both traces dissolve and the frame settles on the approved banner.
+    Loop   The halo breathes twice per loop (4 s sine each). On the first, deeper breath one light
+           pulse leaves the lockup, runs the heartbeat in gutter 1 and leaves the waveform glowing
+           faintly behind it for ~0.7 s, travels unseen behind the partner logos, and replays the
+           blue heartbeat in gutter 2. Then ~4.5 s of calm with only the second, softer breath.
+
+  CLEAR SPACE (baked into the trace's userSpaceOnUse stroke gradients, i.e. fixed canvas x)
+    Light exists only in two windows: x 1172-1372 (gutter 1) and x 2494-2645 (gutter 2).
+    That is 60 px from the name ink, 70 px from the Accenture and Dynatrace ink and 111 px before
+    the copyright, with smoothstep ramps at both ends. Nothing lights the partner zone (x 1372-2494, incl. the
+    divider gap), so the logos, the divider and the copyright never change in the loop.
+    The trace SVGs cover only the two gutters, so the moving light never repaints a logo.
+
+  TIMELINE — INTRO (absolute ms; every row fill-mode backwards)
+    element                          property                                         start   dur   easing
+    .ignite  (light behind emblem)   --ig-a 0 -> 1 (@400) -> 0, --ig-s radius 45 -> 100 -> 280 px   100    800   expo-out rise, sine fall
+    .halo    (approved halo)         --halo-in 0 -> 1 (opacity of its two layers)       250   1200   sine in-out (0.37,0,0.63,1)
+    .emblem                          opacity 0 -> 1 (0.3 reached at ~905 ms)            500   1100   cubic-bezier(0.55,0,0.3,1)
+    .emblem                          uniform scale 0.94 -> 1                            500   1200   cubic-bezier(0.45,0,0.2,1)
+    .name    (both lines, one unit)  opacity 0 -> 1, translateX -28 px -> 0             800    900   cubic-bezier(0.22,1,0.36,1)
+    .trace   head --si               parked x 1160 until 880; eases in over 250 ms, then 850 px/s,
+                                     unseen speed-up behind the partners, 850 px/s in gutter 2      880   1894   quadratic in, linear, C1 bezier
+                                       head visible in gutter 1  964 -> 1348 ms, in gutter 2  2219 -> 2474 ms
+    .acn     Accenture               opacity 0 -> 1, translateY 12 px -> 0 (head x 1442 @1431)  1370    750   cubic-bezier(0.22,1,0.36,1)
+    .pdiv    divider                 opacity 0 -> 1, scaleY 0.4 -> 1 (head x 1903 @1780)        1720    700   cubic-bezier(0.22,1,0.36,1)
+    .dt      Dynatrace               opacity 0 -> 1, translateY 12 px -> 0 (head x 2014 @1850)  1790    750   cubic-bezier(0.22,1,0.36,1)
+    .legal   copyright               colour alpha 0 -> #A3A9BA (head x 2756 @2604)             2545    750   cubic-bezier(0.22,1,0.36,1)
+    .trace   --d1 gutter-1 trace     1, then dissolves 1 -> 0                          2200    750   sine in-out
+    .trace   --d2 gutter-2 trace     1, then dissolves 1 -> 0                          2750    650   sine in-out
+    rest frame (3500 ms) = approved static banner
+
+  TIMELINE — LOOP (tau = t - 3500 ms; period 8000 ms; all: delay 3500, duration 8000, infinite)
+    element                          property                                         tau (ms)                 easing
+    .breath  (bloom behind emblem)   --breath 0 -> 1 -> 0 -> 0.75 -> 0 (alpha + radius x0.94->1)   0 / 2000 / 4000 / 6000 / 8000   sine in-out per segment
+    .trace   head --sc               parked x 1160                                    0 -> 2000                hold
+                                     launch on the breath peak, ease-in to 460 px/s   2000 -> 2300             quadratic ease-in
+                                     460 px/s through the gutter-1 heartbeat          2300 -> 3306             linear  (visible 2125 -> 2784)
+                                     unseen behind the partners, C1 speed-up          3306 -> 4288             cubic-bezier(0.3,0.158,0.7,0.842)
+                                     460 px/s through the gutter-2 heartbeat          4288 -> 5582             linear  (visible 4340 -> 4810)
+                                     parked x 3000 (invisible) -> wraps to x 1160     5582 -> 8000             hold
+    .trace   --wk waveform wake      0 | 1 (1900-2000, head unseen) | fade 2980 -> 3500 |
+                                     1 (3850-3950, head unseen) | fade 4980 -> 5500 | 0                          sine in-out fades
+    calm                             5500 -> 10000 (next loop 2000): only the halo breathes
+  All loop animations are paint-only registered custom properties (no opacity/transform animation),
+  so no layer is composited: the copyright keeps its subpixel anti-aliasing and the SVG logos are
+  never re-rasterized.
+
+  TRACE GEOMETRY  path #trace (canvas px, length 2105.2): baseline y 230.5 from x 1100 to 3060 with
+    two rounded heartbeat blips (sum of Gaussians, no corners): x 1272 (R peak 44 px) and x 2569 (x0.82).
+    Every dash of the light is one <use> of the path: dasharray "L 99999", dashoffset "L - head",
+    so the dash covers path distance [head - L, head]. --si / --sc = head distance along the path.
+-->
+<style>
+  /* ---------- fonts (local only, no network) ---------- */
+  @font-face { font-family: "Open Sans"; font-weight: 700; font-style: normal;
+    src: url("assets/fonts/OpenSans-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 200 800; font-style: normal;
+    src: url("assets/fonts/Inter-Variable.woff2") format("woff2"); }
+
+  :root {
+    /* background: restrained indigo-navy (close to Dynatrace dark chrome, warmer than slate) */
+    --bg-0: #0A0A16;
+    --bg-1: #0D0E1C;
+    --bg-2: #121328;
+
+    /* O11y 1F brand */
+    --o11y-white: #FFFFFF;
+    --o11y-purple: #9E7CC8;        /* original #886AAD (HSL hue 266.9) lifted for contrast on near-black:
+                                      hue kept at 266.8 (in the 265-285 brand band), L 55% -> 64% */
+    --o11y-glow: 157, 118, 205;    /* rgb of the emblem halo, same hue as the emblem purple (~267) */
+
+    /* UI text */
+    --muted: #A3A9BA;
+  }
+
+  html, body { margin: 0; width: 3840px; height: 461px; overflow: hidden; }
+  body {
+    position: relative;
+    background: linear-gradient(90deg, var(--bg-0) 0%, var(--bg-1) 42%, var(--bg-2) 100%);
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* ============ BACKGROUND LAYERS (painted first, never on top of a logo) ============ */
+
+  /* Canvas-sized wrapper for all decoration. overflow:clip (not hidden) clips the oversized halo
+     to the 3840 x 461 frame without making anything a scroll container, so body has no hidden
+     scrollable overflow. No z-index / opacity / transform: it is not a stacking context. */
+  .bg { position: absolute; left: 0; top: 0; width: 3840px; height: 461px; overflow: clip; pointer-events: none; }
+
+  /* Two-layer emblem halo, centred on the emblem (x = 283, y = 230.5).
+     Broad layer = ambient lift of the left third; core = presence cue that survives 1920 px.
+     Both layers are 460 px tall so they fade to 0 before the top/bottom edges of the frame
+     (no lighter band where a Dynatrace tile edge meets the banner). */
+  .halo { position: absolute; left: 283px; top: 230.5px; width: 0; height: 0; pointer-events: none; }
+  .halo::before, .halo::after { content: ""; position: absolute; border-radius: 50%; }
+  .halo::before {            /* broad ambient ellipse */
+    left: -600px; top: -230px; width: 1200px; height: 460px;
+    background: radial-gradient(closest-side,
+      rgba(var(--o11y-glow), 0.12) 0%, rgba(var(--o11y-glow), 0.07) 40%,
+      rgba(var(--o11y-glow), 0.025) 72%, rgba(var(--o11y-glow), 0) 100%);
+  }
+  .halo::after {             /* tight core, 460 px */
+    left: -230px; top: -230px; width: 460px; height: 460px;
+    background: radial-gradient(closest-side,
+      rgba(var(--o11y-glow), 0.30) 0%, rgba(var(--o11y-glow), 0.20) 30%,
+      rgba(var(--o11y-glow), 0.09) 60%, rgba(var(--o11y-glow), 0.025) 85%, rgba(var(--o11y-glow), 0) 100%);
+  }
+
+  /* No edge rules or bars: the 40 px top/bottom and 96 px side bands stay plain background
+     (gradient + halo only), so a Dynatrace tile crop of any few px leaves no sliver.
+     Chrome dithers the gradients, so no grain layer is needed to prevent banding. */
+
+  /* ============ 1. O11y 1F LOCKUP — primary, protected ============
+     One component: emblem + name move together, internal geometry fixed.
+       emblem  : native 306 x 369 (no resampling), visible left edge at 130 + 14 = 144
+       gap     : 43 px from the emblem's last visible column to the "O" of ONE
+       name    : cap band 168 -> 293 is centred on the emblem (230.5)
+       indent  : OBSERVABILITY starts 64 px right of ONE (as in the original) */
+  .brand { position: absolute; left: 130px; top: 46px; height: 369px;
+    display: flex; align-items: flex-start; }
+  .emblem { display: block; height: 369px; width: auto; flex: none; }
+  .name {
+    margin-left: 30px;                 /* -> 43 px clear space between emblem ink and "O" ink */
+    margin-top: 108px;                 /* -> cap top of ONE FINANCIAL at y = 168 */
+    font-family: "Open Sans", sans-serif; font-weight: 700;
+    line-height: 1; white-space: nowrap;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);   /* very subtle, allowed by the brief */
+  }
+  .name .l1 { display: block; font-size: 84px; letter-spacing: -0.01em; color: var(--o11y-white); }
+  .name .l2 { display: block; font-size: 60px; letter-spacing: -0.01em; color: var(--o11y-purple);
+    margin-top: 2px;                   /* -> 22 px from line-1 baseline to line-2 cap top */
+    padding-left: 66px; }              /* indent */
+
+  /* ============ 2. PARTNER LOGOS — secondary ============
+     Heights: Accenture 92 px, Dynatrace 73 px (ratio 1.26 -> equal optical weight).
+     Both wordmarks share one baseline; their lowercase x-height bands are centred on y = 230.5.
+     A single hairline divider (fades at both ends) with 110 px clear space on each side. */
+  .partners { position: absolute; left: 1442px; top: 0; height: 461px;
+    display: flex; align-items: flex-start; }
+  .acn { display: block; height: 92px; width: auto; flex: none; margin-top: 161px; }
+  .dt  { display: block; height: 73px; width: auto; flex: none; margin-top: 193px; }
+  .pdiv { flex: none; width: 2px; height: 150px; margin: 155.5px 110px 0;
+    background: linear-gradient(to bottom,
+      rgba(255,255,255,0) 0%, rgba(255,255,255,0.20) 30%, rgba(255,255,255,0.20) 70%, rgba(255,255,255,0) 100%); }
+
+  /* ============ 3. COPYRIGHT — tertiary, right-aligned ============
+     Single line whose baseline sits on the partner wordmarks' shared baseline (y = 252),
+     so the partner logos and the legal line read as one typographic row. */
+  .meta { position: absolute; right: 144px; top: 219px; }   /* -> baseline at y = 252 */
+  .legal { font-size: 35px; font-weight: 450; line-height: 42px;
+    color: var(--muted); white-space: nowrap;
+    margin-right: -2px; }              /* optical: cancels the period's side bearing so the ink edge meets the 144 px margin */
+
+  /* =====================================================================================
+     ANIMATION — "Telemetry pulse" (final). Nothing above this line was changed.
+     Easing vocabulary (written out literally: Chrome ignores var() in a keyframe's timing function)
+       entrance  cubic-bezier(0.22, 1, 0.36, 1)    expo-like ease-out, no overshoot
+       ambience  cubic-bezier(0.37, 0, 0.63, 1)    sine in-out
+       light     linear at constant speed, quadratic ease-in on launch, C1-continuous beziers elsewhere
+     ===================================================================================== */
+
+  /* Registered custom properties: they interpolate in @keyframes and repaint without creating
+     compositor layers (paint-only). Initial values = the static banner. */
+  @property --halo-in { syntax: "<number>"; inherits: true;  initial-value: 1; }    /* approved halo fade-up */
+  @property --ig-a    { syntax: "<number>"; inherits: false; initial-value: 0; }    /* ignition brightness   */
+  @property --ig-s    { syntax: "<number>"; inherits: false; initial-value: 0.16; } /* ignition radius x280  */
+  @property --breath  { syntax: "<number>"; inherits: false; initial-value: 0; }    /* loop halo bloom       */
+  @property --si      { syntax: "<length>"; inherits: true;  initial-value: 0px; }  /* intro head on #trace  */
+  @property --sc      { syntax: "<length>"; inherits: true;  initial-value: 0px; }  /* loop head on #trace   */
+  @property --d1      { syntax: "<number>"; inherits: true;  initial-value: 0; }    /* intro trace, gutter 1 */
+  @property --d2      { syntax: "<number>"; inherits: true;  initial-value: 0; }    /* intro trace, gutter 2 */
+  @property --wk      { syntax: "<number>"; inherits: true;  initial-value: 0; }    /* loop waveform wake    */
+
+  /* ---------- intro 1: ignition -> halo -> emblem -> name ---------- */
+  /* A small lavender point of light (no white) behind the emblem, widening into the halo.
+     It is fully gone at 900 ms, before the emblem passes 30 % opacity (~905 ms). */
+  .ignite { position: absolute; left: 0; top: 0; width: 570px; height: 461px; pointer-events: none;
+    background: radial-gradient(circle calc(280px * var(--ig-s)) at 283px 230.5px,
+      rgba(206, 188, 246, calc(0.30 * var(--ig-a))) 0%,
+      rgba(var(--o11y-glow), calc(0.22 * var(--ig-a))) 28%,
+      rgba(var(--o11y-glow), calc(0.07 * var(--ig-a))) 62%,
+      rgba(var(--o11y-glow), 0) 100%);
+    animation: ignite 800ms linear 100ms backwards; }
+  @keyframes ignite {
+    0%    { --ig-a: 0; --ig-s: 0.16; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+    37.5% { --ig-a: 1; --ig-s: 0.36; animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }  /* 400 ms */
+    100%  { --ig-a: 0; --ig-s: 1; }                                                                 /* 900 ms */
+  }
+
+  .halo { animation: halo-in 1200ms cubic-bezier(0.37, 0, 0.63, 1) 250ms backwards; }
+  .halo::before, .halo::after { opacity: var(--halo-in, 1); }       /* 1 at rest = unchanged */
+  @keyframes halo-in { from { --halo-in: 0; } to { --halo-in: 1; } }
+
+  .emblem { transform-origin: 50% 50%;
+    animation: emblem-fade 1100ms cubic-bezier(0.55, 0, 0.3, 1) 500ms backwards,
+               emblem-scale 1200ms cubic-bezier(0.45, 0, 0.2, 1) 500ms backwards; }
+  @keyframes emblem-fade  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes emblem-scale { from { transform: scale(0.94); } to { transform: none; } }     /* uniform */
+
+  /* The name moves as ONE unit (both lines together), so the lockup geometry never distorts. */
+  .name { animation: name-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 800ms backwards; }
+  @keyframes name-in { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- intro 2: partners + copyright appear as the trace head reaches their x ---------- */
+  .acn  { animation: rise-in 750ms cubic-bezier(0.22, 1, 0.36, 1) 1370ms backwards; }   /* head x 1442 @1431 */
+  .pdiv { transform-origin: 50% 50%;
+          animation: div-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 1720ms backwards; }    /* head x 1903 @1780 */
+  .dt   { animation: rise-in 750ms cubic-bezier(0.22, 1, 0.36, 1) 1790ms backwards; }   /* head x 2014 @1850 */
+  /* Colour-alpha fade, not opacity: an opacity animation would composite the line and drop its
+     subpixel anti-aliasing, so the rest frame would no longer match the approved banner. */
+  .legal { animation: text-in 750ms cubic-bezier(0.22, 1, 0.36, 1) 2545ms backwards; }  /* head x 2756 @2604 */
+  @keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes div-in  { from { opacity: 0; transform: scaleY(0.4); } to { opacity: 1; transform: none; } }
+  @keyframes text-in { from { color: rgba(163, 169, 186, 0); } to { color: var(--muted); } }
+
+  /* ---------- loop: halo breath (two breaths per 8 s; the first, deeper one launches the pulse) ----------
+     Lavender only, behind the emblem. The ellipse (<= 175 x 188 px around x 283 / y 230.5) is exactly 0
+     from x 458 on (name ink starts at 471) and outside the 96 px side band and 40 px top/bottom bands. */
+  .breath { position: absolute; left: 100px; top: 36px; width: 366px; height: 390px; pointer-events: none;
+    --r: calc(0.94 + 0.06 * var(--breath));
+    background: radial-gradient(calc(175px * var(--r)) calc(188px * var(--r)) at 183px 194.5px,
+      rgba(var(--o11y-glow), calc(0.34 * var(--breath))) 0%,
+      rgba(var(--o11y-glow), calc(0.215 * var(--breath))) 30%,
+      rgba(var(--o11y-glow), calc(0.085 * var(--breath))) 60%,
+      rgba(var(--o11y-glow), calc(0.02 * var(--breath))) 82%,
+      rgba(var(--o11y-glow), 0) 100%);
+    animation: breathe 8000ms linear 3500ms infinite; }
+  @keyframes breathe {
+    0%   { --breath: 0;   animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }
+    25%  { --breath: 1;   animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }   /* tau 2.0 s: pulse launch */
+    50%  { --breath: 0;   animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }
+    75%  { --breath: 0.75; animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }   /* tau 6.0 s: calm swell */
+    100% { --breath: 0; }
+  }
+
+  /* ---------- telemetry trace ----------
+     One wrapper carries every trace animation; the values inherit into both SVGs.
+     Each SVG covers one gutter only, so repainting the light never touches a logo. */
+  .trace { position: absolute; left: 0; top: 0; width: 0; height: 0;
+    animation: head-intro 3500ms linear 0ms backwards,
+               trace-dissolve 3500ms linear 0ms backwards,
+               head-loop 8000ms linear 3500ms infinite,
+               wake-loop 8000ms linear 3500ms infinite; }
+  .trace svg { position: absolute; top: 0; height: 461px; overflow: hidden; }
+  .trace .g1 { left: 1150px; width: 250px; }       /* gutter 1: x 1150-1400 */
+  .trace .g2 { left: 2470px; width: 190px; }       /* gutter 2: x 2470-2660 */
+  .trace use { fill: none; stroke-linecap: butt; stroke-linejoin: round;
+    stroke-dasharray: var(--L) 99999px; stroke-dashoffset: calc(var(--L) - var(--h)); }
+  /* var() fallbacks = the rest values, for browsers without @property (the light then stays hidden). */
+  .trace .sweep { --h: var(--si, 60px); }
+  .trace .comet { --h: var(--sc, 60px); }
+  .trace .g1 .sweep { opacity: var(--d1, 0); }     /* 0 at rest: nothing painted */
+  .trace .g2 .sweep { opacity: var(--d2, 0); }
+  .trace .line { stroke: url(#g-line); stroke-width: 2.75px; }
+  .trace .glow { stroke: url(#g-glow); stroke-width: 18px; stroke-opacity: 0.36; filter: url(#soft); }
+  .trace .core { stroke: url(#g-core); stroke-width: 6px; stroke-linecap: round; stroke-opacity: 0.55; }
+  .trace .wake { opacity: var(--wk, 0); }
+
+  /* Intro head: parked (invisible) at x 1160, eases in, 850 px/s in the gutters, faster unseen
+     behind the partners, then parks past the copyright fade-out. */
+  @keyframes head-intro {
+    0%, 25.143% { --si: 60.0px; animation-timing-function: cubic-bezier(0.333, 0, 0.667, 0.333); }   /* 880 ms: parked, invisible */
+    32.286%   { --si: 166.2px; animation-timing-function: linear; }   /* 1130 ms, head x 1258 */
+    41.213%   { --si: 431.8px; animation-timing-function: cubic-bezier(0.3, 0.188, 0.7, 0.812); }   /* 1442 ms, head x 1452 */
+    62.6%     { --si: 1449.8px; animation-timing-function: linear; }   /* 2191 ms, head x 2470 */
+    79.25%    { --si: 1945.2px; }   /* 2774 ms, head x 2900 */
+    100%      { --si: 1945.2px; }
+  }
+  /* The drawn intro traces hold, then dissolve: gutter 1 from 2.2 s, gutter 2 from 2.75 s. */
+  @keyframes trace-dissolve {
+    0%       { --d1: 1; --d2: 1; }
+    62.857%  { --d1: 1; animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }   /* 2200 ms */
+    78.571%  { --d2: 1; animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }   /* 2750 ms */
+    84.286%  { --d1: 0; }                                                              /* 2950 ms */
+    97.143%  { --d2: 0; }                                                              /* 3400 ms */
+    100%     { --d1: 0; --d2: 0; }
+  }
+
+  /* Loop pulse: launched on the breath peak (tau 2.0 s); 460 px/s wherever it is visible. */
+  @keyframes head-loop {
+    0%, 25% { --sc: 60.0px; animation-timing-function: cubic-bezier(0.333, 0, 0.667, 0.333); }   /* 2000 ms: parked, invisible */
+    28.75%    { --sc: 129.0px; animation-timing-function: linear; }   /* 2300 ms, head x 1226 */
+    41.327%   { --sc: 591.8px; animation-timing-function: cubic-bezier(0.3, 0.158, 0.7, 0.842); }   /* 3306 ms, head x 1612 */
+    53.599%   { --sc: 1449.8px; animation-timing-function: linear; }   /* 4288 ms, head x 2470 */
+    69.776%   { --sc: 2045.2px; }   /* 5582 ms, head x 3000 */
+    100%      { --sc: 2045.2px; }
+  }
+  /* Waveform wake: while it is 1 the gutter's heartbeat stays drawn faintly behind the head; it
+     fades ~0.2 s after the head has left each gutter. It only switches on while the head is unseen. */
+  @keyframes wake-loop {
+    0%, 23.75% { --wk: 0; }                                                              /* 1900 */
+    25%        { --wk: 1; }                                                              /* 2000 */
+    37.25%     { --wk: 1; animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }   /* 2980 */
+    43.75%     { --wk: 0; }                                                              /* 3500 */
+    48.125%    { --wk: 0; }                                                              /* 3850 */
+    49.375%    { --wk: 1; }                                                              /* 3950 */
+    62.25%     { --wk: 1; animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }   /* 4980 */
+    68.75%     { --wk: 0; }                                                              /* 5500 */
+    100%       { --wk: 0; }
+  }
+
+  /* Accessibility: reduced motion shows the static banner (every added layer rests invisible). */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+  <!-- background -->
+  <div class="bg" aria-hidden="true">
+    <div class="halo"></div>
+    <!-- ANIMATION: intro ignition + loop breath, both behind the emblem, transparent at rest -->
+    <div class="ignite"></div>
+    <div class="breath"></div>
+
+    <!-- ANIMATION: telemetry trace (behind everything; transparent at rest) -->
+    <div class="trace">
+      <!-- shared definitions; canvas coordinates. Visibility by x is baked into the gradients:
+           0 outside x 1172-1372 and x 2494-2645, smoothstep ramps at the ends of each window. -->
+      <svg width="0" height="0" style="position:absolute">
+        <defs>
+          <path id="trace" d="M 1100 230.5 L 1197 230.5 L 1198.5 230.4 L 1200 230.4 L 1201.5 230.3 L 1203 230.2 L 1204.5 230 L 1205.9 229.7 L 1207.4 229.3 L 1208.9 228.8 L 1210.4 228.1 L 1211.9 227.3 L 1213.4 226.3 L 1214.9 225.2 L 1216.4 224.1 L 1217.9 223 L 1219.4 222 L 1220.9 221.2 L 1222.4 220.7 L 1223.9 220.5 L 1225.4 220.7 L 1226.9 221.1 L 1228.4 221.9 L 1229.9 222.9 L 1231.4 224 L 1232.9 225.1 L 1234.4 226.2 L 1235.9 227.2 L 1237.4 228 L 1238.9 228.7 L 1240.3 229.3 L 1241.8 229.7 L 1243.3 230 L 1244.8 230.3 L 1246.3 230.6 L 1247.8 231 L 1249.3 231.4 L 1250.8 231.7 L 1252.3 232 L 1253.8 231.8 L 1255.3 231.1 L 1256.8 229.4 L 1258.3 226.6 L 1259.8 222.7 L 1261.3 217.8 L 1262.8 212.2 L 1264.3 206.2 L 1265.8 200.4 L 1267.3 195.2 L 1268.8 191.2 L 1270.3 188.7 L 1271.8 188.2 L 1273.3 189.7 L 1274.7 193.3 L 1276.2 198.6 L 1277.7 205.2 L 1279.2 212.3 L 1280.7 219.3 L 1282.2 225.5 L 1283.7 230.4 L 1285.2 233.7 L 1286.7 235.5 L 1288.2 236 L 1289.7 235.4 L 1291.2 234.3 L 1292.7 232.9 L 1294.2 231.5 L 1295.7 230.2 L 1297.2 229 L 1298.7 227.9 L 1300.2 226.9 L 1301.7 225.9 L 1303.2 224.9 L 1304.7 223.9 L 1306.2 222.9 L 1307.7 221.8 L 1309.1 220.8 L 1310.6 219.9 L 1312.1 219.1 L 1313.6 218.4 L 1315.1 217.9 L 1316.6 217.6 L 1318.1 217.5 L 1319.6 217.6 L 1321.1 218 L 1322.6 218.5 L 1324.1 219.2 L 1325.6 220.1 L 1327.1 221 L 1328.6 222 L 1330.1 223 L 1331.6 224 L 1333.1 225 L 1334.6 225.9 L 1336.1 226.7 L 1337.6 227.4 L 1339.1 228.1 L 1340.6 228.6 L 1342.1 229 L 1343.5 229.4 L 1345 229.7 L 1346.5 229.9 L 1348 230.1 L 1349.5 230.2 L 1351 230.3 L 1352.5 230.4 L 1354 230.4 L 1355.5 230.4 L 1357 230.5 L 2507.6 230.5 L 2509.1 230.4 L 2510.6 230.4 L 2512.1 230.3 L 2513.6 230.1 L 2515.1 229.8 L 2516.6 229.4 L 2518.1 228.7 L 2519.6 227.9 L 2521.1 227 L 2522.6 225.9 L 2524.1 224.7 L 2525.6 223.7 L 2527.1 222.9 L 2528.6 222.4 L 2530.1 222.3 L 2531.6 222.7 L 2533.1 223.4 L 2534.6 224.4 L 2536.1 225.5 L 2537.6 226.6 L 2539.1 227.6 L 2540.6 228.5 L 2542.1 229.2 L 2543.6 229.7 L 2545.1 230 L 2546.6 230.3 L 2548.1 230.6 L 2549.6 231 L 2551.1 231.4 L 2552.6 231.7 L 2554.1 231.6 L 2555.6 230.7 L 2557.1 228.6 L 2558.6 225.1 L 2560.1 220.3 L 2561.6 214.7 L 2563.1 208.7 L 2564.6 203.2 L 2566.1 198.8 L 2567.6 196.2 L 2569.1 196 L 2570.6 198.3 L 2572.1 203 L 2573.6 209.4 L 2575.1 216.6 L 2576.6 223.4 L 2578.1 229 L 2579.6 232.8 L 2581.1 234.6 L 2582.6 234.9 L 2584.1 234.1 L 2585.6 232.8 L 2587.1 231.4 L 2588.6 230 L 2590.1 228.9 L 2591.6 227.8 L 2593.1 226.9 L 2594.6 225.9 L 2596.1 224.8 L 2597.6 223.8 L 2599.1 222.8 L 2600.6 221.8 L 2602.1 221 L 2603.6 220.4 L 2605.1 220 L 2606.7 219.8 L 2608.2 220 L 2609.7 220.3 L 2611.2 221 L 2612.7 221.8 L 2614.2 222.7 L 2615.7 223.7 L 2617.2 224.7 L 2618.7 225.7 L 2620.2 226.6 L 2621.7 227.5 L 2623.2 228.2 L 2624.7 228.8 L 2626.2 229.2 L 2627.7 229.6 L 2629.2 229.9 L 2630.7 230.1 L 2632.2 230.2 L 2633.7 230.3 L 2635.2 230.4 L 2636.7 230.4 L 2638.2 230.5 L 3060 230.5"/>
+          <!-- hairline, tail and wake: lavender -> #A100FF (gutter 1), violet -> Dynatrace blue #1496FF (gutter 2) -->
+          <linearGradient id="g-line" gradientUnits="userSpaceOnUse" x1="1150" y1="0" x2="2660" y2="0">
+          <stop offset="1.457%" stop-color="rgb(200,178,245)" stop-opacity="0"/>   <!-- x 1172 -->
+          <stop offset="2.285%" stop-color="rgb(199,177,244)" stop-opacity="0.16"/>
+          <stop offset="3.113%" stop-color="rgb(199,175,243)" stop-opacity="0.5"/>
+          <stop offset="3.940%" stop-color="rgb(198,174,242)" stop-opacity="0.84"/>
+          <stop offset="4.768%" stop-color="rgb(197,172,241)" stop-opacity="1"/>   <!-- x 1222 -->
+          <stop offset="11.391%" stop-color="rgb(167,40,253)" stop-opacity="1"/>   <!-- x 1322 -->
+          <stop offset="12.219%" stop-color="rgb(163,12,254)" stop-opacity="0.84"/>
+          <stop offset="13.046%" stop-color="rgb(161,0,255)" stop-opacity="0.5"/>
+          <stop offset="13.874%" stop-color="rgb(161,0,255)" stop-opacity="0.16"/>
+          <stop offset="14.702%" stop-color="rgb(161,0,255)" stop-opacity="0"/>   <!-- x 1372 -->
+          <stop offset="89.007%" stop-color="rgb(139,133,255)" stop-opacity="0"/>   <!-- x 2494 -->
+          <stop offset="89.702%" stop-color="rgb(128,135,255)" stop-opacity="0.16"/>
+          <stop offset="90.397%" stop-color="rgb(117,138,255)" stop-opacity="0.5"/>
+          <stop offset="91.093%" stop-color="rgb(106,141,255)" stop-opacity="0.84"/>
+          <stop offset="91.788%" stop-color="rgb(94,144,255)" stop-opacity="1"/>   <!-- x 2536 -->
+          <stop offset="96.225%" stop-color="rgb(20,150,255)" stop-opacity="1"/>   <!-- x 2603 -->
+          <stop offset="96.921%" stop-color="rgb(20,150,255)" stop-opacity="0.84"/>
+          <stop offset="97.616%" stop-color="rgb(20,150,255)" stop-opacity="0.5"/>
+          <stop offset="98.311%" stop-color="rgb(20,150,255)" stop-opacity="0.16"/>
+          <stop offset="99.007%" stop-color="rgb(20,150,255)" stop-opacity="0"/>   <!-- x 2645 -->
+          </linearGradient>
+          <!-- soft glow around the head; gutter 2 tinted toward lavender-blue at 75 % (clean GIF palette) -->
+          <linearGradient id="g-glow" gradientUnits="userSpaceOnUse" x1="1150" y1="0" x2="2660" y2="0">
+          <stop offset="2.517%" stop-color="rgb(175,140,240)" stop-opacity="0"/>   <!-- x 1188 -->
+          <stop offset="3.245%" stop-color="rgb(174,126,241)" stop-opacity="0.16"/>
+          <stop offset="3.974%" stop-color="rgb(172,112,243)" stop-opacity="0.5"/>
+          <stop offset="4.702%" stop-color="rgb(171,99,244)" stop-opacity="0.84"/>
+          <stop offset="5.430%" stop-color="rgb(170,85,246)" stop-opacity="1"/>   <!-- x 1232 -->
+          <stop offset="10.728%" stop-color="rgb(161,0,255)" stop-opacity="1"/>   <!-- x 1312 -->
+          <stop offset="11.457%" stop-color="rgb(161,0,255)" stop-opacity="0.84"/>
+          <stop offset="12.185%" stop-color="rgb(161,0,255)" stop-opacity="0.5"/>
+          <stop offset="12.914%" stop-color="rgb(161,0,255)" stop-opacity="0.16"/>
+          <stop offset="13.642%" stop-color="rgb(161,0,255)" stop-opacity="0"/>   <!-- x 1356 -->
+          <stop offset="90.066%" stop-color="rgb(132,138,255)" stop-opacity="0"/>   <!-- x 2510 -->
+          <stop offset="90.662%" stop-color="rgb(126,141,255)" stop-opacity="0.12"/>
+          <stop offset="91.258%" stop-color="rgb(120,143,255)" stop-opacity="0.375"/>
+          <stop offset="91.854%" stop-color="rgb(115,146,255)" stop-opacity="0.63"/>
+          <stop offset="92.450%" stop-color="rgb(109,148,255)" stop-opacity="0.75"/>   <!-- x 2546 -->
+          <stop offset="95.563%" stop-color="rgb(80,160,255)" stop-opacity="0.75"/>   <!-- x 2593 -->
+          <stop offset="96.159%" stop-color="rgb(80,160,255)" stop-opacity="0.63"/>
+          <stop offset="96.755%" stop-color="rgb(80,160,255)" stop-opacity="0.375"/>
+          <stop offset="97.351%" stop-color="rgb(80,160,255)" stop-opacity="0.12"/>
+          <stop offset="97.947%" stop-color="rgb(80,160,255)" stop-opacity="0"/>   <!-- x 2629 -->
+          </linearGradient>
+          <!-- head core: pale lavender / pale blue tints (never pure white), stroke-opacity 0.55 -->
+          <linearGradient id="g-core" gradientUnits="userSpaceOnUse" x1="1150" y1="0" x2="2660" y2="0">
+          <stop offset="1.457%" stop-color="rgb(250,244,255)" stop-opacity="0"/>   <!-- x 1172 -->
+          <stop offset="2.285%" stop-color="rgb(249,242,255)" stop-opacity="0.16"/>
+          <stop offset="3.113%" stop-color="rgb(249,241,255)" stop-opacity="0.5"/>
+          <stop offset="3.940%" stop-color="rgb(248,239,255)" stop-opacity="0.84"/>
+          <stop offset="4.768%" stop-color="rgb(247,237,255)" stop-opacity="1"/>   <!-- x 1222 -->
+          <stop offset="11.391%" stop-color="rgb(241,224,255)" stop-opacity="1"/>   <!-- x 1322 -->
+          <stop offset="12.219%" stop-color="rgb(240,223,255)" stop-opacity="0.84"/>
+          <stop offset="13.046%" stop-color="rgb(240,222,255)" stop-opacity="0.5"/>
+          <stop offset="13.874%" stop-color="rgb(240,222,255)" stop-opacity="0.16"/>
+          <stop offset="14.702%" stop-color="rgb(240,222,255)" stop-opacity="0"/>   <!-- x 1372 -->
+          <stop offset="89.007%" stop-color="rgb(236,242,255)" stop-opacity="0"/>   <!-- x 2494 -->
+          <stop offset="89.702%" stop-color="rgb(236,242,255)" stop-opacity="0.16"/>
+          <stop offset="90.397%" stop-color="rgb(236,242,255)" stop-opacity="0.5"/>
+          <stop offset="91.093%" stop-color="rgb(236,242,255)" stop-opacity="0.84"/>
+          <stop offset="91.788%" stop-color="rgb(236,242,255)" stop-opacity="1"/>   <!-- x 2536 -->
+          <stop offset="96.225%" stop-color="rgb(236,242,255)" stop-opacity="1"/>   <!-- x 2603 -->
+          <stop offset="96.921%" stop-color="rgb(236,242,255)" stop-opacity="0.84"/>
+          <stop offset="97.616%" stop-color="rgb(236,242,255)" stop-opacity="0.5"/>
+          <stop offset="98.311%" stop-color="rgb(236,242,255)" stop-opacity="0.16"/>
+          <stop offset="99.007%" stop-color="rgb(236,242,255)" stop-opacity="0"/>   <!-- x 2645 -->
+          </linearGradient>
+          <filter id="soft" filterUnits="userSpaceOnUse" x="1150" y="0" width="1510" height="461">
+            <feGaussianBlur stdDeviation="6"/>
+          </filter>
+        </defs>
+      </svg>
+
+      <svg class="g1" viewBox="1150 0 250 461" width="250" height="461">
+        <g class="sweep">   <!-- intro: the whole trace behind the head, at 45 % -->
+          <use href="#trace" class="line" style="--L: 2400px; stroke-opacity: 0.45"/>
+          <use href="#trace" class="glow" style="--L: 70px"/>
+          <use href="#trace" class="core" style="--L: 0.5px"/>
+        </g>
+        <g class="comet">   <!-- loop: wake + stepped tail + glow + core, all sharing the head -->
+          <use href="#trace" class="line wake" style="--L: 700px; stroke-opacity: 0.32"/>
+          <use href="#trace" class="line" style="--L: 240px; stroke-opacity: 0.12"/>
+          <use href="#trace" class="line" style="--L: 150px; stroke-opacity: 0.20"/>
+          <use href="#trace" class="line" style="--L: 80px;  stroke-opacity: 0.35"/>
+          <use href="#trace" class="line" style="--L: 36px;  stroke-opacity: 0.50"/>
+          <use href="#trace" class="glow" style="--L: 70px"/>
+          <use href="#trace" class="core" style="--L: 0.5px"/>
+        </g>
+      </svg>
+
+      <svg class="g2" viewBox="2470 0 190 461" width="190" height="461">
+        <g class="sweep">
+          <use href="#trace" class="line" style="--L: 2400px; stroke-opacity: 0.45"/>
+          <use href="#trace" class="glow" style="--L: 70px"/>
+          <use href="#trace" class="core" style="--L: 0.5px"/>
+        </g>
+        <g class="comet">
+          <use href="#trace" class="line wake" style="--L: 700px; stroke-opacity: 0.32"/>
+          <use href="#trace" class="line" style="--L: 240px; stroke-opacity: 0.12"/>
+          <use href="#trace" class="line" style="--L: 150px; stroke-opacity: 0.20"/>
+          <use href="#trace" class="line" style="--L: 80px;  stroke-opacity: 0.35"/>
+          <use href="#trace" class="line" style="--L: 36px;  stroke-opacity: 0.50"/>
+          <use href="#trace" class="glow" style="--L: 70px"/>
+          <use href="#trace" class="core" style="--L: 0.5px"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 1. O11y 1F lockup (primary) -->
+  <div class="brand">
+    <img class="emblem" src="assets/o11y-1f-emblem.png" alt="O11y 1F">
+    <div class="name">
+      <span class="l1">ONE FINANCIAL</span>
+      <span class="l2">OBSERVABILITY</span>
+    </div>
+  </div>
+
+  <!-- 2. Partner logos (secondary) -->
+  <div class="partners">
+    <img class="acn" src="assets/logos/accenture-reversed-white.svg" alt="Accenture">
+    <div class="pdiv" aria-hidden="true"></div>
+    <img class="dt" src="assets/logos/dynatrace-white.svg" alt="Dynatrace">
+  </div>
+
+  <!-- 3. Copyright (tertiary) -->
+  <div class="meta">
+    <div class="legal">© 2026 One Financial Observability. All Rights Reserved.</div>
+  </div>
+</body>
+</html>
